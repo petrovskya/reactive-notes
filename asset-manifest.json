@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/reactive-notes/static/css/main.bf792d2c.css",
+    "main.js": "/reactive-notes/static/js/main.ab746c74.js",
+    "index.html": "/reactive-notes/index.html",
+    "main.bf792d2c.css.map": "/reactive-notes/static/css/main.bf792d2c.css.map",
+    "main.ab746c74.js.map": "/reactive-notes/static/js/main.ab746c74.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bf792d2c.css",
+    "static/js/main.ab746c74.js"
+  ]
+}
