@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Inter", "san-serif";
+
+}
+
+input {
+  /* border: none; */
+}
+
+button {
+  border: none;
+  font-family: inherit;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+
+
+}
