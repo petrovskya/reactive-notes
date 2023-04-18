@@ -1,2 +1,3 @@
 import { Color } from './color';
-export { Color };
+import { theme } from './theme';
+export { Color, theme };

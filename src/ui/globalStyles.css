@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: "Inter", "san-serif";
-
+  font-family: 'Inter', 'san-serif';
+  background-color: #ebecef;
 }
 
 input {
