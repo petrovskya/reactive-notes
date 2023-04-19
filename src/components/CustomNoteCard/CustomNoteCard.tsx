@@ -8,12 +8,14 @@ interface NoteCardProps {
   note: NoteProps;
   setActiveNote?: Dispatch<React.SetStateAction<NoteProps | null>>;
   activeNote?: NoteProps | null;
+  fullDescription?: boolean;
 }
 
 export const CustomNoteCard = ({
   note,
   setActiveNote,
   activeNote,
+  fullDescription,
 }: NoteCardProps) => {
   const { id, title, description, dateCreation } = note;
   const handleActiveNote = () => {
@@ -41,7 +43,7 @@ export const CustomNoteCard = ({
           {dateCreation}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {getShortDescription(description)}
+          {fullDescription ? description : getShortDescription(description)}
         </Typography>
       </CardContent>
     </Card>
