@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/reactive-notes/static/css/main.0e5123cf.css",
-    "main.js": "/reactive-notes/static/js/main.224fa109.js",
+    "main.js": "/reactive-notes/static/js/main.721077da.js",
     "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.8a52fb75ea7c34e81e48a7282674c2a0.svg",
     "index.html": "/reactive-notes/index.html",
     "main.0e5123cf.css.map": "/reactive-notes/static/css/main.0e5123cf.css.map",
-    "main.224fa109.js.map": "/reactive-notes/static/js/main.224fa109.js.map"
+    "main.721077da.js.map": "/reactive-notes/static/js/main.721077da.js.map"
   },
   "entrypoints": [
     "static/css/main.0e5123cf.css",
-    "static/js/main.224fa109.js"
+    "static/js/main.721077da.js"
   ]
 }
