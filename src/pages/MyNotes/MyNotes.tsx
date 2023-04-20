@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
-import { ActiveNote, CustomBasicList, CustomButton } from 'components';
-import { StyledMyNotes } from './styles';
-import { NOTES } from 'utils';
-import { NoteProps } from 'utils/notes';
+import { Box } from '@mui/material';
 
-export const MyNotes = () => {
-  const [activeNote, setActiveNote] = useState<NoteProps | null>(null);
-  return (
-    <StyledMyNotes>
+import { NotesList } from 'pages/MyNotes';
+import { ActiveNote, CustomButton, EditNote } from 'components';
+
+import { StyledMyNotes } from './styles';
+import { IMyNotes } from './types';
+
+export const MyNotes = ({
+  notes,
+  activeNote,
+  setActiveNote,
+  editMode,
+  setEditMode,
+}: IMyNotes) => (
+  <StyledMyNotes>
+    <Box display='flex' flexDirection='row' gap='40px'>
       <ActiveNote note={activeNote} />
-      <CustomBasicList
-        notes={NOTES}
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
-      />
-      <CustomButton />
-    </StyledMyNotes>
-  );
-};
+      {editMode && <EditNote />}
+    </Box>
+    <NotesList
+      notes={notes}
+      activeNote={activeNote}
+      setActiveNote={setActiveNote}
+      setEditMode={setEditMode}
+      editMode={editMode}
+    />
+    <CustomButton />
+  </StyledMyNotes>
+);

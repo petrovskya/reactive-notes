@@ -1,31 +1,35 @@
 import * as React from 'react';
-import { Card, CardContent, Typography } from '@mui/material';
-import { NoteProps } from 'utils/notes';
+import { Button, Card, CardContent, Typography } from '@mui/material';
+import { INote } from 'types';
 import { getShortDescription } from 'utils';
 import { Dispatch } from 'react';
 
 interface NoteCardProps {
-  note: NoteProps;
-  setActiveNote?: Dispatch<React.SetStateAction<NoteProps | null>>;
-  activeNote?: NoteProps | null;
-  fullDescription?: boolean;
+  note: INote;
+  setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
+  setEditMode: Dispatch<React.SetStateAction<boolean>>;
+  editMode: boolean;
+  activeNote: INote | null;
 }
 
 export const CustomNoteCard = ({
   note,
   setActiveNote,
   activeNote,
-  fullDescription,
+  setEditMode,
+  editMode,
 }: NoteCardProps) => {
   const { id, title, description, dateCreation } = note;
   const handleActiveNote = () => {
-    activeNote?.id === id && setActiveNote
-      ? setActiveNote(null)
-      : setActiveNote && setActiveNote(note);
+    activeNote?.id === id ? setActiveNote(null) : setActiveNote(note);
+  };
+  const handleEditMode = () => {
+    setActiveNote(note);
+    setEditMode(!editMode);
   };
   return (
-    <Card sx={{ maxWidth: 345, width: '100%' }} onClick={handleActiveNote}>
-      <CardContent>
+    <Card sx={{ maxWidth: 345, width: '100%' }}>
+      <CardContent onClick={handleActiveNote}>
         <Typography
           gutterBottom
           variant='h5'
@@ -43,9 +47,18 @@ export const CustomNoteCard = ({
           {dateCreation}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {fullDescription ? description : getShortDescription(description)}
+          {getShortDescription(description)}
         </Typography>
       </CardContent>
+      <Button
+        variant='contained'
+        onClick={handleEditMode}
+        size='large'
+        fullWidth
+        color='secondary'
+      >
+        {editMode && activeNote?.id === id ? 'Save' : 'Edit'}
+      </Button>
     </Card>
   );
 };

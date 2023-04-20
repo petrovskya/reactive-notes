@@ -1,14 +1,14 @@
 import { Typography } from '@mui/material';
-import { CustomNoteCard } from 'components';
+import { DisplayedNote } from 'components';
 import React from 'react';
-import { NoteProps } from 'utils/notes';
+import { INote } from 'types';
 
 interface ActiveNoteProps {
-  note: NoteProps | null;
+  note: INote | null;
 }
 export const ActiveNote = ({ note }: ActiveNoteProps) => {
   return note ? (
-    <CustomNoteCard note={note} fullDescription />
+    <DisplayedNote note={note} />
   ) : (
     <Typography gutterBottom variant='h5' component='p' color='text.primary'>
       Select note to display...

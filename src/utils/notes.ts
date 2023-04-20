@@ -1,11 +1,6 @@
-export interface NoteProps {
-  id: string;
-  title: string;
-  description: string;
-  dateCreation: string;
-}
+import { INote } from 'types';
 
-export const NOTES: NoteProps[] = [
+export const NOTES: INote[] = [
   {
     id: '1',
     title: 'Lorem ipsum dolor',

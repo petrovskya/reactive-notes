@@ -4,13 +4,15 @@ import { CustomAppBar } from './CustomAppBar/CustomAppBar';
 import { CustomNavTabs } from './CustomNavTabs/CustomNavTabs';
 import { ActiveNote } from './ActiveNote/ActiveNote';
 import { CustomNoteCard } from './CustomNoteCard/CustomNoteCard';
-import { CustomBasicList } from './CustomBasicList/CustomBasicList';
+import { EditNote } from './EditNote/EditNote';
+import { DisplayedNote } from './DisplayedNote/DisplayedNote';
 export {
   CustomButton,
   Logo,
   CustomAppBar,
   CustomNavTabs,
   ActiveNote,
-  CustomBasicList,
   CustomNoteCard,
+  EditNote,
+  DisplayedNote,
 };
