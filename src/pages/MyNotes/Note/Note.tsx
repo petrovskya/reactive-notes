@@ -1,40 +1,40 @@
-import { Card, Button, CardContent, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, Typography } from '@mui/material';
 
+import { EditMenuContainer } from 'components';
 import { getShortDescription } from 'utils';
+
 import { INoteProps } from './types';
 
-export const Note = ({
-  note,
-  handleActiveNote,
-  activeNote,
-  handleEditMode,
-  editMode,
-}: INoteProps) => (
+export const Note = ({ note, handleActiveNote, editNote }: INoteProps) => (
   <Card sx={{ maxWidth: 345, width: '100%' }}>
     <CardContent onClick={handleActiveNote}>
-      <Typography gutterBottom variant='h5' component='p' color='text.primary'>
+      <Typography
+        gutterBottom
+        variant='h3'
+        fontSize='20px'
+        component='p'
+        color='text.primary'
+      >
         {note.title}
       </Typography>
       <Typography
         gutterBottom
-        variant='h6'
+        variant='body2'
         component='span'
         color='text.secondary'
       >
         {note.dateCreation}
       </Typography>
-      <Typography variant='body2' color='text.secondary'>
+      <Typography variant='h6' fontSize='16px' color='text.secondary'>
         {getShortDescription(note.description)}
       </Typography>
     </CardContent>
-    <Button
-      variant='contained'
-      onClick={handleEditMode}
-      size='large'
-      fullWidth
-      color='secondary'
-    >
-      {editMode && activeNote?.id === note.id ? 'Save' : 'Edit'}
-    </Button>
+    <CardActions>
+      <EditMenuContainer
+        editNote={editNote}
+        note={note}
+        handleActiveNote={handleActiveNote}
+      />
+    </CardActions>
   </Card>
 );

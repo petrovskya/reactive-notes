@@ -7,7 +7,8 @@ export interface IMyNotes {
   setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
   setEditMode: Dispatch<React.SetStateAction<boolean>>;
   activeNote: INote | null;
-  editMode: boolean;
+  isEditMode: boolean;
+  editNote: (id: string, title: string, description: string) => void;
 }
 
 export interface INotesList extends IMyNotes {}

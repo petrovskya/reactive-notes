@@ -5,23 +5,13 @@ export const NoteContainer = ({
   note,
   setActiveNote,
   activeNote,
-  setEditMode,
-  editMode,
+  editNote,
 }: INoteContainer) => {
   const handleActiveNote = () => {
     activeNote?.id === note.id ? setActiveNote(null) : setActiveNote(note);
   };
-  const handleEditMode = () => {
-    setActiveNote(note);
-    setEditMode(!editMode);
-  };
+
   return (
-    <Note
-      note={note}
-      editMode={editMode}
-      activeNote={activeNote}
-      handleActiveNote={handleActiveNote}
-      handleEditMode={handleEditMode}
-    />
+    <Note note={note} handleActiveNote={handleActiveNote} editNote={editNote} />
   );
 };
