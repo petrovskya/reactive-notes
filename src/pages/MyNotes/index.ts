@@ -1,3 +1,4 @@
 import { MyNotesContainer } from './MyNotesContainer';
 import { NotesList } from './NotesList/NotesList';
-export { MyNotesContainer, NotesList };
+import { NoteContainer } from './Note/NoteContainer';
+export { MyNotesContainer, NotesList, NoteContainer };

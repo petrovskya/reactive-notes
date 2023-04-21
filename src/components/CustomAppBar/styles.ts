@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { AppBar } from '@mui/material';
+
 import { Color } from 'ui';
 
 export const StyledAppBar = styled(AppBar)`

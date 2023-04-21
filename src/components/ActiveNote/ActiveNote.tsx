@@ -1,12 +1,14 @@
 import { Typography } from '@mui/material';
+
 import { DisplayedNote } from 'components';
-import React from 'react';
+
 import { INote } from 'types';
 
-interface ActiveNoteProps {
+interface IActiveNote {
   note: INote | null;
 }
-export const ActiveNote = ({ note }: ActiveNoteProps) => {
+
+export const ActiveNote = ({ note }: IActiveNote) => {
   return note ? (
     <DisplayedNote note={note} />
   ) : (

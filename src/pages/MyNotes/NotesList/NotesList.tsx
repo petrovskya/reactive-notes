@@ -1,9 +1,9 @@
 import { ListItem } from '@mui/material';
 
-import { CustomNoteCard } from 'components';
+import { NoteContainer } from 'pages/MyNotes';
 
-import { StyledList, StyledListItemButton } from './styles';
 import { INotesList } from '../types';
+import { StyledList, StyledListItemButton } from './styles';
 
 export const NotesList = ({ notes, ...props }: INotesList) => (
   <StyledList
@@ -13,7 +13,7 @@ export const NotesList = ({ notes, ...props }: INotesList) => (
     {notes.map((note) => (
       <ListItem disablePadding key={note.id}>
         <StyledListItemButton>
-          <CustomNoteCard note={note} {...props} />
+          <NoteContainer note={note} {...props} />
         </StyledListItemButton>
       </ListItem>
     ))}

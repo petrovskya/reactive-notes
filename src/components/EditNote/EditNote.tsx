@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { StyledEditNote } from './styles';
 import { Input } from '@mui/material';
+
 import { NOTES } from 'utils';
 
-const ariaLabel = { 'aria-label': 'description' };
+import { StyledEditNote } from './styles';
 
 export const EditNote = () => {
   return (

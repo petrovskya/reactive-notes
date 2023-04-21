@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
+
 import { INote } from 'types';
 
-interface IDisplayedNoteProps {
+interface IDisplayedNote {
   note: INote;
 }
 
 export const DisplayedNote = ({
   note: { id, title, description, dateCreation },
-}: IDisplayedNoteProps) => {
+}: IDisplayedNote) => {
   return (
     <Card sx={{ maxWidth: 345, width: '100%' }}>
       <CardContent>
