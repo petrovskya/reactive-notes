@@ -10,7 +10,7 @@ export const NotesList = ({ notes, ...props }: INotesList) => (
     sx={{ width: '100%', bgcolor: 'background.paper' }}
     aria-label='contacts'
   >
-    {notes.map((note) => (
+    {notes?.map((note) => (
       <ListItem disablePadding key={note.id}>
         <StyledListItemButton>
           <NoteContainer note={note} {...props} />

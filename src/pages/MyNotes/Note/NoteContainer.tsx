@@ -8,7 +8,13 @@ export const NoteContainer = ({
   editNote,
 }: INoteContainer) => {
   const handleActiveNote = () => {
-    activeNote?.id === note.id ? setActiveNote(null) : setActiveNote(note);
+    if (activeNote?.id === note.id) {
+      localStorage.setItem('activeNote', JSON.stringify(null));
+      setActiveNote(null);
+    } else {
+      localStorage.setItem('activeNote', JSON.stringify(note));
+      setActiveNote(note);
+    }
   };
 
   return (

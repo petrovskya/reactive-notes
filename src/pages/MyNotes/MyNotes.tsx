@@ -1,9 +1,10 @@
 import { Box } from '@mui/material';
 
 import { NotesList } from 'pages/MyNotes';
-import { ActiveNote, CustomButton } from 'components';
+import { ActiveNote, CreateNoteContainer } from 'components';
 
 import { StyledMyNotes } from './styles';
+
 import { IMyNotes } from './types';
 
 export const MyNotes = ({
@@ -13,6 +14,7 @@ export const MyNotes = ({
   isEditMode,
   setEditMode,
   editNote,
+  createNote,
 }: IMyNotes) => (
   <StyledMyNotes>
     <Box display='flex' flexDirection='row' gap='40px'>
@@ -26,6 +28,6 @@ export const MyNotes = ({
       isEditMode={isEditMode}
       editNote={editNote}
     />
-    <CustomButton />
+    <CreateNoteContainer createNote={createNote} />
   </StyledMyNotes>
 );

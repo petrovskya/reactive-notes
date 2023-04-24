@@ -5,15 +5,10 @@ import { useFieldValue } from 'hooks';
 
 interface IEditMenu {
   note: INote;
-  handleActiveNote: () => void;
   editNote: (id: string, title: string, description: string) => void;
 }
 
-export const EditMenuContainer = ({
-  editNote,
-  handleActiveNote,
-  note,
-}: IEditMenu) => {
+export const EditMenuContainer = ({ editNote, note }: IEditMenu) => {
   const [isOpen, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -27,7 +22,6 @@ export const EditMenuContainer = ({
   const handleSave = () => {
     editNote(note.id, title || note.title, description || note.description);
     setOpen(false);
-    handleActiveNote();
   };
 
   const { value: title, onChange: onChangeTitle } = useFieldValue();

@@ -30,11 +30,7 @@ export const Note = ({ note, handleActiveNote, editNote }: INoteProps) => (
       </Typography>
     </CardContent>
     <CardActions>
-      <EditMenuContainer
-        editNote={editNote}
-        note={note}
-        handleActiveNote={handleActiveNote}
-      />
+      <EditMenuContainer editNote={editNote} note={note} />
     </CardActions>
   </Card>
 );
