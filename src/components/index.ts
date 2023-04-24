@@ -4,6 +4,7 @@ import { CustomAppBar } from './CustomAppBar/CustomAppBar';
 import { ActiveNote } from './ActiveNote/ActiveNote';
 import { EditMenuContainer } from './EditMenu/EditMenuContainer';
 import { DisplayedNote } from './DisplayedNote/DisplayedNote';
+import { CreateNoteContainer } from './CreateNote/CreateNoteContainer';
 export {
   CustomButton,
   Logo,
@@ -11,4 +12,5 @@ export {
   ActiveNote,
   EditMenuContainer,
   DisplayedNote,
+  CreateNoteContainer,
 };
