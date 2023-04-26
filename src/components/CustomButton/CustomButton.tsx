@@ -1,7 +1,7 @@
-import React from 'react';
-
 import { StyledButton } from './styles';
 
-export const CustomButton = () => {
-  return <StyledButton variant='contained'> Add note</StyledButton>;
-};
+const CustomButton = () => (
+  <StyledButton variant='contained'> Add note</StyledButton>
+);
+
+export default CustomButton;

@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import {
   Button,
   TextField,
@@ -7,49 +7,35 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import { Edit as EditIcon } from '@mui/icons-material';
 
-interface ICreateNoteProps {
-  isOpen: boolean;
-  handleClickOpen: MouseEventHandler<HTMLButtonElement>;
-  handleClose: MouseEventHandler<HTMLButtonElement>;
-  handleSave: MouseEventHandler<HTMLButtonElement>;
-  onChangeTitle: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onChangeDescription: ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
-}
-export const CreateNote = ({
+import { ICreateNoteProps } from './types';
+
+const CreateNote: FC<ICreateNoteProps> = ({
   isOpen,
-  handleClickOpen,
-  handleClose,
+  onClick,
   handleSave,
   onChangeDescription,
   onChangeTitle,
-}: ICreateNoteProps) => (
-  <div>
-    <Button
-      variant='contained'
-      onClick={handleClickOpen}
-      endIcon={<EditIcon />}
-    >
+}) => (
+  <>
+    <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
       Create a new note
     </Button>
-    <Dialog open={isOpen} onClose={handleClose}>
+    <Dialog open={isOpen} onClose={onClick}>
       <DialogTitle>Add your note </DialogTitle>
       <DialogContent>
         <TextField
-          autoFocus
           margin='dense'
           label='Title'
           type='text'
           fullWidth
           variant='outlined'
           placeholder='Enter title...'
+          autoFocus
           onChange={onChangeTitle}
         />
         <TextField
-          autoFocus
           margin='dense'
           label='Description'
           type='text'
@@ -57,17 +43,20 @@ export const CreateNote = ({
           multiline
           variant='outlined'
           placeholder='Enter description...'
+          autoFocus
           onChange={onChangeDescription}
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} variant='contained' color='secondary'>
+        <Button variant='contained' color='secondary' onClick={onClick}>
           Cancel
         </Button>
-        <Button onClick={handleSave} variant='contained'>
+        <Button variant='contained' onClick={handleSave}>
           Save
         </Button>
       </DialogActions>
     </Dialog>
-  </div>
+  </>
 );
+
+export default CreateNote;

@@ -1,4 +1,5 @@
 import { SetStateAction, useState } from 'react';
+
 import { INote } from 'types';
 
 export const useStoredState = (key: string, defaultValue: INote[]) => {

@@ -1,6 +1,6 @@
 import { Card, CardActions, CardContent, Typography } from '@mui/material';
 
-import { EditMenuContainer } from 'components';
+import { EditMenu } from 'components';
 import { getShortDescription } from 'utils';
 
 import { INoteProps } from './types';
@@ -30,7 +30,7 @@ export const Note = ({ note, handleActiveNote, editNote }: INoteProps) => (
       </Typography>
     </CardContent>
     <CardActions>
-      <EditMenuContainer editNote={editNote} note={note} />
+      <EditMenu editNote={editNote} note={note} />
     </CardActions>
   </Card>
 );

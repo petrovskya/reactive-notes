@@ -1,27 +1,16 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 
-import { useFieldValue } from 'hooks';
+import { useFieldValue, useToggle } from 'hooks';
 
-import { CreateNote } from './CreateNote';
+import { ICreateNoteContainerProps } from './types';
+import CreateNote from './CreateNote';
 
-interface ICreateNote {
-  createNote: (title: string, description: string) => void;
-}
-
-export const CreateNoteContainer = ({ createNote }: ICreateNote) => {
-  const [isOpen, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+const CreateNoteContainer: FC<ICreateNoteContainerProps> = ({ createNote }) => {
+  const [isOpen, setOpen] = useToggle(false);
 
   const handleSave = () => {
     createNote(title, description);
-    setOpen(false);
+    setOpen();
   };
 
   const { value: title, onChange: onChangeTitle } = useFieldValue();
@@ -31,11 +20,12 @@ export const CreateNoteContainer = ({ createNote }: ICreateNote) => {
   return (
     <CreateNote
       isOpen={isOpen}
-      handleClickOpen={handleClickOpen}
-      handleClose={handleClose}
+      onClick={setOpen}
       handleSave={handleSave}
       onChangeTitle={onChangeTitle}
       onChangeDescription={onChangeDescription}
     />
   );
 };
+
+export default CreateNoteContainer;

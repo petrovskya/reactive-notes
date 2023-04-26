@@ -1,15 +1,12 @@
-import React from 'react';
 import { Toolbar } from '@mui/material';
 
-import { Logo } from 'components';
+import { StyledAppBar, StyledLogo } from './styles';
 
-import { StyledAppBar } from './styles';
+const CustomAppBar = () => (
+  <StyledAppBar>
+    <StyledLogo />
+    <Toolbar disableGutters></Toolbar>
+  </StyledAppBar>
+);
 
-export const CustomAppBar = () => {
-  return (
-    <StyledAppBar>
-      <Logo />
-      <Toolbar disableGutters></Toolbar>
-    </StyledAppBar>
-  );
-};
+export default CustomAppBar;

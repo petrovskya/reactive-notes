@@ -1,14 +1,11 @@
+import { FC } from 'react';
 import { Typography } from '@mui/material';
 
 import { DisplayedNote } from 'components';
 
-import { INote } from 'types';
+import { IActiveNoteProps } from './types';
 
-interface IActiveNote {
-  note: INote | null;
-}
-
-export const ActiveNote = ({ note }: IActiveNote) => {
+const ActiveNote: FC<IActiveNoteProps> = ({ note }) => {
   return note ? (
     <DisplayedNote note={note} />
   ) : (
@@ -17,3 +14,5 @@ export const ActiveNote = ({ note }: IActiveNote) => {
     </Typography>
   );
 };
+
+export default ActiveNote;

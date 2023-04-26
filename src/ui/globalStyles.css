@@ -9,10 +9,6 @@ body {
   background-color: #ebecef;
 }
 
-input {
-  /* border: none; */
-}
-
 button {
   border: none;
   font-family: inherit;
@@ -24,6 +20,4 @@ ul {
 
 a {
   text-decoration: none;
-
-
 }

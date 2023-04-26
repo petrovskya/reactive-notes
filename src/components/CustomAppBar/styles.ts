@@ -1,12 +1,18 @@
-import styled from '@emotion/styled';
-import { AppBar } from '@mui/material';
+import { AppBar, styled } from '@mui/material';
+import { LogoIcon } from 'assets';
 
 import { Color } from 'ui';
 
-export const StyledAppBar = styled(AppBar)`
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  max-width: 100%;
-  background-color: ${Color.PRIMARY};
-`;
+const StyledAppBar = styled(AppBar)({
+  position: 'fixed',
+  display: 'flex',
+  maxWidth: '100%',
+  backgroundColor: Color.PRIMARY,
+});
+
+const StyledLogo = styled(LogoIcon)({
+  height: '60px',
+  fill: Color.SECONDARY_DARK,
+});
+
+export { StyledAppBar, StyledLogo };

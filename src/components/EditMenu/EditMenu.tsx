@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import {
   Button,
   TextField,
@@ -7,71 +7,58 @@ import {
   DialogContent,
   DialogTitle,
 } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
+import { Edit as EditIcon } from '@mui/icons-material';
 
-import { INote } from 'types';
+import { IEditMenuProps } from './types';
 
-interface IEditMenuProps {
-  note: INote;
-  isOpen: boolean;
-  handleClickOpen: MouseEventHandler<HTMLButtonElement>;
-  handleClose: MouseEventHandler<HTMLButtonElement>;
-  handleSave: MouseEventHandler<HTMLButtonElement>;
-  onChangeTitle: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onChangeDescription: ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
-}
-export const EditMenu = ({
-  note,
+const EditMenu: FC<IEditMenuProps> = ({
+  title,
+  description,
   isOpen,
-  handleClickOpen,
-  handleClose,
+  onClick,
   handleSave,
   onChangeDescription,
   onChangeTitle,
-}: IEditMenuProps) => (
-  <div>
-    <Button
-      variant='contained'
-      onClick={handleClickOpen}
-      endIcon={<EditIcon />}
-    >
+}) => (
+  <>
+    <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
       Edit
     </Button>
-    <Dialog open={isOpen} onClose={handleClose}>
+    <Dialog open={isOpen} onClose={onClick}>
       <DialogTitle>Do you want to change something? </DialogTitle>
       <DialogContent>
         <TextField
-          autoFocus
+          variant='outlined'
           margin='dense'
           label='Title'
           type='text'
+          defaultValue={title}
           fullWidth
-          variant='outlined'
-          defaultValue={note.title}
+          autoFocus
           onChange={onChangeTitle}
         />
         <TextField
-          autoFocus
+          variant='outlined'
           margin='dense'
           label='Description'
           type='text'
+          defaultValue={description}
           fullWidth
+          autoFocus
           multiline
-          variant='outlined'
-          defaultValue={note.description}
           onChange={onChangeDescription}
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} variant='contained' color='secondary'>
+        <Button variant='contained' color='secondary' onClick={onClick}>
           Cancel
         </Button>
-        <Button onClick={handleSave} variant='contained'>
+        <Button variant='contained' onClick={handleSave}>
           Save
         </Button>
       </DialogActions>
     </Dialog>
-  </div>
+  </>
 );
+
+export default EditMenu;

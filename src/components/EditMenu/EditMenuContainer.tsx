@@ -1,42 +1,36 @@
-import React, { useState } from 'react';
-import { EditMenu } from './EditMenu';
-import { INote } from 'types';
-import { useFieldValue } from 'hooks';
+import { FC } from 'react';
 
-interface IEditMenu {
-  note: INote;
-  editNote: (id: string, title: string, description: string) => void;
-}
+import { useFieldValue, useToggle } from 'hooks';
 
-export const EditMenuContainer = ({ editNote, note }: IEditMenu) => {
-  const [isOpen, setOpen] = useState(false);
+import EditMenu from './EditMenu';
+import { IEditMenuContainerProps } from './types';
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+const EditMenuContainer: FC<IEditMenuContainerProps> = ({ editNote, note }) => {
+  const { id, title, description } = note;
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [isOpen, setOpen] = useToggle();
 
   const handleSave = () => {
-    editNote(note.id, title || note.title, description || note.description);
-    setOpen(false);
+    editNote(id, newTitle || title, newDescription || description);
+    setOpen();
   };
 
-  const { value: title, onChange: onChangeTitle } = useFieldValue();
+  const { value: newTitle, onChange: onChangeTitle } = useFieldValue();
 
-  const { value: description, onChange: onChangeDescription } = useFieldValue();
+  const { value: newDescription, onChange: onChangeDescription } =
+    useFieldValue();
 
   return (
     <EditMenu
-      note={note}
+      title={title}
+      description={description}
       isOpen={isOpen}
-      handleClickOpen={handleClickOpen}
-      handleClose={handleClose}
+      onClick={setOpen}
       handleSave={handleSave}
       onChangeTitle={onChangeTitle}
       onChangeDescription={onChangeDescription}
     />
   );
 };
+
+export default EditMenuContainer;
