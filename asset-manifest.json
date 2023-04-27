@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/reactive-notes/static/css/main.0e5123cf.css",
-    "main.js": "/reactive-notes/static/js/main.d2f3745f.js",
-    "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.70f69042105ad74d84bf5f81089c7dd8.svg",
+    "main.js": "/reactive-notes/static/js/main.ce5dd223.js",
+    "static/media/page-not-found.jpg": "/reactive-notes/static/media/page-not-found.c419f154f0989c148c0a.jpg",
+    "static/media/app-logo-icon.svg": "/reactive-notes/static/media/app-logo-icon.742656c40dd6af7fc06818a7c8d99ff8.svg",
+    "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.742656c40dd6af7fc06818a7c8d99ff8.svg",
     "index.html": "/reactive-notes/index.html",
-    "main.0e5123cf.css.map": "/reactive-notes/static/css/main.0e5123cf.css.map",
-    "main.d2f3745f.js.map": "/reactive-notes/static/js/main.d2f3745f.js.map"
+    "main.ce5dd223.js.map": "/reactive-notes/static/js/main.ce5dd223.js.map"
   },
   "entrypoints": [
-    "static/css/main.0e5123cf.css",
-    "static/js/main.d2f3745f.js"
+    "static/js/main.ce5dd223.js"
   ]
 }
