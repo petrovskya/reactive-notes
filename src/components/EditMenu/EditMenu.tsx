@@ -9,6 +9,8 @@ import {
 } from '@mui/material';
 import { Edit as EditIcon } from '@mui/icons-material';
 
+import { CONSTANTS } from 'config';
+
 import { IEditMenuProps } from './types';
 
 const EditMenu: FC<IEditMenuProps> = ({
@@ -22,16 +24,16 @@ const EditMenu: FC<IEditMenuProps> = ({
 }) => (
   <>
     <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
-      Edit
+      {CONSTANTS.BUTTON_TEXT.EDIT}
     </Button>
     <Dialog open={isOpen} onClose={onClick}>
-      <DialogTitle>Do you want to change something? </DialogTitle>
+      <DialogTitle>{CONSTANTS.COMPONENT_TITLE.EDIT_MENU}</DialogTitle>
       <DialogContent>
         <TextField
           variant='outlined'
           margin='dense'
-          label='Title'
           type='text'
+          label={CONSTANTS.LABEL_TEXT.TITLE}
           defaultValue={title}
           fullWidth
           autoFocus
@@ -40,8 +42,8 @@ const EditMenu: FC<IEditMenuProps> = ({
         <TextField
           variant='outlined'
           margin='dense'
-          label='Description'
           type='text'
+          label={CONSTANTS.LABEL_TEXT.DESCRIPTION}
           defaultValue={description}
           fullWidth
           autoFocus
@@ -51,10 +53,10 @@ const EditMenu: FC<IEditMenuProps> = ({
       </DialogContent>
       <DialogActions>
         <Button variant='contained' color='secondary' onClick={onClick}>
-          Cancel
+          {CONSTANTS.BUTTON_TEXT.CANCEL}
         </Button>
         <Button variant='contained' onClick={handleSave}>
-          Save
+          {CONSTANTS.BUTTON_TEXT.SAVE}
         </Button>
       </DialogActions>
     </Dialog>

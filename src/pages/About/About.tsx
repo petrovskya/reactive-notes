@@ -1,5 +1,5 @@
-import React from 'react';
+import { CONSTANTS } from 'config';
 
-export const About = () => {
-  return <div>About</div>;
-};
+const About = () => <div>{CONSTANTS.STUB_TEXT.ABOUT}</div>;
+
+export default About;

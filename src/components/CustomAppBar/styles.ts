@@ -5,12 +5,13 @@ import { Color } from 'ui';
 
 const StyledAppBar = styled(AppBar)({
   position: 'fixed',
-  display: 'flex',
+  flexDirection: 'row',
   maxWidth: '100%',
   backgroundColor: Color.PRIMARY,
 });
 
 const StyledLogo = styled(LogoIcon)({
+  display: 'flex',
   height: '60px',
   fill: Color.SECONDARY_DARK,
 });

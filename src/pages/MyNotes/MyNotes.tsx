@@ -1,12 +1,12 @@
-import { Box } from '@mui/material';
+import { FC } from 'react';
 
-import { NotesList } from 'pages/MyNotes';
 import { ActiveNote, CreateNote } from 'components';
 
-import { StyledMyNotes } from './styles';
+import { NotesList } from './components';
+import { StyledBox, StyledMyNotes } from './styles';
 import { IMyNotes } from './types';
 
-export const MyNotes = ({
+const MyNotes: FC<IMyNotes> = ({
   notes,
   activeNote,
   isEditMode,
@@ -14,11 +14,11 @@ export const MyNotes = ({
   setActiveNote,
   createNote,
   editNote,
-}: IMyNotes) => (
+}) => (
   <StyledMyNotes>
-    <Box display='flex' flexDirection='row' gap='40px'>
+    <StyledBox>
       <ActiveNote note={activeNote} />
-    </Box>
+    </StyledBox>
     <NotesList
       notes={notes}
       activeNote={activeNote}
@@ -30,3 +30,5 @@ export const MyNotes = ({
     <CreateNote createNote={createNote} />
   </StyledMyNotes>
 );
+
+export default MyNotes;

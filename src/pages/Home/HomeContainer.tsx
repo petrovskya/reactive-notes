@@ -1,5 +1,7 @@
-import React from 'react';
+import Home from './Home';
 
-export const HomeContainer = () => {
-  return <div>HomeContainer</div>;
+const HomeContainer = () => {
+  return <Home />;
 };
+
+export default HomeContainer;

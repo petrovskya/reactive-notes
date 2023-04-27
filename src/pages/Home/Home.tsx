@@ -1,5 +1,5 @@
-import React from 'react';
+import { CONSTANTS } from 'config';
 
-export const Home = () => {
-  return <div>Home</div>;
-};
+const Home = () => <div>{CONSTANTS.STUB_TEXT.HOME_PAGE}</div>;
+
+export default Home;

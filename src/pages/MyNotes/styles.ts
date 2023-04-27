@@ -1,17 +1,25 @@
-import styled from '@emotion/styled';
-import { Container } from '@mui/material';
+import { styled, Box, Container } from '@mui/material';
 
-export const StyledMyNotes = styled(Container)`
-  width: 100%;
-  display: grid;
-  gap: 40px;
-  margin: 100px 0 0;
-  @media screen and (min-width: 1920px) {
-    max-width: 1920px;
-    width: 100%;
-  }
-  @media screen and (max-width: 1920px) {
-    max-width: 1920px;
-    width: 100%;
-  }
-`;
+const StyledMyNotes = styled(Container)({
+  width: '100%',
+  display: 'grid',
+  gap: '40px',
+  margin: '0 auto',
+
+  '@media screen and (min-width: 1920px)': {
+    maxWidth: '1920px',
+    width: '100%',
+  },
+
+  '@media screen and (max-width: 1920px)': {
+    maWidth: '1920px',
+    width: '100%',
+  },
+});
+
+const StyledBox = styled(Box)({
+  display: 'flex',
+  justifyContent: 'center',
+});
+
+export { StyledBox, StyledMyNotes };

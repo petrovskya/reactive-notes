@@ -1,5 +1,7 @@
-import React from 'react';
+import SharedNotes from './SharedNotes';
 
-export const SharedNotesContainer = () => {
-  return <div>SharedNotesContainer</div>;
+const SharedNotesContainer = () => {
+  return <SharedNotes />;
 };
+
+export default SharedNotesContainer;

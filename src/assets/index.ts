@@ -1,1 +1,3 @@
+export { default as PageNotFoundImage } from './images/page-not-found.jpg';
 export { ReactComponent as LogoIcon } from './icons/logo-icon.svg';
+export { ReactComponent as AppLogoIcon } from './icons/app-logo-icon.svg';

@@ -1,12 +1,14 @@
-import { INoteContainer } from './types';
-import { Note } from './Note';
+import { FC } from 'react';
 
-export const NoteContainer = ({
+import { INoteContainer } from './types';
+import Note from './Note';
+
+const NoteContainer: FC<INoteContainer> = ({
   note,
-  setActiveNote,
   activeNote,
+  setActiveNote,
   editNote,
-}: INoteContainer) => {
+}) => {
   const handleActiveNote = () => {
     if (activeNote?.id === note.id) {
       localStorage.setItem('activeNote', JSON.stringify(null));
@@ -21,3 +23,5 @@ export const NoteContainer = ({
     <Note note={note} handleActiveNote={handleActiveNote} editNote={editNote} />
   );
 };
+
+export default NoteContainer;

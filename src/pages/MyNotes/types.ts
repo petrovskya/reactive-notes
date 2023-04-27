@@ -2,21 +2,17 @@ import { Dispatch } from 'react';
 
 import { INote } from 'types';
 
-export interface IMyNotes {
-  notes: INote[] | null;
-  setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
-  setEditMode: Dispatch<React.SetStateAction<boolean>>;
-  activeNote: INote | null;
-  isEditMode: boolean;
-  editNote: (id: string, title: string, description: string) => void;
+interface IMyNotes extends INotesList {
   createNote: (title: string, description: string) => void;
 }
 
-export interface INotesList {
+interface INotesList {
   notes: INote[] | null;
-  setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
-  setEditMode: Dispatch<React.SetStateAction<boolean>>;
   activeNote: INote | null;
   isEditMode: boolean;
+  setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
+  setEditMode: Dispatch<React.SetStateAction<boolean>>;
   editNote: (id: string, title: string, description: string) => void;
 }
+
+export type { IMyNotes, INotesList };

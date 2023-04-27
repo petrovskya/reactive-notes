@@ -1,4 +1,3 @@
-import { NotesList } from './NotesList/NotesList';
-import { NoteContainer } from './Note/NoteContainer';
-
-export { NotesList, NoteContainer };
+export { NotesList } from './components';
+export { Note } from './components';
+export { default } from './MyNotesContainer';

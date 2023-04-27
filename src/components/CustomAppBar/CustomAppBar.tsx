@@ -1,11 +1,15 @@
 import { Toolbar } from '@mui/material';
 
+import { Nav } from 'components';
+
 import { StyledAppBar, StyledLogo } from './styles';
 
 const CustomAppBar = () => (
   <StyledAppBar>
     <StyledLogo />
-    <Toolbar disableGutters></Toolbar>
+    <Toolbar disableGutters>
+      <Nav />
+    </Toolbar>
   </StyledAppBar>
 );
 

@@ -4,9 +4,11 @@ import { CustomAppBar } from 'components';
 
 import { StyledMainTemplate } from './styles';
 
-export const MainTemplate = () => (
+const MainTemplate = () => (
   <StyledMainTemplate>
     <CustomAppBar />
     <Outlet />
   </StyledMainTemplate>
 );
+
+export default MainTemplate;

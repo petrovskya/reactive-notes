@@ -9,6 +9,8 @@ import {
 } from '@mui/material';
 import { Edit as EditIcon } from '@mui/icons-material';
 
+import { CONSTANTS } from 'config';
+
 import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
@@ -20,39 +22,39 @@ const CreateNote: FC<ICreateNoteProps> = ({
 }) => (
   <>
     <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
-      Create a new note
+      {CONSTANTS.BUTTON_TEXT.CREATE}
     </Button>
     <Dialog open={isOpen} onClose={onClick}>
-      <DialogTitle>Add your note </DialogTitle>
+      <DialogTitle>{CONSTANTS.COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
       <DialogContent>
         <TextField
           margin='dense'
-          label='Title'
           type='text'
-          fullWidth
           variant='outlined'
-          placeholder='Enter title...'
+          label={CONSTANTS.LABEL_TEXT.TITLE}
+          placeholder={CONSTANTS.PLACEHOLDER_TEXT.TITLE}
+          fullWidth
           autoFocus
           onChange={onChangeTitle}
         />
         <TextField
           margin='dense'
-          label='Description'
           type='text'
+          variant='outlined'
+          label={CONSTANTS.LABEL_TEXT.DESCRIPTION}
+          placeholder={CONSTANTS.PLACEHOLDER_TEXT.DESCRIPTION}
           fullWidth
           multiline
-          variant='outlined'
-          placeholder='Enter description...'
           autoFocus
           onChange={onChangeDescription}
         />
       </DialogContent>
       <DialogActions>
         <Button variant='contained' color='secondary' onClick={onClick}>
-          Cancel
+          {CONSTANTS.BUTTON_TEXT.CANCEL}
         </Button>
         <Button variant='contained' onClick={handleSave}>
-          Save
+          {CONSTANTS.BUTTON_TEXT.SAVE}
         </Button>
       </DialogActions>
     </Dialog>

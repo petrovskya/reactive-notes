@@ -1,5 +1,13 @@
-import React from 'react';
+import { Container } from '@mui/material';
 
-export const NotFound = () => {
-  return <div>NotFound</div>;
-};
+import { PageNotFoundImage } from 'assets';
+
+import { Image } from './styles';
+
+const NotFound = () => (
+  <Container>
+    <Image src={PageNotFoundImage} alt='page-not-found' />
+  </Container>
+);
+
+export default NotFound;

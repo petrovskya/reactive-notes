@@ -1,2 +1,1 @@
-import { INote } from './types';
-export type { INote };
+export type { INote } from './types';
