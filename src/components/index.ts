@@ -5,3 +5,4 @@ export { default as DisplayedNote } from './DisplayedNote';
 export { default as CreateNote } from './CreateNote';
 export { default as Nav } from './Nav';
 export { default as Link } from './Link';
+export { default as UserProfile } from './UserProfile';

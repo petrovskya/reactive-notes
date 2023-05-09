@@ -2,7 +2,7 @@ import { ROUTE } from 'router';
 import { Link } from 'components';
 
 import { StyledNav } from './styles';
-import { NAV_LINKS } from './constants';
+import { NAV_LINKS } from 'config/constants';
 
 const Nav = () => (
   <StyledNav>

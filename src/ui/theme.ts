@@ -13,6 +13,7 @@ enum Color {
   WHITE = '#eeeeee',
   GREEN = '#00a340',
   ORANGE = '#f45d2d',
+  TRANSPARENT = 'transparent',
 }
 
 const theme = createTheme({

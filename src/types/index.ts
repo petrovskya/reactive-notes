@@ -1,1 +1,1 @@
-export type { INote } from './types';
+export type { INote, IUser } from './types';

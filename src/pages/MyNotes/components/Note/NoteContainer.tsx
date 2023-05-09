@@ -9,8 +9,10 @@ const NoteContainer: FC<INoteContainer> = ({
   setActiveNote,
   editNote,
 }) => {
+  const isActiveNote = activeNote?.id === note.id;
+
   const handleActiveNote = () => {
-    if (activeNote?.id === note.id) {
+    if (isActiveNote) {
       localStorage.setItem('activeNote', JSON.stringify(null));
       setActiveNote(null);
     } else {
@@ -20,7 +22,12 @@ const NoteContainer: FC<INoteContainer> = ({
   };
 
   return (
-    <Note note={note} handleActiveNote={handleActiveNote} editNote={editNote} />
+    <Note
+      note={note}
+      isActiveNote={isActiveNote}
+      handleActiveNote={handleActiveNote}
+      editNote={editNote}
+    />
   );
 };
 

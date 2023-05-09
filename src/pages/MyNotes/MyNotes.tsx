@@ -12,7 +12,6 @@ const MyNotes: FC<IMyNotes> = ({
   isEditMode,
   setEditMode,
   setActiveNote,
-  createNote,
   editNote,
 }) => (
   <StyledMyNotes>
@@ -27,7 +26,7 @@ const MyNotes: FC<IMyNotes> = ({
       setEditMode={setEditMode}
       editNote={editNote}
     />
-    <CreateNote createNote={createNote} />
+    <CreateNote />
   </StyledMyNotes>
 );
 

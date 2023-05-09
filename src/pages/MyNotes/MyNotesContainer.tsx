@@ -1,64 +1,45 @@
 import { useEffect, useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-import { NOTES } from 'utils';
+import { getUser } from 'store/selectors';
+import { useAppSelector } from 'store/hooks';
 import { INote } from 'types';
+import { ROUTE } from 'router';
+import { fetchNotesOfUser } from 'api';
 
 import MyNotes from './MyNotes';
 
 const MyNotesContainer = () => {
-  const [notes, setNotes] = useState<INote[]>(NOTES);
+  const { user, isAuth } = useAppSelector(getUser);
+  const navigate = useNavigate();
+
+  const { data: notes }: UseQueryResult<INote[], Error> = useQuery<
+    INote[],
+    Error,
+    INote[]
+  >(['notes'], () =>
+    user ? fetchNotesOfUser(user.userId) : fetchNotesOfUser(''),
+  );
+
   const [activeNote, setActiveNote] = useState<INote | null>(null);
   const [isEditMode, setEditMode] = useState<boolean>(false);
 
-  useEffect(() => {
-    const notes = localStorage.getItem('notes');
-    if (notes) {
-      return setNotes(JSON.parse(notes));
-    }
-  }, []);
-
-  useEffect(() => {
-    const activeNote = localStorage.getItem('activeNote');
-    if (activeNote) {
-      return setActiveNote(JSON.parse(activeNote));
-    }
-  }, []);
-
-  const createNote = (title: string, description: string) => {
+  const editNote = (id: string, title: string, description: string): INote => {
     const date = new Date();
 
-    const newNote = {
-      id: uuid(),
-      title: title,
-      description: description,
-      dateCreation: date.toLocaleString(),
-    };
-
-    const newNotes = [...notes, newNote];
-    setNotes(newNotes);
-    localStorage.setItem('notes', JSON.stringify(newNotes));
-  };
-
-  const editNote = (id: string, title: string, description: string) => {
-    const date = new Date();
-
-    const editedNote = {
+    return {
       id: id,
+      userId: user ? user.userId : '',
       title: title,
       description: description,
       dateCreation: date.toLocaleString(),
     };
-
-    const indexOfNote = notes.findIndex((note) => note.id === id);
-    notes.splice(indexOfNote, 1, editedNote);
-    const newNotes = notes;
-    setNotes(newNotes);
-    localStorage.setItem('notes', JSON.stringify(newNotes));
-    setEditMode(false);
-    setActiveNote(editedNote);
-    localStorage.setItem('activeNote', JSON.stringify(editedNote));
   };
+
+  useEffect(() => {
+    !isAuth && navigate(ROUTE.HOME);
+  }, []);
 
   return (
     <MyNotes
@@ -68,7 +49,6 @@ const MyNotesContainer = () => {
       isEditMode={isEditMode}
       setEditMode={setEditMode}
       editNote={editNote}
-      createNote={createNote}
     />
   );
 };

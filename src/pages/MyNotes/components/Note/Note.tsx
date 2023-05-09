@@ -15,12 +15,13 @@ import {
 const Note: FC<INoteProps> = ({
   note,
   note: { title, dateCreation, description },
+  isActiveNote,
   handleActiveNote,
   editNote,
 }) => (
   <StyledCard>
     <CardContent onClick={handleActiveNote}>
-      <StyledTitle>{title}</StyledTitle>
+      <StyledTitle active={isActiveNote.toString()}>{title}</StyledTitle>
       <StyledDateCreation>{dateCreation}</StyledDateCreation>
       <StyledDescription>{getShortDescription(description)}</StyledDescription>
     </CardContent>

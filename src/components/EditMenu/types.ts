@@ -4,7 +4,7 @@ import { INote } from 'types';
 
 interface IEditMenuContainerProps {
   note: INote;
-  editNote: (id: string, title: string, description: string) => void;
+  editNote: (id: string, title: string, description: string) => INote;
 }
 
 interface IEditMenuProps {
