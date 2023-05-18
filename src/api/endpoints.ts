@@ -1,13 +1,13 @@
-const USERS = 'https://6450f8cbe1f6f1bb22a40fb5.mockapi.io/api/v1/users';
+const URL = 'https://6450f8cbe1f6f1bb22a40fb5.mockapi.io/api/v1/';
 
-const USER_BY_ID = (userId: string) =>
-  `https://6450f8cbe1f6f1bb22a40fb5.mockapi.io/api/v1/users/${userId}`;
+const USERS = `${URL}users`;
 
-const NOTES_OF_USER = (userId: string) =>
-  `https://6450f8cbe1f6f1bb22a40fb5.mockapi.io/api/v1/users/${userId}/notes`;
+const USER_BY_ID = (userId: string) => `${URL}users/${userId}`;
 
-const NOTE_BY_ID = (userId: string, noteId: string): string =>
-  // eslint-disable-next-line max-len
-  `https://6450f8cbe1f6f1bb22a40fb5.mockapi.io/api/v1/users/${userId}/notes/${noteId}`;
+const NOTES_OF_USER = (userId: string) => `${URL}notes?userId=${userId}`;
 
-export { USERS, USER_BY_ID, NOTE_BY_ID, NOTES_OF_USER };
+const NOTE_BY_ID = (id: string): string => `${URL}notes/${id}`;
+
+const SHARED_NOTES = `${URL}notes?&isShared=true`;
+
+export { USERS, USER_BY_ID, NOTE_BY_ID, NOTES_OF_USER, SHARED_NOTES };
