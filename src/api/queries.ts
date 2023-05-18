@@ -14,22 +14,27 @@ const fetchUserById = async (id: string) => {
 };
 
 const fetchNotesOfUser = async (id: string) => {
-  const { data: notes } = await axios.get(ENDPOINT.NOTES_OF_USER(id));
-  return notes;
+  const { data: notesResponse } = await axios.get(ENDPOINT.NOTES_OF_USER(id));
+  return notesResponse;
 };
 
-const fetchNoteById = async (userId: string, noteId: string) => {
-  const { data: note } = await axios.get(ENDPOINT.NOTE_BY_ID(userId, noteId));
+const fetchNoteById = async (id: string) => {
+  const { data: note } = await axios.get(ENDPOINT.NOTE_BY_ID(id));
   return note;
+};
+
+const fetchSharedNotes = async () => {
+  const { data: sharedNotes } = await axios.get(ENDPOINT.SHARED_NOTES);
+  return sharedNotes;
 };
 
 const notesActions = {
   addNote: (payload: INote) =>
     axios.post(ENDPOINT.NOTES_OF_USER(payload.userId), payload),
-  deleteNote: (payload: INote) =>
-    axios.delete(ENDPOINT.NOTE_BY_ID(payload.userId, payload.id)),
-  updateNote: (payload: INote) =>
-    axios.put(ENDPOINT.NOTE_BY_ID(payload.userId, payload.id), payload),
+  deleteNote: (payload: INote) => axios.delete(ENDPOINT.NOTE_BY_ID(payload.id)),
+  updateNote: (payload: INote) => {
+    return axios.put(ENDPOINT.NOTE_BY_ID(payload.id), payload);
+  },
 };
 
 const userActions = {
@@ -45,6 +50,7 @@ export {
   fetchUserById,
   fetchNotesOfUser,
   fetchNoteById,
+  fetchSharedNotes,
   notesActions,
   userActions,
 };

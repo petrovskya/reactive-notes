@@ -1,4 +1,4 @@
-interface IUserAPI {
+export interface IUserAPI {
   id: string;
   email: string;
   password: string;
@@ -8,12 +8,10 @@ interface IUserAPI {
   dateOfBirth: string;
 }
 
-interface INoteAPI {
+export interface INoteAPI {
   id: string;
   userId: string;
   dateCreation: string;
   title: string;
   description: string;
 }
-
-export type { IUserAPI, INoteAPI };
