@@ -1,11 +1,12 @@
 import { INote, IUser } from 'types';
 
-export const setNewId = (collection: IUser[] | INote[] | undefined): string => {
+export const setNewId = (collection?: IUser[] | INote[]): string => {
+  const COUNTER_STEP = 1;
+  const FIRST_ID_NUMBER = '1';
   if (collection) {
-    const COUNTER_STEP = 1;
     const SIZE_OF_COLLECTION = collection.length;
     const NEW_ID = SIZE_OF_COLLECTION + COUNTER_STEP;
-    return collection.length ? NEW_ID.toString() : '1';
+    return SIZE_OF_COLLECTION ? NEW_ID.toString() : FIRST_ID_NUMBER;
   }
-  return '1';
+  return FIRST_ID_NUMBER;
 };

@@ -1,8 +1,6 @@
 import { IUser } from 'types';
 
-export const getActiveUser = (): IUser | null => {
+export const getActiveUser = (): IUser => {
   const user = localStorage.getItem('user');
-  if (user) {
-    return JSON.parse(user);
-  } else return null;
+  return user ? (JSON.parse(user) as IUser) : ({} as IUser);
 };

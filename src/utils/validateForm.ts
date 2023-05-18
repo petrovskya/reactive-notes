@@ -1,38 +1,33 @@
-import * as yup from 'yup';
+import { object, string } from 'yup';
 
-const validateSignUpForm = yup.object({
-  email: yup
-    .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
-    .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
-  confirmPassword: yup
-    .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
-  firstName: yup
-    .string()
-    .min(3, 'First name should be of minimum 3 characters length')
-    .required('First name is required'),
-  lastName: yup
-    .string()
-    .min(3, 'Last name should be of minimum 3 characters length')
-    .required('Last name is required'),
-  dateOfBirth: yup.string().required('Date of birth is required'),
+import { VALIDATION_MESSAGES } from 'config';
+
+const signUpValidationSchema = object({
+  email: string()
+    .email(VALIDATION_MESSAGES.VALIDITY.EMAIL)
+    .required(VALIDATION_MESSAGES.REQUIRED.EMAIL),
+  password: string()
+    .min(8, VALIDATION_MESSAGES.MIN_LENGTH.PASSWORD)
+    .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD),
+  confirmPassword: string()
+    .min(8, VALIDATION_MESSAGES.MIN_LENGTH.PASSWORD)
+    .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD),
+  firstName: string()
+    .min(3, VALIDATION_MESSAGES.MIN_LENGTH.FIRST_NAME)
+    .required(VALIDATION_MESSAGES.REQUIRED.FIRST_NAME),
+  lastName: string()
+    .min(3, VALIDATION_MESSAGES.MIN_LENGTH.LAST_NAME)
+    .required(VALIDATION_MESSAGES.REQUIRED.LAST_NAME),
+  dateOfBirth: string().required(VALIDATION_MESSAGES.REQUIRED.DATE_OF_BIRTH),
 });
 
-const validateSignInForm = yup.object({
-  email: yup
-    .string()
-    .email('Enter a valid email')
-    .required('Email is required'),
-  password: yup
-    .string()
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
+const signInValidationSchema = object({
+  email: string()
+    .email(VALIDATION_MESSAGES.VALIDITY.EMAIL)
+    .required(VALIDATION_MESSAGES.REQUIRED.EMAIL),
+  password: string()
+    .min(8, VALIDATION_MESSAGES.MIN_LENGTH.PASSWORD)
+    .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD),
 });
 
-export { validateSignInForm, validateSignUpForm };
+export { signInValidationSchema, signUpValidationSchema };
