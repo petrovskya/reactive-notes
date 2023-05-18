@@ -1,5 +1,26 @@
-import { CONSTANTS } from 'config';
+import { FC } from 'react';
 
-const SharedNotes = () => <div>{CONSTANTS.STUB_TEXT.SHARED_NOTES_PAGE}</div>;
+import { ActiveNote } from 'components';
+
+import { NotesList } from './components';
+import { StyledBox, StyledSharedNotes } from './styles';
+import { ISharedNotes } from './types';
+
+const SharedNotes: FC<ISharedNotes> = ({
+  sharedNotes,
+  activeNote,
+  setActiveNote,
+}) => (
+  <StyledSharedNotes>
+    <StyledBox>
+      <ActiveNote note={activeNote} />
+    </StyledBox>
+    <NotesList
+      sharedNotes={sharedNotes}
+      activeNote={activeNote}
+      setActiveNote={setActiveNote}
+    />
+  </StyledSharedNotes>
+);
 
 export default SharedNotes;
