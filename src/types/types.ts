@@ -1,12 +1,15 @@
-interface INote {
+export interface INote {
   id: string;
   userId: string;
   title: string;
   description: string;
   dateCreation: string;
+  author: string;
+  isShared: boolean;
+  availability: [];
 }
 
-interface IUser {
+export interface IUser {
   userId: string;
   email: string;
   password: string;
@@ -15,5 +18,3 @@ interface IUser {
   createdAt: string;
   dateOfBirth: string;
 }
-
-export type { INote, IUser };
