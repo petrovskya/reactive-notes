@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import { INoteContainer } from './types';
+import { INoteContainer } from 'pages/MyNotes/types';
+
 import Note from './Note';
 
 const NoteContainer: FC<INoteContainer> = ({
@@ -9,7 +10,7 @@ const NoteContainer: FC<INoteContainer> = ({
   setActiveNote,
   editNote,
 }) => {
-  const isActiveNote = activeNote?.id === note.id;
+  const isActiveNote = activeNote?.id === note?.id;
 
   const handleActiveNote = () => {
     if (isActiveNote) {
@@ -22,12 +23,7 @@ const NoteContainer: FC<INoteContainer> = ({
   };
 
   return (
-    <Note
-      note={note}
-      isActiveNote={isActiveNote}
-      handleActiveNote={handleActiveNote}
-      editNote={editNote}
-    />
+    <Note note={note} handleActiveNote={handleActiveNote} editNote={editNote} />
   );
 };
 

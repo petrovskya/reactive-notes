@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FormikProps } from 'formik';
 import { Button, Typography, TextField } from '@mui/material';
 
-import { CONSTANTS } from 'config';
+import { COMPONENT_TITLE, PLACEHOLDER_TEXT, BUTTON_TEXT } from 'config/types';
 
 import { SignInInitialValues } from './constants';
 import { StyledForm } from './styles';
@@ -16,11 +16,11 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
   errors,
 }) => (
   <StyledForm onSubmit={handleSubmit}>
-    <Typography variant='h4'>{CONSTANTS.COMPONENT_TITLE.SIGN_IN}</Typography>
+    <Typography variant='h4'>{COMPONENT_TITLE.SIGN_IN}</Typography>
     <TextField
       id='email'
       name='email'
-      placeholder={CONSTANTS.PLACEHOLDER_TEXT.EMAIL}
+      placeholder={PLACEHOLDER_TEXT.EMAIL}
       value={values.email}
       onChange={handleChange('email')}
       onBlur={handleBlur('email')}
@@ -30,7 +30,7 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
       id='password'
       name='password'
       type='password'
-      placeholder={CONSTANTS.PLACEHOLDER_TEXT.PASSWORD}
+      placeholder={PLACEHOLDER_TEXT.PASSWORD}
       value={values.password}
       onChange={handleChange('password')}
       onBlur={handleBlur('password')}
@@ -40,7 +40,7 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
     )}
 
     <Button color='primary' variant='contained' type='submit'>
-      {CONSTANTS.BUTTON_TEXT.SIGN_IN}
+      {BUTTON_TEXT.SIGN_IN}
     </Button>
   </StyledForm>
 );

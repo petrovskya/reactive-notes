@@ -4,9 +4,9 @@ import { ActiveNote, CreateNote } from 'components';
 
 import { NotesList } from './components';
 import { StyledBox, StyledMyNotes } from './styles';
-import { IMyNotes } from './types';
+import { INotesList } from './types';
 
-const MyNotes: FC<IMyNotes> = ({
+const MyNotes: FC<INotesList> = ({
   notes,
   activeNote,
   isEditMode,

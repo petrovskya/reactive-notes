@@ -1,38 +1,30 @@
-import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import {
-  useMutation,
-  useQuery,
-  useQueryClient,
-  UseQueryResult,
-} from '@tanstack/react-query';
+import { Formik } from 'formik';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { setNewId, validateSignUpForm } from 'utils';
-import { UseAppDispatch } from 'store/hooks';
+import { QUERY_KEYS } from 'api';
+import { useUsers } from 'api/hooks';
+import { userActions } from 'api/queries';
 import { setUserAuth } from 'store/features';
-
-import { fetchUsers, userActions } from 'api/queries';
+import { UseAppDispatch } from 'store/hooks';
 import { ROUTE } from 'router';
+import { setNewId, signUpValidationSchema } from 'utils';
 
 import { SignUpInitialValues } from './constants';
 import SignUpForm from './SignUpForm';
-import { IUser } from 'types';
 
 const SignUpFormContainer = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const dispatch = UseAppDispatch();
 
-  const { data: users }: UseQueryResult<IUser[]> = useQuery<IUser[]>(
-    ['users'],
-    fetchUsers,
-  );
+  const users = useUsers();
 
   const { mutate: addUser } = useMutation({
     mutationFn: userActions.addUser,
     onSuccess: () => {
       navigate(ROUTE.MY_NOTES);
-      queryClient.invalidateQueries(['users']);
+      queryClient.invalidateQueries([QUERY_KEYS.USERS]);
     },
   });
 
@@ -53,7 +45,7 @@ const SignUpFormContainer = () => {
   return (
     <Formik
       initialValues={SignUpInitialValues}
-      validationSchema={validateSignUpForm}
+      validationSchema={signUpValidationSchema}
       onSubmit={handleSubmit}
       component={SignUpForm}
     />

@@ -1,13 +1,13 @@
+import { useToggle } from 'hooks';
 import { UseAppDispatch, useAppSelector } from 'store/hooks';
 import { unsetUserAuth } from 'store/features';
 import { getUser } from 'store/selectors';
-import { useToggle } from 'hooks';
 
 import Home from './Home';
 import { StyledHome } from './styles';
 
 const HomeContainer = () => {
-  const [isRegistration, toggleRegistrarion] = useToggle(false);
+  const [isRegistration, toggleRegistration] = useToggle(false);
   const { user, isAuth } = useAppSelector(getUser);
   const dispatch = UseAppDispatch();
 
@@ -22,7 +22,7 @@ const HomeContainer = () => {
         isAuth={isAuth}
         isRegistration={isRegistration}
         handleSignOut={handleSignOut}
-        toggleRegistrarion={toggleRegistrarion}
+        toggleRegistration={toggleRegistration}
       />
     </StyledHome>
   );

@@ -1,6 +1,6 @@
 import { IUser } from 'types';
 
-export interface IUSersState {
+export interface IUsersState {
   user: IUser | null;
   errorMessage: string;
   isLoading: boolean;

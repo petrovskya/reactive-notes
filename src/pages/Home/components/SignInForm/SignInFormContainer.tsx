@@ -1,34 +1,36 @@
 import { useEffect } from 'react';
-import { Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
+import { Formik } from 'formik';
 import { Typography } from '@mui/material';
 
-import { compareUserEmail, validateSignInForm } from 'utils';
-import { IUser } from 'types';
+import { fetchUsers } from 'api/queries';
+import { ROUTE } from 'router';
 import { UseAppDispatch, useAppSelector } from 'store/hooks';
 import { setUserAuth, setErrorMessage } from 'store/features';
 import { getUser } from 'store/selectors';
-import { fetchUsers } from 'api/queries';
-import { ROUTE } from 'router';
+import { IUser } from 'types';
+import { compareUserEmail, signInValidationSchema } from 'utils';
 
 import { SignInInitialValues } from './constants';
 import SignInForm from './SignInForm';
 
 const SignInFormContainer = () => {
+  const { data: users }: UseQueryResult<IUser[], Error> = useQuery<
+    IUser[],
+    Error,
+    IUser[]
+  >(['users'], fetchUsers);
+
   const { isAuth, errorMessage } = useAppSelector(getUser);
   const navigate = useNavigate();
   const dispatch = UseAppDispatch();
-
-  const { data: users }: UseQueryResult<IUser[]> = useQuery<IUser[]>(
-    ['users'],
-    fetchUsers,
-  );
 
   const handleSubmit = (signInFormValues: typeof SignInInitialValues) => {
     const user = users?.find((user) =>
       compareUserEmail(user, signInFormValues.email),
     );
+
     const isPasswordCorrect = user?.password === signInFormValues.password;
     user
       ? isPasswordCorrect
@@ -45,7 +47,7 @@ const SignInFormContainer = () => {
     <>
       <Formik
         initialValues={SignInInitialValues}
-        validationSchema={validateSignInForm}
+        validationSchema={signInValidationSchema}
         onSubmit={handleSubmit}
         component={SignInForm}
       />

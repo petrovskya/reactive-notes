@@ -2,18 +2,18 @@ import { FC } from 'react';
 import { Button } from '@mui/material';
 
 import { Link, UserProfile } from 'components';
+import { BUTTON_TEXT, NAV_LINKS } from 'config/types';
 import { ROUTE } from 'router';
-import { BUTTON_TEXT, NAV_LINKS } from 'config/constants';
 
-import { IHomeProps } from './types';
 import { SignInForm, SignUpForm } from './components';
+import { IHomeProps } from './types';
 
 const Home: FC<IHomeProps> = ({
   user,
   isAuth,
   isRegistration,
   handleSignOut,
-  toggleRegistrarion,
+  toggleRegistration,
 }) =>
   user && isAuth ? (
     <>
@@ -24,7 +24,7 @@ const Home: FC<IHomeProps> = ({
   ) : (
     <>
       {isRegistration ? <SignUpForm /> : <SignInForm />}
-      <Button color='secondary' variant='outlined' onClick={toggleRegistrarion}>
+      <Button color='secondary' variant='outlined' onClick={toggleRegistration}>
         {isRegistration ? BUTTON_TEXT.IS_USER : BUTTON_TEXT.NEW_USER}
       </Button>
     </>

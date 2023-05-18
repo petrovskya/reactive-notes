@@ -1,33 +1,35 @@
 import { FC } from 'react';
-import { CardActions, CardContent } from '@mui/material';
+import { Button, CardContent, Typography } from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
 
-import { EditMenu } from 'components';
+import { EditMenu, ShareButton } from 'components';
+import { BUTTON_TEXT } from 'config/types';
+import { INoteProps } from 'pages/MyNotes/types';
 import { getShortDescription } from 'utils';
 
-import { INoteProps } from './types';
 import {
   StyledCard,
-  StyledDateCreation,
-  StyledDescription,
   StyledTitle,
+  StyledDateCreation,
+  StyledCardActions,
 } from './styles';
 
-const Note: FC<INoteProps> = ({
-  note,
-  note: { title, dateCreation, description },
-  isActiveNote,
-  handleActiveNote,
-  editNote,
-}) => (
+const Note: FC<INoteProps> = ({ note, handleActiveNote, editNote }) => (
   <StyledCard>
+    <ShareButton note={note} />
     <CardContent onClick={handleActiveNote}>
-      <StyledTitle active={isActiveNote.toString()}>{title}</StyledTitle>
-      <StyledDateCreation>{dateCreation}</StyledDateCreation>
-      <StyledDescription>{getShortDescription(description)}</StyledDescription>
+      <StyledTitle variant='h3'>{note.title}</StyledTitle>
+      <StyledDateCreation variant='h6'>{note.dateCreation}</StyledDateCreation>
+      <Typography variant='h4'>
+        {getShortDescription(note.description)}
+      </Typography>
     </CardContent>
-    <CardActions>
+    <StyledCardActions>
       <EditMenu note={note} editNote={editNote} />
-    </CardActions>
+      <Button variant='contained' color='secondary' endIcon={<DeleteIcon />}>
+        {BUTTON_TEXT.DELETE}
+      </Button>
+    </StyledCardActions>
   </StyledCard>
 );
 

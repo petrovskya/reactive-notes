@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { getActiveUser } from 'utils';
 
-import { IUSersState } from './types';
+import { IUsersState } from './types';
 
-const initialState: IUSersState = {
+const initialState: IUsersState = {
   user: getActiveUser(),
   errorMessage: '',
   isLoading: false,
-  isAuth: getActiveUser() ? true : false,
+  isAuth: !!getActiveUser().userId,
 };
 
 const usersSlice = createSlice({

@@ -4,7 +4,7 @@ import { Button, Typography, TextField } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-import { CONSTANTS } from 'config';
+import { COMPONENT_TITLE, PLACEHOLDER_TEXT, BUTTON_TEXT } from 'config/types';
 
 import { SignUpInitialValues } from './constants';
 import { StyledForm } from './styles';
@@ -20,11 +20,11 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
 }) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <StyledForm onSubmit={handleSubmit}>
-      <Typography variant='h4'>{CONSTANTS.COMPONENT_TITLE.SIGN_UP}</Typography>
+      <Typography variant='h4'>{COMPONENT_TITLE.SIGN_UP}</Typography>
       <TextField
         id='firstName'
         name='firstName'
-        placeholder={CONSTANTS.PLACEHOLDER_TEXT.FIRST_NAME}
+        placeholder={PLACEHOLDER_TEXT.FIRST_NAME}
         value={values.firstName}
         onChange={handleChange('firstName')}
         onBlur={handleBlur('firstName')}
@@ -35,7 +35,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='lastName'
         name='lastName'
-        placeholder={CONSTANTS.PLACEHOLDER_TEXT.LAST_NAME}
+        placeholder={PLACEHOLDER_TEXT.LAST_NAME}
         value={values.lastName}
         onChange={handleChange('lastName')}
         onBlur={handleBlur('lastName')}
@@ -46,7 +46,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='email'
         name='email'
-        placeholder={CONSTANTS.PLACEHOLDER_TEXT.EMAIL}
+        placeholder={PLACEHOLDER_TEXT.EMAIL}
         value={values.email}
         onChange={handleChange('email')}
         onBlur={handleBlur('email')}
@@ -67,7 +67,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='password'
         name='password'
-        placeholder={CONSTANTS.PLACEHOLDER_TEXT.PASSWORD}
+        placeholder={PLACEHOLDER_TEXT.PASSWORD}
         value={values.password}
         onChange={handleChange('password')}
         onBlur={handleBlur('password')}
@@ -78,7 +78,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='confirmPassword'
         name='confirmPassword'
-        placeholder={CONSTANTS.PLACEHOLDER_TEXT.CONFIRM_PASSWORD}
+        placeholder={PLACEHOLDER_TEXT.CONFIRM_PASSWORD}
         value={values.confirmPassword}
         onChange={handleChange('confirmPassword')}
         onBlur={handleBlur('confirmPassword')}
@@ -87,7 +87,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
         <Typography>{errors.confirmPassword}</Typography>
       )}
       <Button color='primary' variant='contained' type='submit'>
-        {CONSTANTS.BUTTON_TEXT.SIGN_UP}
+        {BUTTON_TEXT.SIGN_UP}
       </Button>
     </StyledForm>
   </LocalizationProvider>

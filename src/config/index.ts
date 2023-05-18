@@ -1,1 +1,2 @@
-export * as CONSTANTS from './constants';
+export { EMPTY_STRING, VALIDATION_MESSAGES } from './constants';
+export * from './types';

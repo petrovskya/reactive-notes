@@ -1,5 +1,5 @@
-import { CONSTANTS } from 'config';
+import { STUB_TEXT } from 'config/types';
 
-const About = () => <div>{CONSTANTS.STUB_TEXT.ABOUT}</div>;
+const About = () => <div>{STUB_TEXT.ABOUT}</div>;
 
 export default About;

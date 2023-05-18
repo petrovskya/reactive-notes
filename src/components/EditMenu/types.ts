@@ -1,22 +1,22 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { INote } from 'types';
 
-interface IEditMenuContainerProps {
+export interface IEditMenuContainerProps {
   note: INote;
-  editNote: (id: string, title: string, description: string) => INote;
+  editNote: (note: INote, newTitle: string, newDescription: string) => INote;
 }
 
-interface IEditMenuProps {
+export interface IEditMenuProps {
   title: string;
   description: string;
+  initialValues: IEditMenuValues;
   isOpen: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
-  handleSave: MouseEventHandler<HTMLButtonElement>;
-  onChangeTitle: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onChangeDescription: ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
+  handleSubmit: (editMenuValues: IEditMenuValues) => void;
 }
 
-export type { IEditMenuContainerProps, IEditMenuProps };
+export interface IEditMenuValues {
+  title: string;
+  description: string;
+}

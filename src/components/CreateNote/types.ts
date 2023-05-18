@@ -1,7 +1,7 @@
 import { ChangeEventHandler, MouseEventHandler } from 'react';
 
-interface ICreateNoteProps {
-  isOpen: boolean;
+export interface ICreateNoteProps {
+  isOpenCreateMenu: boolean;
   onClick: MouseEventHandler<HTMLButtonElement>;
   handleSave: MouseEventHandler<HTMLButtonElement>;
   onChangeTitle: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
@@ -9,5 +9,3 @@ interface ICreateNoteProps {
     HTMLInputElement | HTMLTextAreaElement
   >;
 }
-
-export type { ICreateNoteProps };

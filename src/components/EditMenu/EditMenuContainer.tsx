@@ -1,45 +1,43 @@
 import { FC } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
-import { useFieldValue, useToggle } from 'hooks';
-import { notesActions } from 'api';
+import { notesActions, queryClient, QUERY_KEYS } from 'api';
+import { useToggle } from 'hooks';
 
 import EditMenu from './EditMenu';
-import { IEditMenuContainerProps } from './types';
+import { IEditMenuContainerProps, IEditMenuValues } from './types';
 
 const EditMenuContainer: FC<IEditMenuContainerProps> = ({ editNote, note }) => {
-  const { id, title, description } = note;
-
-  const queryClient = useQueryClient();
-
   const [isOpen, setOpen] = useToggle();
 
-  const { value: newTitle, onChange: onChangeTitle } = useFieldValue();
-
-  const { value: newDescription, onChange: onChangeDescription } =
-    useFieldValue();
-
-  const { mutate: updateNote } = useMutation({
+  const { error, mutate: updateNote } = useMutation({
     mutationFn: notesActions.updateNote,
     onSuccess: () => {
-      queryClient.invalidateQueries(['notes']);
+      queryClient.invalidateQueries([QUERY_KEYS.NOTES]);
     },
   });
+  const { title, description } = note;
+  const EditMenuInitialValues: IEditMenuValues = {
+    title: title,
+    description: description,
+  };
 
-  const handleSave = () => {
-    updateNote(editNote(id, newTitle || title, newDescription || description));
+  const handleSubmit = (editMenuValues: IEditMenuValues) => {
+    updateNote(
+      editNote(note, editMenuValues.title, editMenuValues.description),
+    );
     setOpen();
+    console.log(error);
   };
 
   return (
     <EditMenu
-      title={title}
-      description={description}
       isOpen={isOpen}
       onClick={setOpen}
-      handleSave={handleSave}
-      onChangeTitle={onChangeTitle}
-      onChangeDescription={onChangeDescription}
+      handleSubmit={handleSubmit}
+      title={title}
+      description={description}
+      initialValues={EditMenuInitialValues}
     />
   );
 };

@@ -2,15 +2,25 @@ import { Dispatch } from 'react';
 
 import { INote } from 'types';
 
-interface IMyNotes extends INotesList {}
-
 interface INotesList {
-  notes: INote[] | undefined;
+  notes?: INote[];
   activeNote: INote | null;
   isEditMode: boolean;
   setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
   setEditMode: Dispatch<React.SetStateAction<boolean>>;
-  editNote: (id: string, title: string, description: string) => INote;
+  editNote: (note: INote, newTitle: string, newDescription: string) => INote;
 }
 
-export type { IMyNotes, INotesList };
+interface INoteContainer {
+  note: INote;
+  activeNote: INote | null;
+  setActiveNote: Dispatch<React.SetStateAction<INote | null>>;
+  editNote: (note: INote, newTitle: string, newDescription: string) => INote;
+}
+
+interface INoteProps
+  extends Omit<INoteContainer, 'activeNote' | 'setActiveNote'> {
+  handleActiveNote: () => void;
+}
+
+export type { INotesList, INoteContainer, INoteProps };

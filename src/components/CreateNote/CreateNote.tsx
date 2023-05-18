@@ -9,12 +9,17 @@ import {
 } from '@mui/material';
 import { Edit as EditIcon } from '@mui/icons-material';
 
-import { CONSTANTS } from 'config';
+import {
+  BUTTON_TEXT,
+  COMPONENT_TITLE,
+  LABEL_TEXT,
+  PLACEHOLDER_TEXT,
+} from 'config/types';
 
 import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
-  isOpen,
+  isOpenCreateMenu,
   onClick,
   handleSave,
   onChangeDescription,
@@ -22,17 +27,17 @@ const CreateNote: FC<ICreateNoteProps> = ({
 }) => (
   <>
     <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
-      {CONSTANTS.BUTTON_TEXT.CREATE}
+      {BUTTON_TEXT.CREATE}
     </Button>
-    <Dialog open={isOpen} onClose={onClick}>
-      <DialogTitle>{CONSTANTS.COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
+    <Dialog open={isOpenCreateMenu} onClose={onClick}>
+      <DialogTitle>{COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
       <DialogContent>
         <TextField
           margin='dense'
           type='text'
           variant='outlined'
-          label={CONSTANTS.LABEL_TEXT.TITLE}
-          placeholder={CONSTANTS.PLACEHOLDER_TEXT.TITLE}
+          label={LABEL_TEXT.TITLE}
+          placeholder={PLACEHOLDER_TEXT.TITLE}
           fullWidth
           autoFocus
           onChange={onChangeTitle}
@@ -41,8 +46,8 @@ const CreateNote: FC<ICreateNoteProps> = ({
           margin='dense'
           type='text'
           variant='outlined'
-          label={CONSTANTS.LABEL_TEXT.DESCRIPTION}
-          placeholder={CONSTANTS.PLACEHOLDER_TEXT.DESCRIPTION}
+          label={LABEL_TEXT.DESCRIPTION}
+          placeholder={PLACEHOLDER_TEXT.DESCRIPTION}
           fullWidth
           multiline
           autoFocus
@@ -51,10 +56,10 @@ const CreateNote: FC<ICreateNoteProps> = ({
       </DialogContent>
       <DialogActions>
         <Button variant='contained' color='secondary' onClick={onClick}>
-          {CONSTANTS.BUTTON_TEXT.CANCEL}
+          {BUTTON_TEXT.CANCEL}
         </Button>
         <Button variant='contained' onClick={handleSave}>
-          {CONSTANTS.BUTTON_TEXT.SAVE}
+          {BUTTON_TEXT.SAVE}
         </Button>
       </DialogActions>
     </Dialog>

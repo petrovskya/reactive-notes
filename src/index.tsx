@@ -1,25 +1,24 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@mui/material/styles';
 
+import { queryClient } from 'api';
+import { router } from 'router';
 import { store } from 'store';
 import { theme } from 'ui';
-import { router } from 'router';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-const queryClient = new QueryClient();
-
 root.render(
-  <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
         <RouterProvider router={router} />
-      </QueryClientProvider>
-    </ThemeProvider>
-  </Provider>,
+      </ThemeProvider>
+    </Provider>
+  </QueryClientProvider>,
 );

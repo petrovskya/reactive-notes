@@ -5,8 +5,6 @@ import {
   Route,
 } from 'react-router-dom';
 
-import { ROUTE } from 'router';
-import MainTemplate from 'templates';
 import {
   HomePage,
   MyNotesPage,
@@ -14,6 +12,8 @@ import {
   AboutPage,
   NotFoundPage,
 } from 'pages';
+import { BASENAME, ROUTE } from 'router';
+import MainTemplate from 'templates';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,5 +26,5 @@ export const router = createBrowserRouter(
       <Route path={ROUTE.ANY} element={<Navigate to={ROUTE.NOT_FOUND} />} />
     </Route>,
   ),
-  { basename: '/reactive-notes' },
+  { basename: BASENAME },
 );

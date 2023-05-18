@@ -1,64 +1,31 @@
 import { FC } from 'react';
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from '@mui/material';
+import { Formik } from 'formik';
+import { Dialog, DialogTitle } from '@mui/material';
 import { Edit as EditIcon } from '@mui/icons-material';
 
-import { CONSTANTS } from 'config';
+import { BUTTON_TEXT, COMPONENT_TITLE } from 'config/types';
 
+import EditMenuForm from './EditMenuForm';
+import { StyledButton } from './styles';
 import { IEditMenuProps } from './types';
 
 const EditMenu: FC<IEditMenuProps> = ({
-  title,
-  description,
+  initialValues,
   isOpen,
   onClick,
-  handleSave,
-  onChangeDescription,
-  onChangeTitle,
+  handleSubmit,
 }) => (
   <>
-    <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
-      {CONSTANTS.BUTTON_TEXT.EDIT}
-    </Button>
+    <StyledButton variant='contained' endIcon={<EditIcon />} onClick={onClick}>
+      {BUTTON_TEXT.EDIT}
+    </StyledButton>
     <Dialog open={isOpen} onClose={onClick}>
-      <DialogTitle>{CONSTANTS.COMPONENT_TITLE.EDIT_MENU}</DialogTitle>
-      <DialogContent>
-        <TextField
-          variant='outlined'
-          margin='dense'
-          type='text'
-          label={CONSTANTS.LABEL_TEXT.TITLE}
-          defaultValue={title}
-          fullWidth
-          autoFocus
-          onChange={onChangeTitle}
-        />
-        <TextField
-          variant='outlined'
-          margin='dense'
-          type='text'
-          label={CONSTANTS.LABEL_TEXT.DESCRIPTION}
-          defaultValue={description}
-          fullWidth
-          autoFocus
-          multiline
-          onChange={onChangeDescription}
-        />
-      </DialogContent>
-      <DialogActions>
-        <Button variant='contained' color='secondary' onClick={onClick}>
-          {CONSTANTS.BUTTON_TEXT.CANCEL}
-        </Button>
-        <Button variant='contained' onClick={handleSave}>
-          {CONSTANTS.BUTTON_TEXT.SAVE}
-        </Button>
-      </DialogActions>
+      <DialogTitle>{COMPONENT_TITLE.EDIT_MENU}</DialogTitle>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        component={EditMenuForm}
+      />
     </Dialog>
   </>
 );

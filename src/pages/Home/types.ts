@@ -5,5 +5,5 @@ export interface IHomeProps {
   isAuth: boolean;
   isRegistration: boolean;
   handleSignOut: () => void;
-  toggleRegistrarion: () => void;
+  toggleRegistration: () => void;
 }
