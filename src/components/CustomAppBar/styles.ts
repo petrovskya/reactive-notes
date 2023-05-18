@@ -1,19 +1,24 @@
-import { AppBar, styled } from '@mui/material';
-import { LogoIcon } from 'assets';
+import { styled } from 'styled-components';
+import { AppBar, Box } from '@mui/material';
 
+import { LogoIcon } from 'assets';
 import { Color } from 'ui';
 
 const StyledAppBar = styled(AppBar)({
-  position: 'fixed',
-  flexDirection: 'row',
-  maxWidth: '100%',
-  backgroundColor: Color.PRIMARY,
+  '&.MuiPaper-root': {
+    flexDirection: 'row',
+  },
+  padding: '0 20px',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 });
 
-const StyledLogo = styled(LogoIcon)({
-  display: 'flex',
-  height: '60px',
+const StyledLogo = styled(Box)({
+  margin: '0 15px',
+});
+
+const StyledLogoIcon = styled(LogoIcon)({
   fill: Color.SECONDARY_DARK,
 });
 
-export { StyledAppBar, StyledLogo };
+export { StyledAppBar, StyledLogo, StyledLogoIcon };

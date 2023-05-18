@@ -2,11 +2,11 @@ import { createTheme } from '@mui/material/styles';
 
 enum Color {
   PRIMARY = '#f5E045',
-  PRIMARY_DARK = '#F2CE40',
-  PRIMARY_LIGHT = '#F7E878',
+  PRIMARY_DARK = '#EDD837',
+  PRIMARY_LIGHT = '#FFE51F',
   SECONDARY = '#495A65',
   SECONDARY_DARK = '#283239',
-  SECONDARY_LIGHT = '7C909E',
+  SECONDARY_LIGHT = '#7C909E',
   BLACK = '#1c201f',
   ERROR = '#ff5154',
   LIGHT = '#afb2b6',
@@ -33,6 +33,25 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: 'Inter',
+    h2: {
+      marginBottom: 5,
+      fontSize: '24px',
+      fontWeight: 600,
+    },
+    h3: {
+      marginBottom: 5,
+      fontSize: '20px',
+      fontWeight: 600,
+    },
+    h4: {
+      fontSize: '20px',
+      fontWeight: 300,
+    },
+    h6: {
+      marginBottom: 10,
+      fontSize: '14px',
+      fontWeight: 300,
+    },
   },
 });
 
