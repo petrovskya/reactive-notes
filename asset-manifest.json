@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/reactive-notes/static/js/main.30ed407c.js",
+    "main.js": "/reactive-notes/static/js/main.4eb38c6d.js",
     "static/media/page-not-found.jpg": "/reactive-notes/static/media/page-not-found.c419f154f0989c148c0a.jpg",
     "static/media/app-logo-icon.svg": "/reactive-notes/static/media/app-logo-icon.742656c40dd6af7fc06818a7c8d99ff8.svg",
     "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.6b76a9adc812b62395107d29d4902419.svg",
     "index.html": "/reactive-notes/index.html",
-    "main.30ed407c.js.map": "/reactive-notes/static/js/main.30ed407c.js.map"
+    "main.4eb38c6d.js.map": "/reactive-notes/static/js/main.4eb38c6d.js.map"
   },
   "entrypoints": [
-    "static/js/main.30ed407c.js"
+    "static/js/main.4eb38c6d.js"
   ]
 }
