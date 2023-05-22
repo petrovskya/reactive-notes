@@ -1,0 +1,1 @@
+export { filterNotes } from './filterNotes';
