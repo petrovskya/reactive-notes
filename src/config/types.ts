@@ -11,8 +11,12 @@ export enum PLACEHOLDER_TEXT {
 
 export enum BUTTON_TEXT {
   SAVE = 'Save',
+  SUBMIT = 'Submit',
+  FILTER = 'Set filter',
   EDIT = 'Edit',
   CANCEL = 'Cancel',
+  RESET = 'Reset',
+  CLEAR = 'Clear',
   CREATE = 'Create a new note',
   SIGN_UP = 'Sign up',
   SIGN_IN = 'Sign in',
@@ -25,6 +29,7 @@ export enum BUTTON_TEXT {
 export enum LABEL_TEXT {
   TITLE = 'Title',
   DESCRIPTION = 'Description',
+  DATE = 'Date',
 }
 
 export enum COMPONENT_TITLE {
@@ -34,6 +39,7 @@ export enum COMPONENT_TITLE {
   SIGN_UP = 'Sign up',
   SIGN_IN = 'Sign in',
   USER_PROFILE = 'Profile',
+  FILTER_FORM = 'Set up your filter',
 }
 
 export enum STUB_TEXT {
@@ -47,4 +53,21 @@ export enum NAV_LINKS {
   MY_NOTES = 'My notes',
   SHARED_NOTES = 'Shared notes',
   ABOUT = 'About',
+}
+
+export enum FETCH_STATUS {
+  NO_RESULT = `No such results`,
+  LOADING = 'loading...',
+  EMPTY = `There aren't any notes`,
+}
+
+export enum FILTER_BADGE_TEXT {
+  TITLE = 'Filter by title',
+  DATE = 'Filter by date',
+  CLOSE_FILTER = 'Close filter',
+}
+
+export enum FILTER_OPTIONS {
+  TITLE = 'title',
+  DATE = 'date',
 }

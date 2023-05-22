@@ -17,3 +17,7 @@ export const VALIDATION_MESSAGES = {
     LAST_NAME: 'Last name should be of minimum 3 characters length',
   },
 };
+
+export const LOCAL_STORAGE_KEYS = {
+  USER: 'user',
+};
