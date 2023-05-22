@@ -1,7 +1,12 @@
+import { FILTER_OPTIONS } from 'config';
+import { INote } from 'types';
+
 export interface INotesState {
-  id: string;
-  userId: string;
-  title: string;
-  description: string;
-  dateCreation: string;
+  notes?: INote[];
+  isFilteredByTitle: boolean;
+  isFilteredByDate: boolean;
+  filterOption?: FILTER_OPTIONS;
+  filterValue?: string;
+  filterByTitle?: string;
+  filterByDate?: string;
 }

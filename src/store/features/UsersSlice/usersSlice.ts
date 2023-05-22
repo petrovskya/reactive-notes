@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { LOCAL_STORAGE_KEYS } from 'config';
+import { SLICE_NAME } from 'store/features';
 import { getActiveUser } from 'utils';
 
 import { IUsersState } from './types';
@@ -12,18 +14,18 @@ const initialState: IUsersState = {
 };
 
 const usersSlice = createSlice({
-  name: 'users',
+  name: SLICE_NAME.USERS,
   initialState,
   reducers: {
     setUserAuth: (state, { payload }) => {
       state.isAuth = true;
-      localStorage.setItem('user', JSON.stringify(payload));
+      localStorage.setItem(LOCAL_STORAGE_KEYS.USER, JSON.stringify(payload));
       state.user = payload;
       state.errorMessage = initialState.errorMessage;
     },
     unsetUserAuth: (state) => {
       state.isAuth = false;
-      localStorage.removeItem('user');
+      localStorage.removeItem(LOCAL_STORAGE_KEYS.USER);
       state.user = initialState.user;
     },
     setErrorMessage: (state, { payload }) => {
