@@ -5,11 +5,12 @@ const StyledMyNotes = styled(Container)({
   '&.MuiContainer-root': {
     display: 'grid',
     placeItems: 'center',
-    gap: '40px',
+    gap: '20px',
     width: '100%',
 
     '@media screen and (max-width: 600px)': {
       padding: 10,
+      gap: 10,
     },
   },
 

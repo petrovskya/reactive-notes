@@ -8,13 +8,15 @@ import { StyledList, StyledListItemButton } from './styles';
 
 const NotesList: FC<INotesList> = ({ notes, ...props }) => (
   <StyledList>
-    {notes?.map((note) => (
-      <ListItem disablePadding key={note?.id}>
-        <StyledListItemButton $isActive={props.activeNote?.id === note.id}>
-          <Note note={note} {...props} />
-        </StyledListItemButton>
-      </ListItem>
-    ))}
+    {notes?.map((page) =>
+      page.map((note) => (
+        <ListItem disablePadding key={note?.id}>
+          <StyledListItemButton $isActive={props.activeNote?.id === note.id}>
+            <Note note={note} {...props} />
+          </StyledListItemButton>
+        </ListItem>
+      )),
+    )}
   </StyledList>
 );
 

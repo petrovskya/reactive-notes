@@ -1,8 +1,10 @@
 import { FC } from 'react';
+import { Typography } from '@mui/material';
 
 import { ActiveNote, CreateNote } from 'components';
+import { FETCH_STATUS } from 'config';
 
-import { NotesList } from './components';
+import { FilterMenu, NotesList } from './components';
 import { StyledBox, StyledMyNotes } from './styles';
 import { INotesList } from './types';
 
@@ -10,6 +12,9 @@ const MyNotes: FC<INotesList> = ({
   notes,
   activeNote,
   isEditMode,
+  isLoading,
+  isFetching,
+  refOnView,
   setEditMode,
   setActiveNote,
   editNote,
@@ -18,6 +23,8 @@ const MyNotes: FC<INotesList> = ({
     <StyledBox>
       <ActiveNote note={activeNote} />
     </StyledBox>
+    <CreateNote />
+    <FilterMenu />
     <NotesList
       notes={notes}
       activeNote={activeNote}
@@ -26,7 +33,10 @@ const MyNotes: FC<INotesList> = ({
       setEditMode={setEditMode}
       editNote={editNote}
     />
-    <CreateNote />
+    {(isLoading || isFetching) && (
+      <Typography variant='h6'>{FETCH_STATUS.LOADING}</Typography>
+    )}
+    <CreateNote refOnView={refOnView} />
   </StyledMyNotes>
 );
 

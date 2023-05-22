@@ -1,5 +1,5 @@
 import { useToggle } from 'hooks';
-import { UseAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { unsetUserAuth } from 'store/features';
 import { getUser } from 'store/selectors';
 
@@ -9,8 +9,7 @@ import { StyledHome } from './styles';
 const HomeContainer = () => {
   const [isRegistration, toggleRegistration] = useToggle(false);
   const { user, isAuth } = useAppSelector(getUser);
-  const dispatch = UseAppDispatch();
-
+  const dispatch = useAppDispatch();
   const handleSignOut = () => {
     dispatch(unsetUserAuth());
   };
