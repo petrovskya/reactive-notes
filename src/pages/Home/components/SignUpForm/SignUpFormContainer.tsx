@@ -3,12 +3,12 @@ import { Formik } from 'formik';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { QUERY_KEYS } from 'api';
-import { useUsers } from 'api/hooks';
 import { userActions } from 'api/queries';
+import { EMPTY_STRING } from 'config';
 import { setUserAuth } from 'store/features';
-import { UseAppDispatch } from 'store/hooks';
+import { useAppDispatch } from 'store/hooks';
 import { ROUTE } from 'router';
-import { setNewId, signUpValidationSchema } from 'utils';
+import { formatDate, getDateCreation, signUpValidationSchema } from 'utils';
 
 import { SignUpInitialValues } from './constants';
 import SignUpForm from './SignUpForm';
@@ -16,9 +16,7 @@ import SignUpForm from './SignUpForm';
 const SignUpFormContainer = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const dispatch = UseAppDispatch();
-
-  const users = useUsers();
+  const dispatch = useAppDispatch();
 
   const { mutate: addUser } = useMutation({
     mutationFn: userActions.addUser,
@@ -28,15 +26,21 @@ const SignUpFormContainer = () => {
     },
   });
 
-  const handleSubmit = (signUpFormValues: typeof SignUpInitialValues) => {
+  const handleSubmit = ({
+    firstName,
+    lastName,
+    email,
+    dateOfBirth,
+    password,
+  }: typeof SignUpInitialValues) => {
     const newUser = {
-      userId: setNewId(users),
-      createdAt: new Date().toDateString(),
-      firstName: signUpFormValues.firstName,
-      lastName: signUpFormValues.lastName,
-      email: signUpFormValues.email,
-      dateOfBirth: signUpFormValues.dateOfBirth.toDateString(),
-      password: signUpFormValues.password,
+      userId: EMPTY_STRING,
+      createdAt: getDateCreation(),
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      dateOfBirth: formatDate(dateOfBirth),
+      password: password,
     };
     addUser(newUser);
     dispatch(setUserAuth(newUser));
@@ -46,8 +50,8 @@ const SignUpFormContainer = () => {
     <Formik
       initialValues={SignUpInitialValues}
       validationSchema={signUpValidationSchema}
-      onSubmit={handleSubmit}
       component={SignUpForm}
+      onSubmit={handleSubmit}
     />
   );
 };
