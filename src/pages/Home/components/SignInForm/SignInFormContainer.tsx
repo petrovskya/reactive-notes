@@ -4,15 +4,15 @@ import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { Formik } from 'formik';
 import { Typography } from '@mui/material';
 
-import { fetchUsers } from 'api/queries';
+import { QUERY_KEYS, fetchUsers } from 'api';
 import { ROUTE } from 'router';
-import { UseAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setUserAuth, setErrorMessage } from 'store/features';
 import { getUser } from 'store/selectors';
 import { IUser } from 'types';
 import { compareUserEmail, signInValidationSchema } from 'utils';
 
-import { SignInInitialValues } from './constants';
+import { ERROR_MESSAGE, SignInInitialValues } from './constants';
 import SignInForm from './SignInForm';
 
 const SignInFormContainer = () => {
@@ -20,11 +20,11 @@ const SignInFormContainer = () => {
     IUser[],
     Error,
     IUser[]
-  >(['users'], fetchUsers);
+  >([QUERY_KEYS.USERS], fetchUsers);
 
   const { isAuth, errorMessage } = useAppSelector(getUser);
   const navigate = useNavigate();
-  const dispatch = UseAppDispatch();
+  const dispatch = useAppDispatch();
 
   const handleSubmit = (signInFormValues: typeof SignInInitialValues) => {
     const user = users?.find((user) =>
@@ -35,8 +35,8 @@ const SignInFormContainer = () => {
     user
       ? isPasswordCorrect
         ? dispatch(setUserAuth(user))
-        : dispatch(setErrorMessage('Wrong password'))
-      : dispatch(setErrorMessage('User not found'));
+        : dispatch(setErrorMessage(ERROR_MESSAGE.PASSWORD))
+      : dispatch(setErrorMessage(ERROR_MESSAGE.USER));
   };
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const SignInFormContainer = () => {
         onSubmit={handleSubmit}
         component={SignInForm}
       />
-      {errorMessage && <Typography>{errorMessage}</Typography>}
+      {errorMessage && <Typography variant='h6'>{errorMessage}</Typography>}
     </>
   );
 };
