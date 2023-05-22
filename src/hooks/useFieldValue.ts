@@ -9,5 +9,9 @@ export const useFieldValue = (initialValue = EMPTY_STRING) => {
     setValue(e.target.value);
   }, []);
 
-  return { value, onChange };
+  const onReset = () => {
+    setValue(' ');
+  };
+
+  return { value, onChange, onReset };
 };
