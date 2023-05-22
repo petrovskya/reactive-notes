@@ -10,7 +10,7 @@ import { IEditMenuContainerProps, IEditMenuValues } from './types';
 const EditMenuContainer: FC<IEditMenuContainerProps> = ({ editNote, note }) => {
   const [isOpen, setOpen] = useToggle();
 
-  const { error, mutate: updateNote } = useMutation({
+  const { mutate: updateNote } = useMutation({
     mutationFn: notesActions.updateNote,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEYS.NOTES]);
@@ -27,7 +27,6 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ editNote, note }) => {
       editNote(note, editMenuValues.title, editMenuValues.description),
     );
     setOpen();
-    console.log(error);
   };
 
   return (

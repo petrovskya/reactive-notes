@@ -4,7 +4,7 @@ import { Card, Typography } from '@mui/material';
 import { Color } from 'ui';
 
 const StyledCard = styled(Card)({
-  maxWidth: 345,
+  maxWidth: 600,
   width: '100%',
   '&.MuiCard-root': {
     borderRadius: '10px',

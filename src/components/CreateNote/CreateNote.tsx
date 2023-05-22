@@ -20,13 +20,19 @@ import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
   isOpenCreateMenu,
+  refOnView,
   onClick,
   handleSave,
   onChangeDescription,
   onChangeTitle,
 }) => (
   <>
-    <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
+    <Button
+      ref={refOnView}
+      variant='contained'
+      endIcon={<EditIcon />}
+      onClick={onClick}
+    >
       {BUTTON_TEXT.CREATE}
     </Button>
     <Dialog open={isOpenCreateMenu} onClose={onClick}>

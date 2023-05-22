@@ -1,22 +1,18 @@
-import { UseQueryResult, useMutation, useQuery } from '@tanstack/react-query';
+import { FC } from 'react';
+import { useMutation } from '@tanstack/react-query';
 
-import { QUERY_KEYS, fetchNotesOfUser, notesActions, queryClient } from 'api';
+import { QUERY_KEYS, notesActions, queryClient } from 'api';
 import { useFieldValue, useToggle } from 'hooks';
 import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/selectors';
-import { INote } from 'types';
 import { createNewNote } from 'utils';
 
 import CreateNote from './CreateNote';
+import { ICreateNoteContainerProps } from './types';
 
-const CreateNoteContainer = () => {
+const CreateNoteContainer: FC<ICreateNoteContainerProps> = ({ refOnView }) => {
   const { user } = useAppSelector(getUser);
-  const userId = user?.userId as string;
-  const { data: notesResponse }: UseQueryResult<INote[], Error> = useQuery<
-    INote[],
-    Error,
-    INote[]
-  >([QUERY_KEYS.NOTES], () => fetchNotesOfUser(userId));
+
   const [isOpenCreateMenu, setOpenCreateMenu] = useToggle(false);
 
   const { value: title, onChange: onChangeTitle } = useFieldValue();
@@ -29,14 +25,13 @@ const CreateNoteContainer = () => {
   });
 
   const handleSave = () => {
-    user &&
-      notesResponse &&
-      addNote(createNewNote(user, notesResponse, title, description));
+    user && addNote(createNewNote(user, title, description));
     setOpenCreateMenu();
   };
 
   return (
     <CreateNote
+      refOnView={refOnView}
       isOpenCreateMenu={isOpenCreateMenu}
       onClick={setOpenCreateMenu}
       handleSave={handleSave}
