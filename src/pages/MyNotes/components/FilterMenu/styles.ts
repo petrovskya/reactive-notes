@@ -28,6 +28,7 @@ const StyledBadge = styled(Badge)({
 const FilterMenuButton = styled(ToggleButton)({
   '&.MuiToggleButton-root': {
     border: 'none',
+    marginBottom: 15,
   },
 });
 

@@ -2,7 +2,12 @@ import { FC } from 'react';
 import { FormikProps } from 'formik';
 import { Button, Typography, TextField } from '@mui/material';
 
-import { COMPONENT_TITLE, PLACEHOLDER_TEXT, BUTTON_TEXT } from 'config/types';
+import {
+  COMPONENT_TITLE,
+  PLACEHOLDER_TEXT,
+  BUTTON_TEXT,
+  LABEL_TEXT,
+} from 'config/types';
 
 import { SignInInitialValues } from './constants';
 import { StyledForm } from './styles';
@@ -20,6 +25,7 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
     <TextField
       id='email'
       name='email'
+      label={LABEL_TEXT.EMAIL}
       placeholder={PLACEHOLDER_TEXT.EMAIL}
       value={values.email}
       onChange={handleChange('email')}
@@ -30,6 +36,7 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
       id='password'
       name='password'
       type='password'
+      label={LABEL_TEXT.PASSWORD}
       placeholder={PLACEHOLDER_TEXT.PASSWORD}
       value={values.password}
       onChange={handleChange('password')}

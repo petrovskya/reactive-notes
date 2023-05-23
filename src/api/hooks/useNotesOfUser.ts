@@ -10,12 +10,15 @@ import { RESPONSE_LIMIT } from 'api/endpoints';
 import { filterNotes } from 'api/mappers';
 import { FILTER_OPTIONS } from 'config';
 import { INote } from 'types';
+import { useAppDispatch } from 'store/hooks';
+import { setNotes } from 'store/features';
 
 export const useNotesOfUser = (
   userId: string,
   filterOption?: FILTER_OPTIONS,
   filterValue?: string,
 ) => {
+  const dispatch = useAppDispatch();
   const {
     data: notesResponse,
     hasNextPage,
@@ -38,8 +41,11 @@ export const useNotesOfUser = (
       }),
       [filterOption, filterValue],
     ),
+    onSuccess: (data: InfiniteData<INote[]>) =>
+      dispatch(setNotes(data.pages.flat())),
   });
   const notes = notesResponse?.pages;
+
   return {
     notes,
     hasNextPage,

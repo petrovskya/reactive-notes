@@ -7,7 +7,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { queryClient } from 'api';
 import { router } from 'router';
 import { store } from 'store';
-import { theme } from 'ui';
+import { GlobalStyles, theme } from 'ui';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,6 +16,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
+      <GlobalStyles />
       <ThemeProvider theme={theme}>
         <RouterProvider router={router} />
       </ThemeProvider>

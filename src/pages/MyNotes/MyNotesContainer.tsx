@@ -1,23 +1,31 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
+import { OnDragEndResponder } from 'react-beautiful-dnd';
 
 import { QUERY_KEYS, queryClient } from 'api';
 import { useNotesOfUser } from 'api/hooks';
 import { ROUTE } from 'router';
+import { setNotes } from 'store/features';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getMyNotes, getUser } from 'store/selectors';
-import { useAppSelector } from 'store/hooks';
 import { INote } from 'types';
 
 import MyNotes from './MyNotes';
 
 const MyNotesContainer = () => {
   const { user, isAuth } = useAppSelector(getUser);
-  const { filterOption, filterValue } = useAppSelector(getMyNotes);
+  const {
+    notes: myNotes,
+    filterOption,
+    filterValue,
+  } = useAppSelector(getMyNotes);
   const userId = user?.userId as string;
 
   const { notes, hasNextPage, isLoading, isFetching, fetchNextPage } =
     useNotesOfUser(userId, filterOption, filterValue);
+  const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
   const { ref, inView } = useInView();
 
@@ -38,9 +46,20 @@ const MyNotesContainer = () => {
     } else return note;
   };
 
-  useLayoutEffect(() => {
-    activeNote && window.scrollTo(0, 20);
-  }, [activeNote, setActiveNote]);
+  const reorder = (list: INote[], startIndex: number, endIndex: number) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+  };
+
+  const handleDragEnd: OnDragEndResponder = ({ destination, source }) => {
+    if (!destination) return;
+
+    myNotes &&
+      dispatch(setNotes(reorder(myNotes, source.index, destination.index)));
+  };
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -59,12 +78,13 @@ const MyNotesContainer = () => {
 
   return (
     <MyNotes
-      notes={notes}
+      notes={myNotes}
       activeNote={activeNote}
       isEditMode={isEditMode}
       isLoading={isLoading}
       isFetching={isFetching}
       refOnView={ref}
+      onDragEnd={handleDragEnd}
       setActiveNote={setActiveNote}
       setEditMode={setEditMode}
       editNote={editNote}

@@ -4,7 +4,12 @@ import { Button, Typography, TextField } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-import { COMPONENT_TITLE, PLACEHOLDER_TEXT, BUTTON_TEXT } from 'config/types';
+import {
+  COMPONENT_TITLE,
+  PLACEHOLDER_TEXT,
+  BUTTON_TEXT,
+  LABEL_TEXT,
+} from 'config/types';
 
 import { SignUpInitialValues } from './constants';
 import { StyledForm } from './styles';
@@ -24,6 +29,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='firstName'
         name='firstName'
+        label={LABEL_TEXT.FIRST_NAME}
         placeholder={PLACEHOLDER_TEXT.FIRST_NAME}
         value={values.firstName}
         onChange={handleChange('firstName')}
@@ -35,6 +41,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='lastName'
         name='lastName'
+        label={LABEL_TEXT.LAST_NAME}
         placeholder={PLACEHOLDER_TEXT.LAST_NAME}
         value={values.lastName}
         onChange={handleChange('lastName')}
@@ -46,6 +53,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='email'
         name='email'
+        label={LABEL_TEXT.EMAIL}
         placeholder={PLACEHOLDER_TEXT.EMAIL}
         value={values.email}
         onChange={handleChange('email')}
@@ -57,6 +65,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
         slotProps={{
           textField: {
             variant: 'outlined',
+            label: LABEL_TEXT.DATE_OF_BIRTH,
             error: Boolean(errors.dateOfBirth),
             helperText: errors.dateOfBirth && 'This field is required!',
           },
@@ -67,6 +76,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='password'
         name='password'
+        label={LABEL_TEXT.PASSWORD}
         placeholder={PLACEHOLDER_TEXT.PASSWORD}
         value={values.password}
         onChange={handleChange('password')}
@@ -78,6 +88,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='confirmPassword'
         name='confirmPassword'
+        label={LABEL_TEXT.CONFIRM_PASSWORD}
         placeholder={PLACEHOLDER_TEXT.CONFIRM_PASSWORD}
         value={values.confirmPassword}
         onChange={handleChange('confirmPassword')}

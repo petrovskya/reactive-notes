@@ -13,7 +13,7 @@ export const StyledLink = styled(Link)<{
   margin: '0 15px',
   borderRadius: '6px',
   border: `2px solid ${match ? Color.SECONDARY : 'transparent'}`,
-  backgroundColor: match ? Color.PRIMARY_LIGHT : 'transparent',
+  backgroundColor: match ? Color.PRIMARY : 'transparent',
   fontSize: '18px',
   fontWeight: 600,
   textTransform: 'uppercase',
@@ -22,7 +22,7 @@ export const StyledLink = styled(Link)<{
   transition: '0.2s',
 
   '&:hover': {
-    backgroundColor: Color.PRIMARY_LIGHT,
+    border: `2px solid ${Color.SECONDARY}`,
   },
 
   '&:active': {

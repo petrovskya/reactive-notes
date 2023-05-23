@@ -10,7 +10,8 @@ enum Color {
   BLACK = '#1c201f',
   ERROR = '#ff5154',
   LIGHT = '#afb2b6',
-  WHITE = '#eeeeee',
+  WHITE = '#ebecef',
+  CLEAR_WHITE = '#fff',
   GREEN = '#00a340',
   ORANGE = '#f45d2d',
   TRANSPARENT = 'transparent',
@@ -51,6 +52,29 @@ const theme = createTheme({
       marginBottom: 10,
       fontSize: '14px',
       fontWeight: 300,
+    },
+  },
+  components: {
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          backgroundColor: Color.CLEAR_WHITE,
+          borderRadius: 6,
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: Color.SECONDARY,
+          '&.Mui-focused': {
+            top: -10,
+            backgroundColor: Color.SECONDARY_DARK,
+            borderRadius: 3,
+            color: Color.PRIMARY,
+          },
+        },
+      },
     },
   },
 });

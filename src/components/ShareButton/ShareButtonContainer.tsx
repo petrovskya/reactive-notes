@@ -7,7 +7,7 @@ import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/selectors';
 import { INote } from 'types';
 
-import { StyledShareIcon } from './styles';
+import { StyledBox, StyledShareIcon } from './styles';
 import { IShareButtonContainer } from './types';
 
 const ShareButtonContainer: FC<IShareButtonContainer> = ({ note }) => {
@@ -34,11 +34,13 @@ const ShareButtonContainer: FC<IShareButtonContainer> = ({ note }) => {
   };
 
   return (
-    <StyledShareIcon
-      $isSharedStatus={note.isShared}
-      onClick={handleShare}
-      $isNoteEditable={isNoteEditable}
-    />
+    <StyledBox>
+      <StyledShareIcon
+        $isSharedStatus={note.isShared}
+        onClick={handleShare}
+        $isNoteEditable={isNoteEditable}
+      />
+    </StyledBox>
   );
 };
 

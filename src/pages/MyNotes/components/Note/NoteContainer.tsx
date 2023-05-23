@@ -6,6 +6,7 @@ import Note from './Note';
 
 const NoteContainer: FC<INoteContainer> = ({
   note,
+  index,
   activeNote,
   setActiveNote,
   editNote,
@@ -23,7 +24,12 @@ const NoteContainer: FC<INoteContainer> = ({
   };
 
   return (
-    <Note note={note} handleActiveNote={handleActiveNote} editNote={editNote} />
+    <Note
+      note={note}
+      index={index}
+      handleActiveNote={handleActiveNote}
+      editNote={editNote}
+    />
   );
 };
 

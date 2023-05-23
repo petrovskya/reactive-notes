@@ -8,9 +8,8 @@ import { getUser } from 'store/selectors';
 import { createNewNote } from 'utils';
 
 import CreateNote from './CreateNote';
-import { ICreateNoteContainerProps } from './types';
 
-const CreateNoteContainer: FC<ICreateNoteContainerProps> = ({ refOnView }) => {
+const CreateNoteContainer = () => {
   const { user } = useAppSelector(getUser);
 
   const [isOpenCreateMenu, setOpenCreateMenu] = useToggle(false);
@@ -31,7 +30,6 @@ const CreateNoteContainer: FC<ICreateNoteContainerProps> = ({ refOnView }) => {
 
   return (
     <CreateNote
-      refOnView={refOnView}
       isOpenCreateMenu={isOpenCreateMenu}
       onClick={setOpenCreateMenu}
       handleSave={handleSave}

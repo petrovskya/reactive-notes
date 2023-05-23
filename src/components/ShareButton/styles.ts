@@ -2,15 +2,25 @@ import styled from 'styled-components';
 import ShareIcon from '@mui/icons-material/Share';
 
 import { Color } from 'ui';
+import { Box } from '@mui/material';
 
-export const StyledShareIcon = styled(ShareIcon)<{
+const StyledBox = styled(Box)({
+  position: 'absolute',
+  top: 15,
+  right: 20,
+  zIndex: '1',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: 46,
+  height: 46,
+  borderRadius: '6px',
+});
+
+const StyledShareIcon = styled(ShareIcon)<{
   $isSharedStatus: boolean;
   $isNoteEditable: boolean;
 }>(({ $isSharedStatus, $isNoteEditable }) => ({
-  position: 'absolute',
-  top: 20,
-  right: 30,
-  zIndex: '1',
   padding: '5px',
   backgroundColor: $isSharedStatus
     ? $isNoteEditable
@@ -21,7 +31,7 @@ export const StyledShareIcon = styled(ShareIcon)<{
     $isNoteEditable ? ($isSharedStatus ? 'transparent' : Color.PRIMARY) : 'none'
   }`,
   borderRadius: '6px',
-  fontSize: 'medium',
+  fontSize: 'large',
   color: Color.SECONDARY_DARK,
 
   '&:hover': {
@@ -38,4 +48,10 @@ export const StyledShareIcon = styled(ShareIcon)<{
         : 'none'
     }`,
   },
+  '&.MuiSvgIcon-root': {
+    width: 36,
+    height: 36,
+  },
 }));
+
+export { StyledBox, StyledShareIcon };

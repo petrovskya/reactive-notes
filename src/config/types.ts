@@ -30,6 +30,12 @@ export enum LABEL_TEXT {
   TITLE = 'Title',
   DESCRIPTION = 'Description',
   DATE = 'Date',
+  FIRST_NAME = 'First name',
+  LAST_NAME = 'Last name',
+  EMAIL = 'Email',
+  DATE_OF_BIRTH = 'Date of birth',
+  PASSWORD = 'Password',
+  CONFIRM_PASSWORD = 'Confirm  password',
 }
 
 export enum COMPONENT_TITLE {
