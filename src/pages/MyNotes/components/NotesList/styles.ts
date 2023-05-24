@@ -8,11 +8,6 @@ const StyledList = styled(List)({
   width: '100%',
   gap: '20px',
 
-  '&.MuiList-root': {
-    '@media screen and (max-width: 600px)': {
-      gridTemplateColumns: '260px',
-    },
-  },
   '&.MuiListItem-root': {
     width: '100%',
   },

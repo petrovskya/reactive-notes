@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Box, Container } from '@mui/material';
+
 import { Color } from 'ui';
 
 const StyledMyNotes = styled(Container)({
@@ -17,6 +18,12 @@ const StyledMyNotes = styled(Container)({
     '@media screen and (min-width: 1200px)': {
       maxWidth: '1920px',
       width: '100%',
+    },
+
+    '@media screen and (max-width: 768px)': {
+      // display: 'grid',
+      // justifyContent: 'normal',
+      flexDirection: 'column',
     },
   },
 
@@ -37,6 +44,10 @@ const StyledBox = styled(Box)({
     justifyItems: 'center',
     width: '40%',
     gap: 20,
+
+    '@media screen and (max-width: 768px)': {
+      width: '100%',
+    },
   },
 });
 
@@ -59,6 +70,11 @@ const ListWrapper = styled(Box)({
   '&::-webkit-scrollbar-thumb': {
     backgroundColor: Color.SECONDARY,
     borderRadius: '16px',
+  },
+
+  '@media screen and (max-width: 768px)': {
+    width: '100%',
+    height: 'auto',
   },
 });
 

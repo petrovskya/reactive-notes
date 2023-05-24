@@ -20,6 +20,9 @@ const StyledCard = styled(Card)({
     //   width: '400px',
     // },
   },
+  '@media (max-width: 1024px)': {
+    flexDirection: 'column',
+  },
 });
 
 const StyledTitle = styled(Typography)({
@@ -38,12 +41,10 @@ const StyledDateCreation = styled(Typography)({
 
 const StyledCardActions = styled(CardActions)({
   '&.MuiCardActions-root': {
-    position: 'absolute',
-    bottom: 15,
-    right: 20,
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    padding: 15,
     gap: '10px',
     borderRadius: 6,
   },
