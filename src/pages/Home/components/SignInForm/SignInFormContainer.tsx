@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import { Typography } from '@mui/material';
 
 import { QUERY_KEYS, fetchUsers } from 'api';
+import { HELPER_TEXT } from 'config/constants';
 import { ROUTE } from 'router';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { setUserAuth, setErrorMessage } from 'store/features';
@@ -16,7 +17,7 @@ import { ERROR_MESSAGE, SignInInitialValues } from './constants';
 import SignInForm from './SignInForm';
 
 const SignInFormContainer = () => {
-  const { data: users }: UseQueryResult<IUser[], Error> = useQuery<
+  const { data: usersResponse }: UseQueryResult<IUser[], Error> = useQuery<
     IUser[],
     Error,
     IUser[]
@@ -27,7 +28,7 @@ const SignInFormContainer = () => {
   const dispatch = useAppDispatch();
 
   const handleSubmit = (signInFormValues: typeof SignInInitialValues) => {
-    const user = users?.find((user) =>
+    const user = usersResponse?.find((user) =>
       compareUserEmail(user, signInFormValues.email),
     );
 
@@ -45,6 +46,7 @@ const SignInFormContainer = () => {
 
   return (
     <>
+      <Typography variant='h6'>{HELPER_TEXT.HOME_PAGE}</Typography>
       <Formik
         initialValues={SignInInitialValues}
         validationSchema={signInValidationSchema}

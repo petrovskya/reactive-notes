@@ -16,12 +16,12 @@ import { StyledForm } from './styles';
 
 const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
   values,
-  handleChange,
-  handleSubmit,
-  handleBlur,
   touched,
   errors,
   setFieldValue,
+  handleChange,
+  handleSubmit,
+  handleBlur,
 }) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <StyledForm onSubmit={handleSubmit}>

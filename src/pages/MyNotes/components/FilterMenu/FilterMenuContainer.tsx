@@ -1,56 +1,60 @@
-import { EMPTY_STRING, FILTER_OPTIONS } from 'config';
+import { FILTER_OPTIONS } from 'config';
 import { useToggle } from 'hooks';
-import { setFilter } from 'store/features';
+import { setFilters, unsetFilters } from 'store/features';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getMyNotes } from 'store/selectors';
+import { getNotes } from 'store/selectors';
 import { formatDate } from 'utils';
 
+import {
+  DATE_FILTER_INITIAL_VALUES,
+  TITLE_FILTER_INITIAL_VALUES,
+} from './constants';
 import FilterMenu from './FilterMenu';
 import { IFilterByDateValues, IFilterByTitleValues } from './types';
 
 const FilterMenuContainer = () => {
-  const { isFilteredByDate, isFilteredByTitle } = useAppSelector(getMyNotes);
+  const { filters } = useAppSelector(getNotes);
   const [isFilterByTitleOpen, setFilterByTitleOpen] = useToggle(false);
   const [isFilterByDateOpen, setFilterByDateOpen] = useToggle(false);
   const dispatch = useAppDispatch();
 
-  const FilterByTitleInitialValues: IFilterByTitleValues = {
-    titleForFilter: EMPTY_STRING,
-  };
-  const FilterByDateInitialValues: IFilterByDateValues = {
-    dateForFilter: undefined,
+  const isFilteredByTitle = filters?.filterOption === FILTER_OPTIONS.TITLE;
+  const isFilteredByDate = filters?.filterOption === FILTER_OPTIONS.DATE;
+
+  const handleSetFilterByTitle = ({ titleForFilter }: IFilterByTitleValues) => {
+    titleForFilter
+      ? dispatch(
+          setFilters({
+            filterOption: FILTER_OPTIONS.TITLE,
+            filterValue: titleForFilter,
+          }),
+        )
+      : dispatch(unsetFilters());
   };
 
-  const handleFilterByTitle = ({ titleForFilter }: IFilterByTitleValues) => {
-    dispatch(
-      setFilter({
-        filterOption: FILTER_OPTIONS.TITLE,
-        filterValue: titleForFilter,
-      }),
-    );
-  };
-
-  const handleFilterByDate = ({ dateForFilter }: IFilterByDateValues) => {
-    dispatch(
-      setFilter({
-        filterOption: FILTER_OPTIONS.DATE,
-        filterValue: formatDate(dateForFilter),
-      }),
-    );
+  const handleSetFilterByDate = ({ dateForFilter }: IFilterByDateValues) => {
+    dateForFilter
+      ? dispatch(
+          setFilters({
+            filterOption: FILTER_OPTIONS.DATE,
+            filterValue: formatDate(dateForFilter),
+          }),
+        )
+      : dispatch(unsetFilters());
   };
 
   return (
     <FilterMenu
-      FilterByTitleInitialValues={FilterByTitleInitialValues}
-      FilterByDateInitialValues={FilterByDateInitialValues}
+      titleFilterInitialValues={TITLE_FILTER_INITIAL_VALUES}
+      dateFilterInitialValues={DATE_FILTER_INITIAL_VALUES}
       isFilterByTitleOpen={isFilterByTitleOpen}
       isFilterByDateOpen={isFilterByDateOpen}
       isFilteredByDate={isFilteredByDate}
       isFilteredByTitle={isFilteredByTitle}
       setFilterByDateOpen={setFilterByDateOpen}
       setFilterByTitleOpen={setFilterByTitleOpen}
-      handleFilterByTitle={handleFilterByTitle}
-      handleFilterByDate={handleFilterByDate}
+      handleSetFilterByTitle={handleSetFilterByTitle}
+      handleSetFilterByDate={handleSetFilterByDate}
     />
   );
 };

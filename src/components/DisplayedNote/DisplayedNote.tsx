@@ -1,13 +1,8 @@
 import { FC } from 'react';
 import { CardContent, Typography } from '@mui/material';
 
+import { StyledCard, StyledDateCreation, StyledTitle } from './styles';
 import { IDisplayedNoteProps } from './types';
-import {
-  StyledAuthorInfo,
-  StyledCard,
-  StyledDateCreation,
-  StyledTitle,
-} from './styles';
 
 const DisplayedNote: FC<IDisplayedNoteProps> = ({
   note: { title, description, dateCreation, author },
@@ -17,7 +12,7 @@ const DisplayedNote: FC<IDisplayedNoteProps> = ({
       <StyledTitle variant='h2'>{title}</StyledTitle>
       <StyledDateCreation variant='h6'>{dateCreation}</StyledDateCreation>
       <Typography variant='h4'>{description}</Typography>
-      <StyledAuthorInfo variant='h6'>{author}</StyledAuthorInfo>
+      <Typography variant='h6'>{author}</Typography>
     </CardContent>
   </StyledCard>
 );

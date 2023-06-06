@@ -1,7 +1,22 @@
 import { styled } from 'styled-components';
-import { Card, CardActions, Typography } from '@mui/material';
+import { Card, CardActions, ListItemButton, Typography } from '@mui/material';
 
 import { Color } from 'ui';
+
+const StyledListItemButton = styled(ListItemButton)<{ $isActive: boolean }>(
+  ({ $isActive }) => ({
+    '&.MuiListItemButton-root': {
+      maxWidth: '900px',
+      width: '100%',
+      backgroundColor: $isActive ? Color.PRIMARY : 'transparent',
+      borderRadius: '10px',
+    },
+    '&.MuiListItemButton-root:hover': {
+      backgroundColor: Color.PRIMARY,
+      opacity: 1,
+    },
+  }),
+);
 
 const StyledCard = styled(Card)({
   display: 'flex',
@@ -16,9 +31,9 @@ const StyledCard = styled(Card)({
   '.MuiCardContent-root': {
     maxWidth: '800px',
     width: '80%',
-    // '@media (max-width: 1200px)': {
-    //   width: '400px',
-    // },
+  },
+  '@media (max-width: 1024px)': {
+    flexDirection: 'column',
   },
 });
 
@@ -38,12 +53,10 @@ const StyledDateCreation = styled(Typography)({
 
 const StyledCardActions = styled(CardActions)({
   '&.MuiCardActions-root': {
-    position: 'absolute',
-    bottom: 15,
-    right: 20,
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    padding: 15,
     gap: '10px',
     borderRadius: 6,
   },
@@ -52,4 +65,10 @@ const StyledCardActions = styled(CardActions)({
   },
 });
 
-export { StyledCard, StyledTitle, StyledDateCreation, StyledCardActions };
+export {
+  StyledListItemButton,
+  StyledCard,
+  StyledTitle,
+  StyledDateCreation,
+  StyledCardActions,
+};

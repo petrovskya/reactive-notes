@@ -11,18 +11,15 @@ export const GlobalStyles = createGlobalStyle({
   body: {
     fontFamily: `Inter, san-serif`,
     backgroundColor: Color.WHITE,
-    overflowY: 'scroll',
+    overflowY: 'auto',
     scrollbarWidth: 'thin',
     scrollbarColor: `${Color.SECONDARY} ${Color.PRIMARY}`,
-
     '&::-webkit-scrollbar': {
       width: '6px',
     },
-
     '&::-webkit-scrollbar-track': {
       borderRadius: '16px',
     },
-
     '&::-webkit-scrollbar-thumb': {
       backgroundColor: Color.SECONDARY,
       borderRadius: '16px',

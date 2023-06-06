@@ -33,7 +33,6 @@ const StyledShareIcon = styled(ShareIcon)<{
   borderRadius: '6px',
   fontSize: 'large',
   color: Color.SECONDARY_DARK,
-
   '&:hover': {
     backgroundColor: $isNoteEditable
       ? $isSharedStatus

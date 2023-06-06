@@ -47,6 +47,9 @@ const theme = createTheme({
     h4: {
       fontSize: '20px',
       fontWeight: 300,
+      '@media screen and (max-width: 1200px)': {
+        fontSize: '16px',
+      },
     },
     h6: {
       marginBottom: 10,

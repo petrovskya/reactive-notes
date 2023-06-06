@@ -1,6 +1,10 @@
 import { FC } from 'react';
+import { useMutation } from '@tanstack/react-query';
 
+import { QUERY_KEYS, notesActions, queryClient } from 'api';
 import { INoteContainer } from 'pages/MyNotes/types';
+import { setActiveNote, unsetActiveNote } from 'store/features';
+import { useAppDispatch } from 'store/hooks';
 
 import Note from './Note';
 
@@ -8,27 +12,36 @@ const NoteContainer: FC<INoteContainer> = ({
   note,
   index,
   activeNote,
-  setActiveNote,
   editNote,
 }) => {
-  const isActiveNote = activeNote?.id === note?.id;
+  const dispatch = useAppDispatch();
 
-  const handleActiveNote = () => {
-    if (isActiveNote) {
-      localStorage.setItem('activeNote', JSON.stringify(null));
-      setActiveNote(null);
-    } else {
-      localStorage.setItem('activeNote', JSON.stringify(note));
-      setActiveNote(note);
-    }
+  const { mutate: deleteNote } = useMutation({
+    mutationFn: notesActions.deleteNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries([QUERY_KEYS.NOTES]);
+    },
+  });
+
+  const isNoteActive = activeNote?.id === note?.id;
+
+  const handleSetActiveNote = () => {
+    isNoteActive ? dispatch(unsetActiveNote()) : dispatch(setActiveNote(note));
+  };
+
+  const handleDeleteNote = () => {
+    deleteNote(note);
+    isNoteActive && dispatch(unsetActiveNote());
   };
 
   return (
     <Note
       note={note}
+      isNoteActive={isNoteActive}
       index={index}
-      handleActiveNote={handleActiveNote}
       editNote={editNote}
+      handleSetActiveNote={handleSetActiveNote}
+      handleDeleteNote={handleDeleteNote}
     />
   );
 };

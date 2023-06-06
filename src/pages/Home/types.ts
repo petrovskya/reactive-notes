@@ -1,9 +1,9 @@
 import { IUser } from 'types';
 
 export interface IHomeProps {
-  user: IUser | null;
+  user?: IUser;
   isAuth: boolean;
-  isRegistration: boolean;
+  isRegistrationVisible: boolean;
   handleSignOut: () => void;
-  toggleRegistration: () => void;
+  toggleRegistrationVisible: () => void;
 }

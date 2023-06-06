@@ -1,12 +1,12 @@
 import { Outlet } from 'react-router-dom';
 
-import { CustomAppBar } from 'components';
+import { Header } from 'components';
 
 import { StyledMainTemplate } from './styles';
 
 const MainTemplate = () => (
   <StyledMainTemplate>
-    <CustomAppBar />
+    <Header />
     <Outlet />
   </StyledMainTemplate>
 );

@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { Typography } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 import { ActiveNote, CreateNote } from 'components';
-import { FETCH_STATUS } from 'config';
 
 import { FilterMenu, NotesList } from './components';
 import { ListWrapper, StyledBox, StyledMyNotes } from './styles';
@@ -14,10 +13,9 @@ const MyNotes: FC<INotesList> = ({
   isEditMode,
   isLoading,
   isFetching,
-  refOnView,
-  onDragEnd,
+  setLastNoteInView,
+  handleSetNoteDragEnd,
   setEditMode,
-  setActiveNote,
   editNote,
 }) => (
   <StyledMyNotes>
@@ -31,14 +29,15 @@ const MyNotes: FC<INotesList> = ({
         notes={notes}
         activeNote={activeNote}
         isEditMode={isEditMode}
-        refOnView={refOnView}
-        onDragEnd={onDragEnd}
-        setActiveNote={setActiveNote}
+        setLastNoteInView={setLastNoteInView}
+        handleSetNoteDragEnd={handleSetNoteDragEnd}
         setEditMode={setEditMode}
         editNote={editNote}
       />
       {(isLoading || isFetching) && (
-        <Typography variant='h6'>{FETCH_STATUS.LOADING}</Typography>
+        <StyledBox>
+          <CircularProgress color='secondary' />
+        </StyledBox>
       )}
     </ListWrapper>
   </StyledMyNotes>

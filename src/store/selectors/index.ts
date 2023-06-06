@@ -1,2 +1,2 @@
 export { getUser } from './userSelector';
-export { getMyNotes } from './myNotesSelector';
+export { getNotes } from './myNotesSelector';

@@ -1,3 +1,5 @@
+import { FILTER_OPTIONS } from 'config';
+
 export interface INote {
   id: string;
   userId: string;
@@ -10,11 +12,16 @@ export interface INote {
 }
 
 export interface IUser {
-  userId: string;
+  id: string;
   email: string;
   password: string;
   firstName: string;
   lastName: string;
   createdAt: string;
   dateOfBirth: string;
+}
+
+export interface IFilters {
+  filterOption?: FILTER_OPTIONS;
+  filterValue?: string;
 }

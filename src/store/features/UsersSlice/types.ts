@@ -1,7 +1,7 @@
 import { IUser } from 'types';
 
 export interface IUsersState {
-  user: IUser | null;
+  user?: IUser;
   errorMessage: string;
   isLoading: boolean;
   isAuth: boolean;

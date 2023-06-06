@@ -7,7 +7,7 @@ import Home from './Home';
 import { StyledHome } from './styles';
 
 const HomeContainer = () => {
-  const [isRegistration, toggleRegistration] = useToggle(false);
+  const [isRegistrationVisible, toggleRegistrationVisible] = useToggle(false);
   const { user, isAuth } = useAppSelector(getUser);
   const dispatch = useAppDispatch();
   const handleSignOut = () => {
@@ -19,9 +19,9 @@ const HomeContainer = () => {
       <Home
         user={user}
         isAuth={isAuth}
-        isRegistration={isRegistration}
+        isRegistrationVisible={isRegistrationVisible}
         handleSignOut={handleSignOut}
-        toggleRegistration={toggleRegistration}
+        toggleRegistrationVisible={toggleRegistrationVisible}
       />
     </StyledHome>
   );

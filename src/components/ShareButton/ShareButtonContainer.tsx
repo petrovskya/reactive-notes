@@ -12,11 +12,6 @@ import { IShareButtonContainer } from './types';
 
 const ShareButtonContainer: FC<IShareButtonContainer> = ({ note }) => {
   const { user } = useAppSelector(getUser);
-  const isNoteEditable = user?.userId === note.userId;
-
-  const editSharedStatus = (note: INote): INote => {
-    return { ...note, isShared: !note.isShared };
-  };
 
   const queryClient = useQueryClient();
 
@@ -28,8 +23,14 @@ const ShareButtonContainer: FC<IShareButtonContainer> = ({ note }) => {
     },
   });
 
-  const handleShare = (e: React.MouseEvent<SVGSVGElement>) => {
-    e.stopPropagation();
+  const isNoteEditable = user?.id === note.userId;
+
+  const editSharedStatus = (note: INote): INote => {
+    return { ...note, isShared: !note.isShared };
+  };
+
+  const handleSetSharedStatus = (event: React.MouseEvent<SVGSVGElement>) => {
+    event.stopPropagation();
     isNoteEditable && updateNote(editSharedStatus(note));
   };
 
@@ -37,8 +38,8 @@ const ShareButtonContainer: FC<IShareButtonContainer> = ({ note }) => {
     <StyledBox>
       <StyledShareIcon
         $isSharedStatus={note.isShared}
-        onClick={handleShare}
         $isNoteEditable={isNoteEditable}
+        onClick={handleSetSharedStatus}
       />
     </StyledBox>
   );
