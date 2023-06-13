@@ -8,11 +8,10 @@ export const createNewNote = (
   description: string,
 ): INote => ({
   id: EMPTY_STRING,
-  userId: user.userId,
+  userId: user.id,
   title: title,
   description: description,
   dateCreation: getDateCreation(),
   author: getAuthorInfo(user),
   isShared: false,
-  availability: [],
 });

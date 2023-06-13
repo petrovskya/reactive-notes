@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { LOCAL_STORAGE_KEYS } from 'config';
+import { EMPTY_STRING, LOCAL_STORAGE_KEYS } from 'config';
 import { SLICE_NAME } from 'store/features';
 import { getActiveUser } from 'utils';
 
@@ -8,9 +8,9 @@ import { IUsersState } from './types';
 
 const initialState: IUsersState = {
   user: getActiveUser(),
-  errorMessage: '',
+  errorMessage: EMPTY_STRING,
   isLoading: false,
-  isAuth: !!getActiveUser().userId,
+  isAuth: !!getActiveUser(),
 };
 
 const usersSlice = createSlice({

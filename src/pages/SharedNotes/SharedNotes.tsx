@@ -1,8 +1,7 @@
 import { FC } from 'react';
-import { Typography } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 import { ActiveNote } from 'components';
-import { FETCH_STATUS } from 'config';
 
 import { NotesList } from './components';
 import { StyledBox, StyledSharedNotes } from './styles';
@@ -13,8 +12,7 @@ const SharedNotes: FC<ISharedNotes> = ({
   activeNote,
   isLoading,
   isFetching,
-  refOnView,
-  setActiveNote,
+  setLastNoteInView,
 }) => (
   <StyledSharedNotes>
     <StyledBox>
@@ -23,11 +21,12 @@ const SharedNotes: FC<ISharedNotes> = ({
     <NotesList
       sharedNotes={sharedNotes}
       activeNote={activeNote}
-      refOnView={refOnView}
-      setActiveNote={setActiveNote}
+      setLastNoteInView={setLastNoteInView}
     />
     {(isLoading || isFetching) && (
-      <Typography variant='h6'>{FETCH_STATUS.LOADING}</Typography>
+      <StyledBox>
+        <CircularProgress color='secondary' />
+      </StyledBox>
     )}
   </StyledSharedNotes>
 );

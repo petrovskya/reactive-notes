@@ -5,28 +5,24 @@ export interface IFilterByTitleValues {
 }
 
 export interface IFilterByDateValues {
-  dateForFilter?: Date;
+  dateForFilter?: Date | null;
 }
 
 export interface IFilterMenuProps {
-  FilterByTitleInitialValues: IFilterByTitleValues;
-  FilterByDateInitialValues: IFilterByDateValues;
+  titleFilterInitialValues: IFilterByTitleValues;
+  dateFilterInitialValues: IFilterByDateValues;
   isFilterByTitleOpen: boolean;
   isFilterByDateOpen: boolean;
   isFilteredByDate: boolean;
   isFilteredByTitle: boolean;
-  setFilterByDateOpen:
-    | ((
-        event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
-        value: boolean,
-      ) => void)
-    | undefined;
-  setFilterByTitleOpen:
-    | ((
-        event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
-        value: boolean,
-      ) => void)
-    | undefined;
-  handleFilterByTitle: ({ titleForFilter }: IFilterByTitleValues) => void;
-  handleFilterByDate: ({ dateForFilter }: IFilterByDateValues) => void;
+  setFilterByDateOpen?: (
+    event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
+    value: boolean,
+  ) => void;
+  setFilterByTitleOpen?: (
+    event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
+    value: boolean,
+  ) => void;
+  handleSetFilterByTitle: ({ titleForFilter }: IFilterByTitleValues) => void;
+  handleSetFilterByDate: ({ dateForFilter }: IFilterByDateValues) => void;
 }

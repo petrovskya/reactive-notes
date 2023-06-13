@@ -1,1 +1,1 @@
-export type { INote, IUser } from './types';
+export type { INote, IUser, IFilters } from './types';

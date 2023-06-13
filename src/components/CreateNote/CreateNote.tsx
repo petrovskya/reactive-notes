@@ -6,9 +6,11 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Typography,
 } from '@mui/material';
 import { Edit as EditIcon } from '@mui/icons-material';
 
+import { VALIDATION_MESSAGES } from 'config';
 import {
   BUTTON_TEXT,
   COMPONENT_TITLE,
@@ -19,17 +21,22 @@ import {
 import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
-  isOpenCreateMenu,
-  onClick,
-  handleSave,
+  isCreateMenuOpen,
+  isDescriptionNotValid,
+  setCreateMenuOpen,
+  handleSaveNewNote,
   onChangeDescription,
   onChangeTitle,
 }) => (
   <>
-    <Button variant='contained' endIcon={<EditIcon />} onClick={onClick}>
+    <Button
+      variant='contained'
+      endIcon={<EditIcon />}
+      onClick={setCreateMenuOpen}
+    >
       {BUTTON_TEXT.CREATE}
     </Button>
-    <Dialog open={isOpenCreateMenu} onClose={onClick}>
+    <Dialog open={isCreateMenuOpen} onClose={setCreateMenuOpen}>
       <DialogTitle>{COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
       <DialogContent>
         <TextField
@@ -53,12 +60,23 @@ const CreateNote: FC<ICreateNoteProps> = ({
           autoFocus
           onChange={onChangeDescription}
         />
+        {isDescriptionNotValid && (
+          <Typography>{VALIDATION_MESSAGES.MAX_LENGTH.DESCRIPTION}</Typography>
+        )}
       </DialogContent>
       <DialogActions>
-        <Button variant='contained' color='secondary' onClick={onClick}>
+        <Button
+          variant='contained'
+          color='secondary'
+          onClick={setCreateMenuOpen}
+        >
           {BUTTON_TEXT.CANCEL}
         </Button>
-        <Button variant='contained' onClick={handleSave}>
+        <Button
+          variant='contained'
+          disabled={isDescriptionNotValid}
+          onClick={handleSaveNewNote}
+        >
           {BUTTON_TEXT.SAVE}
         </Button>
       </DialogActions>

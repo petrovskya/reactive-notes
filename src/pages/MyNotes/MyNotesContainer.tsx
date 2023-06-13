@@ -4,68 +4,74 @@ import { useInView } from 'react-intersection-observer';
 import { OnDragEndResponder } from 'react-beautiful-dnd';
 
 import { QUERY_KEYS, queryClient } from 'api';
-import { useNotesOfUser } from 'api/hooks';
+import { useGetNotesOfUser } from 'api/hooks';
 import { ROUTE } from 'router';
 import { setNotes } from 'store/features';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
-import { getMyNotes, getUser } from 'store/selectors';
+import { getNotes, getUser } from 'store/selectors';
 import { INote } from 'types';
 
 import MyNotes from './MyNotes';
 
 const MyNotesContainer = () => {
+  const dispatch = useAppDispatch();
   const { user, isAuth } = useAppSelector(getUser);
-  const {
-    notes: myNotes,
-    filterOption,
-    filterValue,
-  } = useAppSelector(getMyNotes);
-  const userId = user?.userId as string;
+  const { notes: myNotes, activeNote, filters } = useAppSelector(getNotes);
+  const navigate = useNavigate();
+
+  const userId = user?.id as string;
 
   const { notes, hasNextPage, isLoading, isFetching, fetchNextPage } =
-    useNotesOfUser(userId, filterOption, filterValue);
-  const dispatch = useAppDispatch();
+    useGetNotesOfUser(userId, filters);
 
-  const navigate = useNavigate();
-  const { ref, inView } = useInView();
-
-  const [activeNote, setActiveNote] = useState<INote | null>(null);
+  const { inView: isLastNoteInView, ref: setLastNoteInView } = useInView();
   const [isEditMode, setEditMode] = useState<boolean>(false);
 
   const editNote = (
     note: INote,
     newTitle: string,
     newDescription: string,
-  ): INote => {
-    if (user) {
-      return {
-        ...note,
-        title: newTitle || note.title,
-        description: newDescription || note.description,
-      };
-    } else return note;
+  ): INote =>
+    user
+      ? {
+          ...note,
+          title: newTitle || note.title,
+          description: newDescription || note.description,
+        }
+      : note;
+
+  const reorderNotesList = (
+    list: INote[],
+    startIndex: number,
+    endIndex: number,
+  ) => {
+    const NUMBER_OF_REMOVED_NOTES = 1;
+    const DELETE_COUNT = 0;
+    const reorderedNotesList = Array.from(list);
+    const [removedNote] = reorderedNotesList.splice(
+      startIndex,
+      NUMBER_OF_REMOVED_NOTES,
+    );
+    reorderedNotesList.splice(endIndex, DELETE_COUNT, removedNote);
+    return reorderedNotesList;
   };
 
-  const reorder = (list: INote[], startIndex: number, endIndex: number) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-  };
-
-  const handleDragEnd: OnDragEndResponder = ({ destination, source }) => {
-    if (!destination) return;
-
-    myNotes &&
-      dispatch(setNotes(reorder(myNotes, source.index, destination.index)));
+  const handleSetNoteDragEnd: OnDragEndResponder = ({
+    destination,
+    source,
+  }) => {
+    destination &&
+      myNotes &&
+      dispatch(
+        setNotes(reorderNotesList(myNotes, source.index, destination.index)),
+      );
   };
 
   useEffect(() => {
-    if (inView && hasNextPage) {
+    if (isLastNoteInView && hasNextPage) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [isLastNoteInView]);
 
   useEffect(() => {
     !isAuth && navigate(ROUTE.HOME);
@@ -74,7 +80,7 @@ const MyNotesContainer = () => {
 
   useEffect(() => {
     queryClient.invalidateQueries([QUERY_KEYS.NOTES]);
-  }, [notes?.length, filterOption, filterValue]);
+  }, [notes?.length, filters]);
 
   return (
     <MyNotes
@@ -83,9 +89,9 @@ const MyNotesContainer = () => {
       isEditMode={isEditMode}
       isLoading={isLoading}
       isFetching={isFetching}
-      refOnView={ref}
-      onDragEnd={handleDragEnd}
-      setActiveNote={setActiveNote}
+      hasNextPage={hasNextPage}
+      setLastNoteInView={setLastNoteInView}
+      handleSetNoteDragEnd={handleSetNoteDragEnd}
       setEditMode={setEditMode}
       editNote={editNote}
     />

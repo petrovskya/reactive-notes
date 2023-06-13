@@ -10,16 +10,16 @@ import { StyledFilterMenu, FilterMenuButton, StyledBadge } from './styles';
 import { IFilterMenuProps } from './types';
 
 const FilterMenu: FC<IFilterMenuProps> = ({
-  FilterByTitleInitialValues,
-  FilterByDateInitialValues,
+  titleFilterInitialValues,
+  dateFilterInitialValues,
   isFilterByTitleOpen,
   isFilterByDateOpen,
   isFilteredByDate,
   isFilteredByTitle,
   setFilterByDateOpen,
   setFilterByTitleOpen,
-  handleFilterByTitle,
-  handleFilterByDate,
+  handleSetFilterByTitle,
+  handleSetFilterByDate,
 }) => (
   <StyledFilterMenu>
     {!isFilterByDateOpen && (
@@ -51,15 +51,15 @@ const FilterMenu: FC<IFilterMenuProps> = ({
 
     {isFilterByTitleOpen && (
       <Formik
-        initialValues={FilterByTitleInitialValues}
-        onSubmit={handleFilterByTitle}
+        initialValues={titleFilterInitialValues}
+        onSubmit={handleSetFilterByTitle}
         component={FilterByTitleForm}
       />
     )}
     {isFilterByDateOpen && (
       <Formik
-        initialValues={FilterByDateInitialValues}
-        onSubmit={handleFilterByDate}
+        initialValues={dateFilterInitialValues}
+        onSubmit={handleSetFilterByDate}
         component={FilterByDateForm}
       />
     )}

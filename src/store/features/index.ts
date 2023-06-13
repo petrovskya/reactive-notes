@@ -1,5 +1,14 @@
 export { SLICE_NAME } from './constants';
-export { notesReducer, setNotes, setFilter } from './NotesSlice';
+export {
+  notesReducer,
+  setNotes,
+  setFilters,
+  unsetFilters,
+  setActiveNote,
+  unsetActiveNote,
+  setActiveSharedNote,
+  unsetActiveSharedNote,
+} from './NotesSlice';
 export {
   usersReducer,
   setUserAuth,

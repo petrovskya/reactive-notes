@@ -10,11 +10,6 @@ export const StyledNav = styled(Box)({
   maxWidth: '800px',
   width: '100%',
   fontFamily: 'inherit',
-
-  '@media (max-width: 600px)': {
-    flexDirection: 'column',
-  },
-
   a: {
     color: Color.SECONDARY_DARK,
   },

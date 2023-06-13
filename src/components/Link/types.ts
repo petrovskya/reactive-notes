@@ -3,13 +3,15 @@ import { PathMatch } from 'react-router-dom';
 
 import { ROUTE } from 'router';
 
-interface ILinkContainerProps {
+export interface ILinkContainerProps {
   children: ReactNode;
   to: ROUTE;
 }
 
-interface ILinkProps extends ILinkContainerProps {
+export interface ILinkProps extends ILinkContainerProps {
   match: PathMatch<string> | null;
 }
 
-export type { ILinkContainerProps, ILinkProps };
+export type TIsMatched = {
+  match: PathMatch<string> | null;
+};

@@ -11,12 +11,10 @@ const StyledSharedNotes = styled(Container)({
       padding: 10,
     },
   },
-
   '@media screen and (min-width: 1920px)': {
     maxWidth: '1920px',
     width: '100%',
   },
-
   '@media screen and (max-width: 1920px)': {
     maxWidth: '1920px',
     width: '100%',

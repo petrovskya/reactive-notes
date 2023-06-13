@@ -1,14 +1,20 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
 import { notesActions, queryClient, QUERY_KEYS } from 'api';
 import { useToggle } from 'hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { getNotes } from 'store/selectors';
+import { setActiveNote } from 'store/features';
 
 import EditMenu from './EditMenu';
 import { IEditMenuContainerProps, IEditMenuValues } from './types';
 
-const EditMenuContainer: FC<IEditMenuContainerProps> = ({ editNote, note }) => {
-  const [isOpen, setOpen] = useToggle();
+const EditMenuContainer: FC<IEditMenuContainerProps> = ({ note, editNote }) => {
+  const dispatch = useAppDispatch();
+  const { activeNote } = useAppSelector(getNotes);
+
+  const [isEditMenuOpen, setEditMenuOpen] = useToggle();
 
   const { mutate: updateNote } = useMutation({
     mutationFn: notesActions.updateNote,
@@ -16,27 +22,34 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ editNote, note }) => {
       queryClient.invalidateQueries([QUERY_KEYS.NOTES]);
     },
   });
+
+  const isActiveNote = activeNote?.id === note?.id;
   const { title, description } = note;
-  const EditMenuInitialValues: IEditMenuValues = {
+
+  const editMenuInitialValues: IEditMenuValues = {
     title: title,
     description: description,
   };
 
-  const handleSubmit = (editMenuValues: IEditMenuValues) => {
+  const handleEditMenuSubmit = (editMenuValues: IEditMenuValues) => {
     updateNote(
       editNote(note, editMenuValues.title, editMenuValues.description),
     );
-    setOpen();
+    setEditMenuOpen();
   };
+
+  useEffect(() => {
+    isActiveNote && dispatch(setActiveNote(note));
+  }, [handleEditMenuSubmit]);
 
   return (
     <EditMenu
-      isOpen={isOpen}
-      onClick={setOpen}
-      handleSubmit={handleSubmit}
       title={title}
       description={description}
-      initialValues={EditMenuInitialValues}
+      initialValues={editMenuInitialValues}
+      isEditMenuOpen={isEditMenuOpen}
+      setEditMenuOpen={setEditMenuOpen}
+      handleEditMenuSubmit={handleEditMenuSubmit}
     />
   );
 };

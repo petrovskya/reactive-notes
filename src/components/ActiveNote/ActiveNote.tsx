@@ -8,7 +8,7 @@ import { IActiveNoteProps } from './types';
 
 const ActiveNote: FC<IActiveNoteProps> = ({ note }) => {
   return note ? (
-    <DisplayedNote note={note} />
+    <DisplayedNote data-testid='displayed-note' note={note} />
   ) : (
     <Typography gutterBottom variant='h5' component='p' color='text.primary'>
       {COMPONENT_TITLE.ACTIVE_NOTE}

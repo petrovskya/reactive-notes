@@ -13,39 +13,60 @@ import {
   StyledTitle,
   StyledDateCreation,
   StyledCardActions,
+  StyledListItemButton,
 } from './styles';
 
-const Note: FC<INoteProps> = ({ note, index, handleActiveNote, editNote }) => (
-  <Draggable index={index} draggableId={note.id}>
-    {(provided) => (
-      <StyledCard
-        ref={provided.innerRef}
-        {...provided.draggableProps}
-        {...provided.dragHandleProps}
-      >
-        <ShareButton note={note} />
-        <CardContent onClick={handleActiveNote}>
-          <StyledTitle variant='h3'>{note.title}</StyledTitle>
-          <StyledDateCreation variant='h6'>
-            {note.dateCreation}
-          </StyledDateCreation>
-          <Typography variant='h4'>
-            {getShortDescription(note.description)}
-          </Typography>
-        </CardContent>
-        <StyledCardActions>
-          <EditMenu note={note} editNote={editNote} />
-          <Button
-            variant='contained'
-            color='secondary'
-            endIcon={<DeleteIcon />}
+const Note: FC<INoteProps> = ({
+  note,
+  isNoteActive,
+  index,
+  handleSetActiveNote,
+  editNote,
+  handleDeleteNote,
+}) => {
+  const { id, title, description, dateCreation } = note;
+  return (
+    <Draggable index={index} draggableId={id}>
+      {(provided) => (
+        <StyledListItemButton $isActive={isNoteActive}>
+          <StyledCard
+            data-testid='note'
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
           >
-            {BUTTON_TEXT.DELETE}
-          </Button>
-        </StyledCardActions>
-      </StyledCard>
-    )}
-  </Draggable>
-);
+            <ShareButton note={note} />
+            <CardContent
+              data-testid='note-content'
+              onClick={handleSetActiveNote}
+            >
+              <StyledTitle data-testid='title' variant='h3'>
+                {title}
+              </StyledTitle>
+              <StyledDateCreation data-testid='date-creation' variant='h6'>
+                {dateCreation}
+              </StyledDateCreation>
+              <Typography data-testid='description' variant='h4'>
+                {getShortDescription(description)}
+              </Typography>
+            </CardContent>
+            <StyledCardActions>
+              <EditMenu note={note} editNote={editNote} />
+              <Button
+                data-testid='delete-button'
+                variant='contained'
+                color='secondary'
+                endIcon={<DeleteIcon />}
+                onClick={handleDeleteNote}
+              >
+                {BUTTON_TEXT.DELETE}
+              </Button>
+            </StyledCardActions>
+          </StyledCard>
+        </StyledListItemButton>
+      )}
+    </Draggable>
+  );
+};
 
 export default Note;

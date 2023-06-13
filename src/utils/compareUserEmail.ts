@@ -1,6 +1,6 @@
 import { IUser } from 'types';
 
-const convertToLowerCase = (text: string): string => {
+export const convertToLowerCase = (text: string): string => {
   const FIRST_LETTER = 0;
   const SECOND_LETTER = 1;
   return text.charAt(FIRST_LETTER).toLowerCase() + text.slice(SECOND_LETTER);

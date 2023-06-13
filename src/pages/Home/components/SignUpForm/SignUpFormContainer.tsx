@@ -34,7 +34,7 @@ const SignUpFormContainer = () => {
     password,
   }: typeof SignUpInitialValues) => {
     const newUser = {
-      userId: EMPTY_STRING,
+      id: EMPTY_STRING,
       createdAt: getDateCreation(),
       firstName: firstName,
       lastName: lastName,

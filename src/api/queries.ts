@@ -1,49 +1,64 @@
-import axios from 'axios';
-
-import { ENDPOINT } from 'api';
+import { INITIAL_PAGE_NUMBER } from 'config';
 import { INote, IUser } from 'types';
 
+import { apiClient } from './base';
+import { ApiRoute } from './types';
+import { setRouteWithParams, transformRoute } from './utils';
+
 const fetchUsers = async () => {
-  const { data: users } = await axios.get(ENDPOINT.USERS);
-  return users;
+  const { data: usersResponse } = await apiClient.get(ApiRoute.USERS);
+  return usersResponse;
 };
 
 const fetchUserById = async (id: string) => {
-  const { data: user } = await axios.get(ENDPOINT.USER_BY_ID(id));
-  return user;
+  const { data: userResponse } = await apiClient.get(
+    transformRoute(ApiRoute.USER_BY_ID, id),
+  );
+  return userResponse;
 };
 
-const fetchNotesOfUser = async (id: string, page: number) => {
-  const { data: notesResponse } = await axios.get(
-    ENDPOINT.NOTES_OF_USER(id, page),
-  );
-  return notesResponse;
-};
+const fetchNotesOfUser =
+  (userId: string) =>
+  async ({ pageParam = INITIAL_PAGE_NUMBER }) => {
+    const { data: notesResponse } = await apiClient.get(
+      setRouteWithParams(ApiRoute.NOTES, false, pageParam, userId),
+    );
+    return notesResponse;
+  };
 
 const fetchNoteById = async (id: string) => {
-  const { data: note } = await axios.get(ENDPOINT.NOTE_BY_ID(id));
-  return note;
+  const { data: noteResponse } = await apiClient.get(
+    transformRoute(ApiRoute.NOTE_BY_ID, id),
+  );
+  return noteResponse;
 };
 
-const fetchSharedNotes = async (page: number) => {
-  const { data: sharedNotes } = await axios.get(ENDPOINT.SHARED_NOTES(page));
-  return sharedNotes;
+const fetchSharedNotes = async ({ pageParam = INITIAL_PAGE_NUMBER }) => {
+  const { data: sharedNotesResponse } = await apiClient.get(
+    setRouteWithParams(ApiRoute.NOTES, true, pageParam),
+  );
+
+  return sharedNotesResponse;
 };
 
 const notesActions = {
-  addNote: (payload: INote) => axios.post(ENDPOINT.NOTES, payload),
-  deleteNote: (payload: INote) => axios.delete(ENDPOINT.NOTE_BY_ID(payload.id)),
+  addNote: (payload: INote) => apiClient.post(ApiRoute.NOTES, payload),
+  deleteNote: (payload: INote) =>
+    apiClient.delete(transformRoute(ApiRoute.NOTE_BY_ID, payload.id)),
   updateNote: (payload: INote) => {
-    return axios.put(ENDPOINT.NOTE_BY_ID(payload.id), payload);
+    return apiClient.put(
+      transformRoute(ApiRoute.NOTE_BY_ID, payload.id),
+      payload,
+    );
   },
 };
 
 const userActions = {
-  addUser: (payload: IUser) => axios.post(ENDPOINT.USERS, payload),
+  addUser: (payload: IUser) => apiClient.post(ApiRoute.USERS, payload),
   deleteUser: (payload: IUser) =>
-    axios.delete(ENDPOINT.USER_BY_ID(payload.userId)),
+    apiClient.delete(transformRoute(ApiRoute.USER_BY_ID, payload.id)),
   updateUser: (payload: IUser) =>
-    axios.put(ENDPOINT.USER_BY_ID(payload.userId), payload),
+    apiClient.put(transformRoute(ApiRoute.USER_BY_ID, payload.id), payload),
 };
 
 export {

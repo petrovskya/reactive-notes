@@ -1,8 +1,23 @@
 import { styled } from 'styled-components';
-import { Card, Typography, Box } from '@mui/material';
+import { Card, Typography, Box, ListItemButton } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 
 import { Color } from 'ui';
+
+const StyledListItemButton = styled(ListItemButton)<{ $isActive: boolean }>(
+  ({ $isActive }) => ({
+    '&.MuiListItemButton-root': {
+      maxWidth: '900px',
+      width: '100%',
+      backgroundColor: $isActive ? Color.PRIMARY : 'transparent',
+      borderRadius: '10px',
+    },
+    '&.MuiListItemButton-root:hover': {
+      backgroundColor: Color.PRIMARY,
+      opacity: 1,
+    },
+  }),
+);
 
 const StyledCard = styled(Card)({
   maxWidth: 345,
@@ -45,6 +60,7 @@ const StyledShareIcon = styled(ShareIcon)({
 });
 
 export {
+  StyledListItemButton,
   StyledCard,
   StyledTitle,
   StyledDateCreation,

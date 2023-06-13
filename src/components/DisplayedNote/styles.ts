@@ -22,6 +22,4 @@ const StyledDateCreation = styled(Typography)({
   color: Color.SECONDARY_LIGHT,
 });
 
-const StyledAuthorInfo = styled(Typography)({});
-
-export { StyledCard, StyledTitle, StyledDateCreation, StyledAuthorInfo };
+export { StyledCard, StyledTitle, StyledDateCreation };

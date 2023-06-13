@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
-import { Link, PathMatch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Color } from 'ui';
 
-export const StyledLink = styled(Link)<{
-  match: PathMatch<string> | null;
-}>(({ match }) => ({
+import { TIsMatched } from './types';
+
+export const StyledLink = styled(Link)<TIsMatched>(({ match }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -20,17 +20,10 @@ export const StyledLink = styled(Link)<{
   whiteSpace: 'nowrap',
   textDecoration: 'none',
   transition: '0.2s',
-
   '&:hover': {
     border: `2px solid ${Color.SECONDARY}`,
   },
-
   '&:active': {
     color: Color.BLACK,
-  },
-
-  '@media (max-width: 780px)': {
-    fontSize: '14px',
-    fontWeight: 700,
   },
 }));

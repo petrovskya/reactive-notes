@@ -11,21 +11,27 @@ import { IHomeProps } from './types';
 const Home: FC<IHomeProps> = ({
   user,
   isAuth,
-  isRegistration,
+  isRegistrationVisible,
   handleSignOut,
-  toggleRegistration,
+  toggleRegistrationVisible,
 }) =>
   user && isAuth ? (
     <>
       <UserProfile user={user} />
       <Link to={ROUTE.MY_NOTES}>{NAV_LINKS.MY_NOTES}</Link>
-      <Button onClick={handleSignOut}>{BUTTON_TEXT.SIGN_OUT}</Button>
+      <Button color='secondary' variant='contained' onClick={handleSignOut}>
+        {BUTTON_TEXT.SIGN_OUT}
+      </Button>
     </>
   ) : (
     <>
-      {isRegistration ? <SignUpForm /> : <SignInForm />}
-      <Button color='secondary' variant='outlined' onClick={toggleRegistration}>
-        {isRegistration ? BUTTON_TEXT.IS_USER : BUTTON_TEXT.NEW_USER}
+      {isRegistrationVisible ? <SignUpForm /> : <SignInForm />}
+      <Button
+        color='secondary'
+        variant='contained'
+        onClick={toggleRegistrationVisible}
+      >
+        {isRegistrationVisible ? BUTTON_TEXT.IS_USER : BUTTON_TEXT.NEW_USER}
       </Button>
     </>
   );

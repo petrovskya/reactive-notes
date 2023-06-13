@@ -1,4 +1,7 @@
 import { QueryClient } from '@tanstack/react-query';
+import axios from 'axios';
+
+import { BASE_URL } from './constants';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -10,4 +13,8 @@ export const queryClient = new QueryClient({
       retry: false,
     },
   },
+});
+
+export const apiClient = axios.create({
+  baseURL: BASE_URL,
 });
