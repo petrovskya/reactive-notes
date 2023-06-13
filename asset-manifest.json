@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/reactive-notes/static/js/main.df693ee5.js",
+    "main.js": "/reactive-notes/static/js/main.d9fb0e76.js",
     "static/media/page-not-found.jpg": "/reactive-notes/static/media/page-not-found.c419f154f0989c148c0a.jpg",
-    "static/media/app-logo-icon.svg": "/reactive-notes/static/media/app-logo-icon.742656c40dd6af7fc06818a7c8d99ff8.svg",
-    "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.6b76a9adc812b62395107d29d4902419.svg",
+    "static/media/app-logo-icon.svg": "/reactive-notes/static/media/app-logo-icon.a133396ff5f0f5becda480f60c33d826.svg",
+    "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.3b4e681b86e07876bf63f489e940fb39.svg",
     "index.html": "/reactive-notes/index.html",
-    "main.df693ee5.js.map": "/reactive-notes/static/js/main.df693ee5.js.map"
+    "main.d9fb0e76.js.map": "/reactive-notes/static/js/main.d9fb0e76.js.map"
   },
   "entrypoints": [
-    "static/js/main.df693ee5.js"
+    "static/js/main.d9fb0e76.js"
   ]
 }
