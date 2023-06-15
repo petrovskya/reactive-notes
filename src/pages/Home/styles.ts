@@ -8,18 +8,4 @@ export const StyledHome = styled(Container)({
     gap: '40px',
     width: '100%',
   },
-
-  '@media screen and (min-width: 1920px)': {
-    maxWidth: '1920px',
-    width: '100%',
-  },
-
-  '@media screen and (max-width: 1920px)': {
-    maxWidth: '1920px',
-    width: '100%',
-  },
-  '@media screen and (max-width: 600px)': {
-    maxWidth: '1920px',
-    width: '100%',
-  },
 });

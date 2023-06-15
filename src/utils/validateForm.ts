@@ -30,4 +30,15 @@ const signInValidationSchema = object({
     .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD),
 });
 
-export { signInValidationSchema, signUpValidationSchema };
+const noteMenuValidationSchema = object({
+  title: string().required(VALIDATION_MESSAGES.REQUIRED.TITLE),
+  description: string()
+    .max(450, VALIDATION_MESSAGES.MAX_LENGTH.DESCRIPTION)
+    .required(VALIDATION_MESSAGES.REQUIRED.DESCRIPTION),
+});
+
+export {
+  signInValidationSchema,
+  signUpValidationSchema,
+  noteMenuValidationSchema,
+};

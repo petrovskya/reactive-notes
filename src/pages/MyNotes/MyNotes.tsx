@@ -1,7 +1,8 @@
 import { FC } from 'react';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Typography } from '@mui/material';
 
 import { ActiveNote, CreateNote } from 'components';
+import { NOTES_NOT_FOUND_MESSAGE } from 'config/constants';
 
 import { FilterMenu, NotesList } from './components';
 import { ListWrapper, StyledBox, StyledMyNotes } from './styles';
@@ -15,7 +16,7 @@ const MyNotes: FC<INotesList> = ({
   isFetching,
   setLastNoteInView,
   handleSetNoteDragEnd,
-  setEditMode,
+  handleSetEditMode,
   editNote,
 }) => (
   <StyledMyNotes data-testid='my-notes'>
@@ -25,13 +26,18 @@ const MyNotes: FC<INotesList> = ({
       <FilterMenu />
     </StyledBox>
     <ListWrapper data-testid='my-notes-list-wrapper'>
+      <Typography>
+        {!notes?.length &&
+          !(isLoading || isFetching) &&
+          NOTES_NOT_FOUND_MESSAGE}
+      </Typography>
       <NotesList
         notes={notes}
         activeNote={activeNote}
         isEditMode={isEditMode}
         setLastNoteInView={setLastNoteInView}
         handleSetNoteDragEnd={handleSetNoteDragEnd}
-        setEditMode={setEditMode}
+        handleSetEditMode={handleSetEditMode}
         editNote={editNote}
       />
       {(isLoading || isFetching) && (

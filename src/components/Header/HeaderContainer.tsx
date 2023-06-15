@@ -6,17 +6,17 @@ import Header from './Header';
 
 const HeaderContainer = () => {
   const isMobileView = useResponsiveness();
-  const [isMobileNavOpen, setMobileNavOpen] = useToggle(false);
+  const [isMobileNavOpen, toggleMobileNavOpen] = useToggle(false);
 
   useEffect(() => {
-    isMobileNavOpen && !isMobileView && setMobileNavOpen();
+    isMobileNavOpen && !isMobileView && toggleMobileNavOpen();
   }, [isMobileView]);
 
   return (
     <Header
       isMobileView={isMobileView}
       isMobileNavOpen={isMobileNavOpen}
-      handleMobileNavOpen={setMobileNavOpen}
+      handleMobileNavOpen={toggleMobileNavOpen}
     />
   );
 };

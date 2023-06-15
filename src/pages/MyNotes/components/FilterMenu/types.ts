@@ -15,11 +15,11 @@ export interface IFilterMenuProps {
   isFilterByDateOpen: boolean;
   isFilteredByDate: boolean;
   isFilteredByTitle: boolean;
-  setFilterByDateOpen?: (
+  handleFilterByDateOpen?: (
     event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
     value: boolean,
   ) => void;
-  setFilterByTitleOpen?: (
+  handleFilterByTitleOpen?: (
     event: MouseEvent<HTMLElement, globalThis.MouseEvent>,
     value: boolean,
   ) => void;

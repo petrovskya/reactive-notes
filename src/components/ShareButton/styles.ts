@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import { Box } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
+import styled from 'styled-components';
 
 import { Color } from 'ui';
-import { Box } from '@mui/material';
 
 const StyledBox = styled(Box)({
   position: 'absolute',

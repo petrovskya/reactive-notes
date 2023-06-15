@@ -13,7 +13,7 @@ import { getUser } from 'store/selectors';
 import { IUser } from 'types';
 import { compareUserEmail, signInValidationSchema } from 'utils';
 
-import { ERROR_MESSAGE, SignInInitialValues } from './constants';
+import { ERROR_MESSAGE, SIGN_IN_INITIAL_VALUES } from './constants';
 import SignInForm from './SignInForm';
 
 const SignInFormContainer = () => {
@@ -27,7 +27,7 @@ const SignInFormContainer = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (signInFormValues: typeof SignInInitialValues) => {
+  const handleSubmit = (signInFormValues: typeof SIGN_IN_INITIAL_VALUES) => {
     const user = usersResponse?.find((user) =>
       compareUserEmail(user, signInFormValues.email),
     );
@@ -48,10 +48,10 @@ const SignInFormContainer = () => {
     <>
       <Typography variant='h6'>{HELPER_TEXT.HOME_PAGE}</Typography>
       <Formik
-        initialValues={SignInInitialValues}
+        initialValues={SIGN_IN_INITIAL_VALUES}
         validationSchema={signInValidationSchema}
-        onSubmit={handleSubmit}
         component={SignInForm}
+        onSubmit={handleSubmit}
       />
       {errorMessage && <Typography variant='h6'>{errorMessage}</Typography>}
     </>

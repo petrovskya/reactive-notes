@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Form, Formik } from 'formik';
 import {
   Button,
   TextField,
@@ -6,80 +7,96 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Typography,
 } from '@mui/material';
 import { Edit as EditIcon } from '@mui/icons-material';
 
-import { VALIDATION_MESSAGES } from 'config';
 import {
   BUTTON_TEXT,
   COMPONENT_TITLE,
   LABEL_TEXT,
   PLACEHOLDER_TEXT,
 } from 'config/types';
+import { noteMenuValidationSchema } from 'utils/validateForm';
 
+import { CREATE_NOTE_INITIAL_VALUES } from './constants';
 import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
   isCreateMenuOpen,
-  isDescriptionNotValid,
-  setCreateMenuOpen,
+  handleOpenCreateMenu,
+  handleCloseCreateMenu,
   handleSaveNewNote,
-  onChangeDescription,
-  onChangeTitle,
 }) => (
   <>
     <Button
       variant='contained'
       endIcon={<EditIcon />}
-      onClick={setCreateMenuOpen}
+      onClick={handleOpenCreateMenu}
     >
       {BUTTON_TEXT.CREATE}
     </Button>
-    <Dialog open={isCreateMenuOpen} onClose={setCreateMenuOpen}>
-      <DialogTitle>{COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
-      <DialogContent>
-        <TextField
-          margin='dense'
-          type='text'
-          variant='outlined'
-          label={LABEL_TEXT.TITLE}
-          placeholder={PLACEHOLDER_TEXT.TITLE}
-          fullWidth
-          autoFocus
-          onChange={onChangeTitle}
-        />
-        <TextField
-          margin='dense'
-          type='text'
-          variant='outlined'
-          label={LABEL_TEXT.DESCRIPTION}
-          placeholder={PLACEHOLDER_TEXT.DESCRIPTION}
-          fullWidth
-          multiline
-          autoFocus
-          onChange={onChangeDescription}
-        />
-        {isDescriptionNotValid && (
-          <Typography>{VALIDATION_MESSAGES.MAX_LENGTH.DESCRIPTION}</Typography>
-        )}
-      </DialogContent>
-      <DialogActions>
-        <Button
-          variant='contained'
-          color='secondary'
-          onClick={setCreateMenuOpen}
-        >
-          {BUTTON_TEXT.CANCEL}
-        </Button>
-        <Button
-          variant='contained'
-          disabled={isDescriptionNotValid}
-          onClick={handleSaveNewNote}
-        >
-          {BUTTON_TEXT.SAVE}
-        </Button>
-      </DialogActions>
+    <Dialog open={isCreateMenuOpen} onClose={handleCloseCreateMenu}>
+      <Formik
+        initialValues={CREATE_NOTE_INITIAL_VALUES}
+        validationSchema={noteMenuValidationSchema}
+        onSubmit={handleSaveNewNote}
+      >
+        {({ values, touched, errors, handleSubmit, handleChange }) => {
+          const { title, description } = values;
+          return (
+            <Form onSubmit={handleSubmit}>
+              <DialogTitle>{COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
+              <DialogContent>
+                <TextField
+                  id='title'
+                  name='title'
+                  margin='dense'
+                  type='text'
+                  variant='outlined'
+                  label={LABEL_TEXT.TITLE}
+                  placeholder={PLACEHOLDER_TEXT.TITLE}
+                  value={title}
+                  helperText={touched.title && errors?.title}
+                  fullWidth
+                  autoFocus
+                  onChange={handleChange('title')}
+                />
+                <TextField
+                  id='description'
+                  name='description'
+                  margin='dense'
+                  type='text'
+                  variant='outlined'
+                  label={LABEL_TEXT.DESCRIPTION}
+                  placeholder={PLACEHOLDER_TEXT.DESCRIPTION}
+                  value={description}
+                  helperText={touched.description && errors?.description}
+                  fullWidth
+                  multiline
+                  autoFocus
+                  onChange={handleChange('description')}
+                />
+              </DialogContent>
+              <DialogActions>
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  onClick={handleCloseCreateMenu}
+                >
+                  {BUTTON_TEXT.CANCEL}
+                </Button>
+                <Button
+                  variant='contained'
+                  type='submit'
+                  disabled={!!(errors?.description || errors?.title)}
+                >
+                  {BUTTON_TEXT.SAVE}
+                </Button>
+              </DialogActions>
+            </Form>
+          );
+        }}
+      </Formik>
     </Dialog>
   </>
 );

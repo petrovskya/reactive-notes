@@ -10,7 +10,7 @@ import { useAppDispatch } from 'store/hooks';
 import { ROUTE } from 'router';
 import { formatDate, getDateCreation, signUpValidationSchema } from 'utils';
 
-import { SignUpInitialValues } from './constants';
+import { SIGN_UP_INITIAL_VALUES } from './constants';
 import SignUpForm from './SignUpForm';
 
 const SignUpFormContainer = () => {
@@ -20,9 +20,10 @@ const SignUpFormContainer = () => {
 
   const { mutate: addUser } = useMutation({
     mutationFn: userActions.addUser,
-    onSuccess: () => {
+    onSuccess: ({ data: newUSer }) => {
       navigate(ROUTE.MY_NOTES);
       queryClient.invalidateQueries([QUERY_KEYS.USERS]);
+      dispatch(setUserAuth(newUSer));
     },
   });
 
@@ -32,7 +33,7 @@ const SignUpFormContainer = () => {
     email,
     dateOfBirth,
     password,
-  }: typeof SignUpInitialValues) => {
+  }: typeof SIGN_UP_INITIAL_VALUES) => {
     const newUser = {
       id: EMPTY_STRING,
       createdAt: getDateCreation(),
@@ -43,12 +44,11 @@ const SignUpFormContainer = () => {
       password: password,
     };
     addUser(newUser);
-    dispatch(setUserAuth(newUser));
   };
 
   return (
     <Formik
-      initialValues={SignUpInitialValues}
+      initialValues={SIGN_UP_INITIAL_VALUES}
       validationSchema={signUpValidationSchema}
       component={SignUpForm}
       onSubmit={handleSubmit}

@@ -14,7 +14,7 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ note, editNote }) => {
   const dispatch = useAppDispatch();
   const { activeNote } = useAppSelector(getNotes);
 
-  const [isEditMenuOpen, setEditMenuOpen] = useToggle();
+  const [isEditMenuOpen, toggleEditMenuOpen] = useToggle(false);
 
   const { mutate: updateNote } = useMutation({
     mutationFn: notesActions.updateNote,
@@ -31,16 +31,19 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ note, editNote }) => {
     description: description,
   };
 
-  const handleEditMenuSubmit = (editMenuValues: IEditMenuValues) => {
+  const handleOpenEditMenu = () => toggleEditMenuOpen();
+  const handleCloseEditMenu = () => toggleEditMenuOpen();
+
+  const handleSubmitEditMenu = (editMenuValues: IEditMenuValues) => {
     updateNote(
       editNote(note, editMenuValues.title, editMenuValues.description),
     );
-    setEditMenuOpen();
+    toggleEditMenuOpen();
   };
 
   useEffect(() => {
     isActiveNote && dispatch(setActiveNote(note));
-  }, [handleEditMenuSubmit]);
+  }, [handleSubmitEditMenu]);
 
   return (
     <EditMenu
@@ -48,8 +51,9 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ note, editNote }) => {
       description={description}
       initialValues={editMenuInitialValues}
       isEditMenuOpen={isEditMenuOpen}
-      setEditMenuOpen={setEditMenuOpen}
-      handleEditMenuSubmit={handleEditMenuSubmit}
+      handleOpenEditMenu={handleOpenEditMenu}
+      handleCloseEditMenu={handleCloseEditMenu}
+      handleSubmitEditMenu={handleSubmitEditMenu}
     />
   );
 };

@@ -30,9 +30,9 @@ const NotesList: FC<INotesList> = ({
               return isLastNoteInView(index) ? (
                 <ListItem
                   data-testid='note-with-ref'
-                  ref={setLastNoteInView}
                   disablePadding
                   key={note?.id}
+                  ref={setLastNoteInView}
                 >
                   <Note note={note} index={index} {...props} />
                 </ListItem>

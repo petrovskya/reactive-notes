@@ -15,34 +15,38 @@ const FilterByTitleForm: FC<FormikProps<IFilterByTitleValues>> = ({
   handleSubmit,
   handleBlur,
   handleReset,
-}) => (
-  <LocalizationProvider dateAdapter={AdapterDateFns}>
-    <Form onSubmit={handleSubmit} onBlur={handleSubmit}>
-      <Wrapper>
-        <TextField
-          id='titleForFilter'
-          name='titleForFilter'
-          variant='outlined'
-          margin='dense'
-          placeholder={PLACEHOLDER_TEXT.TITLE}
-          label={LABEL_TEXT.TITLE}
-          value={values.titleForFilter}
-          autoFocus
-          fullWidth
-          onChange={handleChange('titleForFilter')}
-          onBlur={handleBlur('titleForFilter')}
-        />
-      </Wrapper>
-      <DialogActions>
-        <Button variant='contained' color='secondary' onClick={handleReset}>
-          {BUTTON_TEXT.CLEAR}
-        </Button>
-        <Button variant='contained' type='submit'>
-          {BUTTON_TEXT.FILTER}
-        </Button>
-      </DialogActions>
-    </Form>
-  </LocalizationProvider>
-);
+}) => {
+  const { titleForFilter } = values;
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Form onSubmit={handleSubmit} onBlur={handleSubmit}>
+        <Wrapper>
+          <TextField
+            id='titleForFilter'
+            name='titleForFilter'
+            variant='outlined'
+            margin='dense'
+            placeholder={PLACEHOLDER_TEXT.TITLE}
+            label={LABEL_TEXT.TITLE}
+            value={titleForFilter}
+            autoFocus
+            fullWidth
+            onChange={handleChange('titleForFilter')}
+            onBlur={handleBlur('titleForFilter')}
+          />
+        </Wrapper>
+        <DialogActions>
+          <Button variant='contained' color='secondary' onClick={handleReset}>
+            {BUTTON_TEXT.CLEAR}
+          </Button>
+          <Button variant='contained' type='submit'>
+            {BUTTON_TEXT.FILTER}
+          </Button>
+        </DialogActions>
+      </Form>
+    </LocalizationProvider>
+  );
+};
 
 export default FilterByTitleForm;

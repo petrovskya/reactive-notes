@@ -11,6 +11,7 @@ export const StyledNav = styled(Box)({
   alignItems: 'center',
   maxWidth: '800px',
   width: '100%',
+  gap: 10,
   fontFamily: 'inherit',
   a: {
     color: Color.SECONDARY_DARK,

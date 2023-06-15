@@ -14,6 +14,8 @@ export const EMPTY_STRING = '';
 
 export const APPLICATION_NAME = 'Reactive notes';
 
+export const NOTES_NOT_FOUND_MESSAGE = 'Notes not found';
+
 export const VALIDATION_MESSAGES = {
   VALIDITY: {
     EMAIL: 'Enter a valid email',
@@ -24,6 +26,8 @@ export const VALIDATION_MESSAGES = {
     FIRST_NAME: 'First name is required',
     LAST_NAME: 'Last name is required',
     DATE_OF_BIRTH: 'Date of birth is required',
+    TITLE: 'Title is required',
+    DESCRIPTION: 'Description is required',
   },
   MIN_LENGTH: {
     PASSWORD: 'Password should be of minimum 8 characters length',

@@ -1,12 +1,13 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
+
+export interface ICreateNoteFormValues {
+  title: string;
+  description: string;
+}
 
 export interface ICreateNoteProps {
   isCreateMenuOpen: boolean;
-  isDescriptionNotValid: boolean;
-  setCreateMenuOpen: MouseEventHandler<HTMLButtonElement>;
-  handleSaveNewNote: MouseEventHandler<HTMLButtonElement>;
-  onChangeTitle: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
-  onChangeDescription: ChangeEventHandler<
-    HTMLInputElement | HTMLTextAreaElement
-  >;
+  handleOpenCreateMenu: MouseEventHandler<HTMLButtonElement>;
+  handleCloseCreateMenu: MouseEventHandler<HTMLButtonElement>;
+  handleSaveNewNote: ({ title, description }: ICreateNoteFormValues) => void;
 }

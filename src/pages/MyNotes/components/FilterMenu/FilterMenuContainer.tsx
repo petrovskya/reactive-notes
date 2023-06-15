@@ -14,8 +14,8 @@ import { IFilterByDateValues, IFilterByTitleValues } from './types';
 
 const FilterMenuContainer = () => {
   const { filters } = useAppSelector(getNotes);
-  const [isFilterByTitleOpen, setFilterByTitleOpen] = useToggle(false);
-  const [isFilterByDateOpen, setFilterByDateOpen] = useToggle(false);
+  const [isFilterByTitleOpen, toggleFilterByTitleOpen] = useToggle(false);
+  const [isFilterByDateOpen, toggleFilterByDateOpen] = useToggle(false);
   const dispatch = useAppDispatch();
 
   const isFilteredByTitle = filters?.filterOption === FILTER_OPTIONS.TITLE;
@@ -51,8 +51,8 @@ const FilterMenuContainer = () => {
       isFilterByDateOpen={isFilterByDateOpen}
       isFilteredByDate={isFilteredByDate}
       isFilteredByTitle={isFilteredByTitle}
-      setFilterByDateOpen={setFilterByDateOpen}
-      setFilterByTitleOpen={setFilterByTitleOpen}
+      handleFilterByDateOpen={toggleFilterByDateOpen}
+      handleFilterByTitleOpen={toggleFilterByTitleOpen}
       handleSetFilterByTitle={handleSetFilterByTitle}
       handleSetFilterByDate={handleSetFilterByDate}
     />

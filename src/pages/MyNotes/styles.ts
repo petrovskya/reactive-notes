@@ -14,10 +14,6 @@ const StyledMyNotes = styled(Container)({
       padding: 0,
       gap: 10,
     },
-    '@media screen and (min-width: 600px)': {
-      padding: 0,
-      gap: 10,
-    },
     '@media screen and (min-width: 1200px)': {
       maxWidth: '1920px',
       width: '100%',
@@ -25,14 +21,6 @@ const StyledMyNotes = styled(Container)({
     '@media screen and (max-width: 768px)': {
       flexDirection: 'column',
     },
-  },
-  '@media screen and (min-width: 1920px)': {
-    maxWidth: '1920px',
-    width: '100%',
-  },
-  '@media screen and (max-width: 1920px)': {
-    maxWidth: '1920px',
-    width: '100%',
   },
 });
 

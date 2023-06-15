@@ -9,16 +9,15 @@ import {
   LABEL_TEXT,
 } from 'config/types';
 
-import { SignInInitialValues } from './constants';
+import { SIGN_IN_INITIAL_VALUES } from './constants';
 import { StyledForm } from './styles';
 
-const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
+const SignInForm: FC<FormikProps<typeof SIGN_IN_INITIAL_VALUES>> = ({
   values,
-  handleChange,
-  handleSubmit,
-  handleBlur,
   touched,
   errors,
+  handleChange,
+  handleSubmit,
 }) => (
   <StyledForm onSubmit={handleSubmit}>
     <Typography variant='h4'>{COMPONENT_TITLE.SIGN_IN}</Typography>
@@ -28,10 +27,10 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
       label={LABEL_TEXT.EMAIL}
       placeholder={PLACEHOLDER_TEXT.EMAIL}
       value={values.email}
+      error={touched.email && !!errors?.email}
+      helperText={touched.email && errors?.email}
       onChange={handleChange('email')}
-      onBlur={handleBlur('email')}
     />
-    {errors.email && touched.email && <Typography>{errors.email}</Typography>}
     <TextField
       id='password'
       name='password'
@@ -39,13 +38,9 @@ const SignInForm: FC<FormikProps<typeof SignInInitialValues>> = ({
       label={LABEL_TEXT.PASSWORD}
       placeholder={PLACEHOLDER_TEXT.PASSWORD}
       value={values.password}
+      helperText={touched.password && errors?.password}
       onChange={handleChange('password')}
-      onBlur={handleBlur('password')}
     />
-    {errors.password && touched.password && (
-      <Typography>{errors.password}</Typography>
-    )}
-
     <Button color='primary' variant='contained' type='submit'>
       {BUTTON_TEXT.SIGN_IN}
     </Button>

@@ -4,6 +4,9 @@ import { OnDragEndResponder } from 'react-beautiful-dnd';
 import { INote } from 'types';
 
 interface INotesList {
+  editNote: (note: INote, newTitle: string, newDescription: string) => INote;
+  handleSetEditMode: Dispatch<React.SetStateAction<boolean>>;
+  handleSetNoteDragEnd: OnDragEndResponder;
   notes?: INote[];
   activeNote?: INote;
   isEditMode: boolean;
@@ -11,16 +14,13 @@ interface INotesList {
   isFetching?: boolean;
   hasNextPage?: boolean;
   setLastNoteInView?: (node?: Element | null) => void;
-  handleSetNoteDragEnd: OnDragEndResponder;
-  setEditMode: Dispatch<React.SetStateAction<boolean>>;
-  editNote: (note: INote, newTitle: string, newDescription: string) => INote;
 }
 
 interface INoteContainer {
   note: INote;
   index: number;
-  activeNote?: INote;
   editNote: (note: INote, newTitle: string, newDescription: string) => INote;
+  activeNote?: INote;
 }
 
 interface INoteProps extends Omit<INoteContainer, 'activeNote'> {

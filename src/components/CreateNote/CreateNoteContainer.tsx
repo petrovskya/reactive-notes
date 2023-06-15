@@ -1,23 +1,19 @@
-import { useEffect, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
 import { QUERY_KEYS, notesActions, queryClient } from 'api';
-import { MAX_LENGTH_OF_DESCRIPTION } from 'config/constants';
-import { useFieldValue, useToggle } from 'hooks';
+import { useToggle } from 'hooks';
 import { useAppSelector } from 'store/hooks';
 import { getUser } from 'store/selectors';
 import { createNewNote } from 'utils';
 
 import CreateNote from './CreateNote';
+import { ICreateNoteFormValues } from './types';
 
 const CreateNoteContainer = () => {
   const { user } = useAppSelector(getUser);
 
-  const [isCreateMenuOpen, setCreateMenuOpen] = useToggle(false);
-  const [isDescriptionNotValid, setDescriptionNotValid] = useState(false);
+  const [isCreateMenuOpen, toggleCreateMenuOpen] = useToggle(false);
 
-  const { value: title, onChange: onChangeTitle } = useFieldValue();
-  const { value: description, onChange: onChangeDescription } = useFieldValue();
   const { mutate: addNote } = useMutation({
     mutationFn: notesActions.addNote,
     onSuccess: () => {
@@ -25,25 +21,20 @@ const CreateNoteContainer = () => {
     },
   });
 
-  const handleSaveNewNote = () => {
+  const handleSaveNewNote = ({ title, description }: ICreateNoteFormValues) => {
     user && addNote(createNewNote(user, title, description));
-    setCreateMenuOpen();
+    toggleCreateMenuOpen();
   };
 
-  useEffect(() => {
-    description.length > MAX_LENGTH_OF_DESCRIPTION
-      ? setDescriptionNotValid(true)
-      : setDescriptionNotValid(false);
-  }, [description]);
+  const handleOpenCreateMenu = () => toggleCreateMenuOpen();
+  const handleCloseCreateMenu = () => toggleCreateMenuOpen();
 
   return (
     <CreateNote
       isCreateMenuOpen={isCreateMenuOpen}
-      isDescriptionNotValid={isDescriptionNotValid}
-      setCreateMenuOpen={setCreateMenuOpen}
+      handleOpenCreateMenu={handleOpenCreateMenu}
+      handleCloseCreateMenu={handleCloseCreateMenu}
       handleSaveNewNote={handleSaveNewNote}
-      onChangeTitle={onChangeTitle}
-      onChangeDescription={onChangeDescription}
     />
   );
 };

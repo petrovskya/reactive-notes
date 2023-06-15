@@ -92,7 +92,7 @@ const MyNotesContainer = () => {
       hasNextPage={hasNextPage}
       setLastNoteInView={setLastNoteInView}
       handleSetNoteDragEnd={handleSetNoteDragEnd}
-      setEditMode={setEditMode}
+      handleSetEditMode={setEditMode}
       editNote={editNote}
     />
   );

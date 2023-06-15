@@ -16,8 +16,8 @@ const FilterMenu: FC<IFilterMenuProps> = ({
   isFilterByDateOpen,
   isFilteredByDate,
   isFilteredByTitle,
-  setFilterByDateOpen,
-  setFilterByTitleOpen,
+  handleFilterByDateOpen,
+  handleFilterByTitleOpen,
   handleSetFilterByTitle,
   handleSetFilterByDate,
 }) => (
@@ -25,7 +25,7 @@ const FilterMenu: FC<IFilterMenuProps> = ({
     {!isFilterByDateOpen && (
       <FilterMenuButton
         value={isFilterByTitleOpen}
-        onChange={setFilterByTitleOpen}
+        onChange={handleFilterByTitleOpen}
       >
         <StyledBadge variant='dot' invisible={!isFilteredByTitle}>
           <FilterIcon />
@@ -38,7 +38,7 @@ const FilterMenu: FC<IFilterMenuProps> = ({
     {!isFilterByTitleOpen && (
       <FilterMenuButton
         value={isFilterByDateOpen}
-        onChange={setFilterByDateOpen}
+        onChange={handleFilterByDateOpen}
       >
         <StyledBadge variant='dot' invisible={!isFilteredByDate}>
           <FilterIcon />
@@ -48,19 +48,18 @@ const FilterMenu: FC<IFilterMenuProps> = ({
         </StyledBadge>
       </FilterMenuButton>
     )}
-
     {isFilterByTitleOpen && (
       <Formik
         initialValues={titleFilterInitialValues}
-        onSubmit={handleSetFilterByTitle}
         component={FilterByTitleForm}
+        onSubmit={handleSetFilterByTitle}
       />
     )}
     {isFilterByDateOpen && (
       <Formik
         initialValues={dateFilterInitialValues}
-        onSubmit={handleSetFilterByDate}
         component={FilterByDateForm}
+        onSubmit={handleSetFilterByDate}
       />
     )}
   </StyledFilterMenu>

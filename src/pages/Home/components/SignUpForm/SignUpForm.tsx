@@ -11,17 +11,16 @@ import {
   LABEL_TEXT,
 } from 'config/types';
 
-import { SignUpInitialValues } from './constants';
+import { REQUIRED_MESSAGE, SIGN_UP_INITIAL_VALUES } from './constants';
 import { StyledForm } from './styles';
 
-const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
+const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
   values,
   touched,
   errors,
   setFieldValue,
   handleChange,
   handleSubmit,
-  handleBlur,
 }) => (
   <LocalizationProvider dateAdapter={AdapterDateFns}>
     <StyledForm onSubmit={handleSubmit}>
@@ -32,34 +31,30 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
         label={LABEL_TEXT.FIRST_NAME}
         placeholder={PLACEHOLDER_TEXT.FIRST_NAME}
         value={values.firstName}
+        error={touched.firstName && !!errors?.firstName}
+        helperText={touched.firstName && errors?.firstName}
         onChange={handleChange('firstName')}
-        onBlur={handleBlur('firstName')}
       />
-      {errors.firstName && touched.firstName && (
-        <Typography>{errors.firstName}</Typography>
-      )}
       <TextField
         id='lastName'
         name='lastName'
         label={LABEL_TEXT.LAST_NAME}
         placeholder={PLACEHOLDER_TEXT.LAST_NAME}
         value={values.lastName}
+        error={touched.lastName && !!errors?.lastName}
+        helperText={touched.lastName && errors?.lastName}
         onChange={handleChange('lastName')}
-        onBlur={handleBlur('lastName')}
       />
-      {errors.lastName && touched.lastName && (
-        <Typography>{errors.lastName}</Typography>
-      )}
       <TextField
         id='email'
         name='email'
         label={LABEL_TEXT.EMAIL}
         placeholder={PLACEHOLDER_TEXT.EMAIL}
         value={values.email}
+        error={touched.email && !!errors?.email}
+        helperText={touched.email && errors?.email}
         onChange={handleChange('email')}
-        onBlur={handleBlur('email')}
       />
-      {errors.email && touched.email && <Typography>{errors.email}</Typography>}
       <DatePicker
         value={values.dateOfBirth}
         slotProps={{
@@ -67,7 +62,7 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
             variant: 'outlined',
             label: LABEL_TEXT.DATE_OF_BIRTH,
             error: Boolean(errors.dateOfBirth),
-            helperText: errors.dateOfBirth && 'This field is required!',
+            helperText: errors.dateOfBirth && REQUIRED_MESSAGE,
           },
         }}
         disableFuture
@@ -76,27 +71,25 @@ const SignUpForm: FC<FormikProps<typeof SignUpInitialValues>> = ({
       <TextField
         id='password'
         name='password'
+        type='password'
         label={LABEL_TEXT.PASSWORD}
         placeholder={PLACEHOLDER_TEXT.PASSWORD}
         value={values.password}
+        error={touched.password && !!errors?.password}
+        helperText={touched.password && errors?.password}
         onChange={handleChange('password')}
-        onBlur={handleBlur('password')}
       />
-      {errors.password && touched.password && (
-        <Typography>{errors.password}</Typography>
-      )}
       <TextField
         id='confirmPassword'
         name='confirmPassword'
+        type='password'
         label={LABEL_TEXT.CONFIRM_PASSWORD}
         placeholder={PLACEHOLDER_TEXT.CONFIRM_PASSWORD}
         value={values.confirmPassword}
+        error={touched.confirmPassword && !!errors?.confirmPassword}
+        helperText={touched.confirmPassword && errors?.confirmPassword}
         onChange={handleChange('confirmPassword')}
-        onBlur={handleBlur('confirmPassword')}
       />
-      {errors.confirmPassword && touched.confirmPassword && (
-        <Typography>{errors.confirmPassword}</Typography>
-      )}
       <Button color='primary' variant='contained' type='submit'>
         {BUTTON_TEXT.SIGN_UP}
       </Button>

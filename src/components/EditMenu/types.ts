@@ -12,8 +12,9 @@ export interface IEditMenuProps {
   description: string;
   initialValues: IEditMenuValues;
   isEditMenuOpen: boolean;
-  setEditMenuOpen: MouseEventHandler<HTMLButtonElement>;
-  handleEditMenuSubmit: (editMenuValues: IEditMenuValues) => void;
+  handleOpenEditMenu: MouseEventHandler<HTMLButtonElement>;
+  handleCloseEditMenu: MouseEventHandler<HTMLButtonElement>;
+  handleSubmitEditMenu: (editMenuValues: IEditMenuValues) => void;
 }
 
 export interface IEditMenuValues {

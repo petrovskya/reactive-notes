@@ -16,7 +16,7 @@ describe('<NotesList>', () => {
     hasNextPage: false,
     setLastNoteInView: jest.fn(),
     handleSetNoteDragEnd: jest.fn(),
-    setEditMode: jest.fn(),
+    handleSetEditMode: jest.fn(),
     editNote: jest.fn(),
   };
 

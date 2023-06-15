@@ -24,10 +24,6 @@ const SharedNotesContainer = () => {
     !isAuth && navigate(ROUTE.HOME);
   }, []);
 
-  useEffect(() => {
-    sharedNotes && setDisplayedSharedNotes(sharedNotes.flat());
-  }, [sharedNotes?.length]);
-
   useLayoutEffect(() => {
     activeSharedNote && window.scrollTo(0, 20);
   }, [activeSharedNote]);
@@ -40,7 +36,8 @@ const SharedNotesContainer = () => {
 
   useEffect(() => {
     queryClient.invalidateQueries([QUERY_KEYS.SHARED_NOTES]);
-  }, [sharedNotes?.length]);
+    sharedNotes && setDisplayedSharedNotes(sharedNotes.flat());
+  }, [sharedNotes?.flat().length]);
 
   return (
     <SharedNotes

@@ -12,16 +12,12 @@ const Home: FC<IHomeProps> = ({
   user,
   isAuth,
   isRegistrationVisible,
-  handleSignOut,
   toggleRegistrationVisible,
 }) =>
   user && isAuth ? (
     <>
       <UserProfile user={user} />
       <Link to={ROUTE.MY_NOTES}>{NAV_LINKS.MY_NOTES}</Link>
-      <Button color='secondary' variant='contained' onClick={handleSignOut}>
-        {BUTTON_TEXT.SIGN_OUT}
-      </Button>
     </>
   ) : (
     <>
