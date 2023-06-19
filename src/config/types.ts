@@ -46,6 +46,7 @@ export enum COMPONENT_TITLE {
   SIGN_IN = 'Sign in',
   USER_PROFILE = 'Profile',
   FILTER_FORM = 'Set up your filter',
+  ABOUT = 'About the project',
 }
 
 export enum STUB_TEXT {

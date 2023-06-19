@@ -16,6 +16,11 @@ export const APPLICATION_NAME = 'Reactive notes';
 
 export const NOTES_NOT_FOUND_MESSAGE = 'Notes not found';
 
+export const PAGINATION = (
+  currentPageNumber: number,
+  numberOfPages: number | null,
+) => `Page ${currentPageNumber} of ${numberOfPages}`;
+
 export const VALIDATION_MESSAGES = {
   VALIDITY: {
     EMAIL: 'Enter a valid email',

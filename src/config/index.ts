@@ -9,5 +9,6 @@ export {
   HELPER_TEXT,
   SEPARATOR_INDEX,
   RESPONSE_LIMIT,
+  PAGINATION,
 } from './constants';
 export * from './types';
