@@ -19,7 +19,7 @@ export const NOTES_NOT_FOUND_MESSAGE = 'Notes not found';
 export const PAGINATION = (
   currentPageNumber: number,
   numberOfPages: number | null,
-) => `Page ${currentPageNumber} of ${numberOfPages}`;
+) => `Page ${currentPageNumber} / ${numberOfPages}`;
 
 export const VALIDATION_MESSAGES = {
   VALIDITY: {
