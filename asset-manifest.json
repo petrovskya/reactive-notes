@@ -1,13 +1,17 @@
 {
   "files": {
-    "main.js": "/reactive-notes/static/js/main.aecbbaf3.js",
+    "main.css": "/reactive-notes/static/css/main.29f91f88.css",
+    "main.js": "/reactive-notes/static/js/main.e14a2a39.js",
+    "static/media/presentation.pdf": "/reactive-notes/static/media/presentation.963391b2603151daaae8.pdf",
     "static/media/page-not-found.jpg": "/reactive-notes/static/media/page-not-found.c419f154f0989c148c0a.jpg",
     "static/media/app-logo-icon.svg": "/reactive-notes/static/media/app-logo-icon.a133396ff5f0f5becda480f60c33d826.svg",
     "static/media/logo-icon.svg": "/reactive-notes/static/media/logo-icon.3b4e681b86e07876bf63f489e940fb39.svg",
     "index.html": "/reactive-notes/index.html",
-    "main.aecbbaf3.js.map": "/reactive-notes/static/js/main.aecbbaf3.js.map"
+    "main.29f91f88.css.map": "/reactive-notes/static/css/main.29f91f88.css.map",
+    "main.e14a2a39.js.map": "/reactive-notes/static/js/main.e14a2a39.js.map"
   },
   "entrypoints": [
-    "static/js/main.aecbbaf3.js"
+    "static/css/main.29f91f88.css",
+    "static/js/main.e14a2a39.js"
   ]
 }
