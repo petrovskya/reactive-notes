@@ -3,7 +3,6 @@ import { Form, Formik } from 'formik';
 import {
   Button,
   TextField,
-  Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
@@ -19,6 +18,7 @@ import {
 import { noteMenuValidationSchema } from 'utils/validateForm';
 
 import { CREATE_NOTE_INITIAL_VALUES } from './constants';
+import { StyledDialog } from './styles';
 import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
@@ -34,7 +34,7 @@ const CreateNote: FC<ICreateNoteProps> = ({
     >
       {BUTTON_TEXT.CREATE}
     </Button>
-    <Dialog
+    <StyledDialog
       open={isCreateMenuOpen}
       onClose={onHandleChangeCreateMenuVisibility}
     >
@@ -54,7 +54,7 @@ const CreateNote: FC<ICreateNoteProps> = ({
                 <TextField
                   id='title'
                   name='title'
-                  margin='dense'
+                  margin='normal'
                   type='text'
                   variant='outlined'
                   label={LABEL_TEXT.TITLE}
@@ -68,7 +68,7 @@ const CreateNote: FC<ICreateNoteProps> = ({
                 <TextField
                   id='description'
                   name='description'
-                  margin='dense'
+                  margin='normal'
                   type='text'
                   variant='outlined'
                   label={LABEL_TEXT.DESCRIPTION}
@@ -77,7 +77,6 @@ const CreateNote: FC<ICreateNoteProps> = ({
                   helperText={touched.description && errors?.description}
                   fullWidth
                   multiline
-                  autoFocus
                   onChange={handleChange('description')}
                 />
               </DialogContent>
@@ -101,7 +100,7 @@ const CreateNote: FC<ICreateNoteProps> = ({
           );
         }}
       </Formik>
-    </Dialog>
+    </StyledDialog>
   </>
 );
 

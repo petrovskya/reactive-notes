@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 
-import { TABLET_SCREEN_SIZE } from 'config/constants';
+import { SCREEN_SIZE } from 'config/constants';
 
 export const useResponsiveness = () => {
   const [isMobileView, setMobileView] = useState<boolean>(false);
 
   useEffect(() => {
     const setMobileResponsiveness = () =>
-      window.innerWidth < TABLET_SCREEN_SIZE
+      window.innerWidth < SCREEN_SIZE.TABLET
         ? setMobileView(true)
         : setMobileView(false);
 

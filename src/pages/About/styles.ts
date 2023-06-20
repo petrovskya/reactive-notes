@@ -18,14 +18,14 @@ export const DocumentWrapper = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '60vw',
+  width: '80vw',
   gap: '10px',
 });
 
 export const StyledDocument = styled(Document)({
   display: 'flex',
   alignItems: 'center',
-  maxWidth: '60vw',
+  maxWidth: '75vw',
   width: '100%',
   height: '75vh',
   gap: '20px',
@@ -57,7 +57,6 @@ export const StyledLoader = styled(Box)({
 });
 
 export const StyledPage = styled(Page)({
-  height: '73vh',
   margin: 'auto',
 });
 

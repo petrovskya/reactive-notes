@@ -10,7 +10,20 @@ export const SEPARATOR_INDEX = 7;
 
 export const MAX_LENGTH_OF_DESCRIPTION = 450;
 
-export const TABLET_SCREEN_SIZE = 768;
+export const SCREEN_SIZE = {
+  MOBILE: 600,
+  TABLET: 768,
+  LAPTOP: 1024,
+  DESKTOP: 1920,
+};
+
+export const DEFAULT_SCALE = {
+  MOBILE: 0.1,
+  TABLET: 0.3,
+  LAPTOP: 0.3,
+  DESKTOP: 0.5,
+  LARGE_SCREEN: 1,
+};
 
 export const EMPTY_STRING = '';
 
@@ -26,6 +39,7 @@ export const PAGINATION = (
 export const VALIDATION_MESSAGES = {
   VALIDITY: {
     EMAIL: 'Enter a valid email',
+    CONFIRM_PASSWORD: 'Passwords must match',
   },
   REQUIRED: {
     EMAIL: 'Email is required',

@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { pdfjs } from 'react-pdf';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
+
+import { useSetDefaultPdfScale } from 'hooks';
 
 import About from './About';
 import {
   DEFAULT_PAGE,
-  DEFAULT_SCALE,
   PAGE_OFFSET,
   PDFJS_WORKER_SRC,
   SCALE_OFFSET,
@@ -16,7 +17,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_SRC;
 export const AboutContainer = () => {
   const [numberOfPages, setNumberOfPages] = useState<number>();
   const [currentPageNumber, setCurrentPageNumber] = useState(DEFAULT_PAGE);
-  const [pageScale, setPageScale] = useState(DEFAULT_SCALE);
+  const defaultScale = useSetDefaultPdfScale();
+  const [pageScale, setPageScale] = useState(defaultScale);
 
   const isFirstPageVisible = currentPageNumber <= DEFAULT_PAGE;
   const isLastPageVisible = !!(
@@ -46,6 +48,10 @@ export const AboutContainer = () => {
 
   const handleSetPreviousPage = () => handleSetNewPage(-PAGE_OFFSET);
   const handleSetNextPage = () => handleSetNewPage(PAGE_OFFSET);
+
+  useEffect(() => {
+    setPageScale(defaultScale);
+  }, [defaultScale]);
 
   return (
     <About

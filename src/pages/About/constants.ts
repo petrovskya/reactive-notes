@@ -1,6 +1,5 @@
 import { pdfjs } from 'react-pdf';
 
-export const DEFAULT_SCALE = 1;
 export const DEFAULT_PAGE = 1;
 export const SCALE_OFFSET = 0.1;
 export const PAGE_OFFSET = 1;

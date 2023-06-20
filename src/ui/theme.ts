@@ -79,6 +79,21 @@ const theme = createTheme({
         },
       },
     },
+    MuiDialogContent: {
+      styleOverrides: {
+        root: {
+          paddingTop: '10px',
+          marginTop: '5px',
+        },
+      },
+    },
+    MuiDialogTitle: {
+      styleOverrides: {
+        root: {
+          // paddingTop: '5px',
+        },
+      },
+    },
   },
 });
 

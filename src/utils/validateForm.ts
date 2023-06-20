@@ -1,4 +1,4 @@
-import { object, string } from 'yup';
+import { object, ref, string } from 'yup';
 
 import { VALIDATION_MESSAGES } from 'config';
 
@@ -11,7 +11,8 @@ const signUpValidationSchema = object({
     .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD),
   confirmPassword: string()
     .min(8, VALIDATION_MESSAGES.MIN_LENGTH.PASSWORD)
-    .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD),
+    .required(VALIDATION_MESSAGES.REQUIRED.PASSWORD)
+    .oneOf([ref('password')], VALIDATION_MESSAGES.VALIDITY.CONFIRM_PASSWORD),
   firstName: string()
     .min(3, VALIDATION_MESSAGES.MIN_LENGTH.FIRST_NAME)
     .required(VALIDATION_MESSAGES.REQUIRED.FIRST_NAME),

@@ -11,7 +11,6 @@ export const GlobalStyles = createGlobalStyle({
   body: {
     fontFamily: `Inter, san-serif`,
     backgroundColor: Color.WHITE,
-    overflowY: 'auto',
     scrollbarWidth: 'thin',
     scrollbarColor: `${Color.SECONDARY} ${Color.PRIMARY}`,
     '&::-webkit-scrollbar': {

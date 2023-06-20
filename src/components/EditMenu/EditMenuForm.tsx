@@ -29,7 +29,6 @@ const EditMenuForm: FC<FormikProps<IEditMenuValues>> = ({
           label={LABEL_TEXT.TITLE}
           value={title}
           helperText={touched.title && errors?.title}
-          autoFocus
           fullWidth
           onChange={handleChange}
         />
@@ -43,7 +42,6 @@ const EditMenuForm: FC<FormikProps<IEditMenuValues>> = ({
           value={description}
           helperText={touched.description && errors?.description}
           fullWidth
-          autoFocus
           multiline
           onChange={handleChange}
         />
