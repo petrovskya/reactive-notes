@@ -4,13 +4,14 @@ import { useInView } from 'react-intersection-observer';
 import { OnDragEndResponder } from 'react-beautiful-dnd';
 
 import { QUERY_KEYS, queryClient } from 'api';
-import { useGetNotesOfUser } from 'api/hooks';
+import { useGetNotesOfUser } from 'api/notes';
 import { ROUTE } from 'router';
 import { setNotes } from 'store/features';
 import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { getNotes, getUser } from 'store/selectors';
 import { INote } from 'types';
 
+import { DELETE_COUNT, NUMBER_OF_REMOVED_NOTES } from './constants';
 import MyNotes from './MyNotes';
 
 const MyNotesContainer = () => {
@@ -45,8 +46,6 @@ const MyNotesContainer = () => {
     startIndex: number,
     endIndex: number,
   ) => {
-    const NUMBER_OF_REMOVED_NOTES = 1;
-    const DELETE_COUNT = 0;
     const reorderedNotesList = Array.from(list);
     const [removedNote] = reorderedNotesList.splice(
       startIndex,

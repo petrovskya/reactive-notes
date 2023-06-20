@@ -18,35 +18,36 @@ const MyNotes: FC<INotesList> = ({
   handleSetNoteDragEnd,
   handleSetEditMode,
   editNote,
-}) => (
-  <StyledMyNotes data-testid='my-notes'>
-    <StyledBox data-testid='my-notes-styled-box'>
-      <ActiveNote note={activeNote} />
-      <CreateNote />
-      <FilterMenu />
-    </StyledBox>
-    <ListWrapper data-testid='my-notes-list-wrapper'>
-      <Typography>
-        {!notes?.length &&
-          !(isLoading || isFetching) &&
-          NOTES_NOT_FOUND_MESSAGE}
-      </Typography>
-      <NotesList
-        notes={notes}
-        activeNote={activeNote}
-        isEditMode={isEditMode}
-        setLastNoteInView={setLastNoteInView}
-        handleSetNoteDragEnd={handleSetNoteDragEnd}
-        handleSetEditMode={handleSetEditMode}
-        editNote={editNote}
-      />
-      {(isLoading || isFetching) && (
-        <StyledBox data-testid='loader'>
-          <CircularProgress color='secondary' />
-        </StyledBox>
-      )}
-    </ListWrapper>
-  </StyledMyNotes>
-);
+}) => {
+  const isLoaderVisible = isLoading || isFetching;
+  const isNotesListEmpty = !notes?.length && !isLoaderVisible;
+
+  return (
+    <StyledMyNotes data-testid='my-notes'>
+      <StyledBox data-testid='my-notes-styled-box'>
+        <ActiveNote note={activeNote} />
+        <CreateNote />
+        <FilterMenu />
+      </StyledBox>
+      <ListWrapper data-testid='my-notes-list-wrapper'>
+        <Typography>{isNotesListEmpty && NOTES_NOT_FOUND_MESSAGE}</Typography>
+        <NotesList
+          notes={notes}
+          activeNote={activeNote}
+          isEditMode={isEditMode}
+          setLastNoteInView={setLastNoteInView}
+          handleSetNoteDragEnd={handleSetNoteDragEnd}
+          handleSetEditMode={handleSetEditMode}
+          editNote={editNote}
+        />
+        {isLoaderVisible && (
+          <StyledBox data-testid='loader'>
+            <CircularProgress color='secondary' />
+          </StyledBox>
+        )}
+      </ListWrapper>
+    </StyledMyNotes>
+  );
+};
 
 export default MyNotes;

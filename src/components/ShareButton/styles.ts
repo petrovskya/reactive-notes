@@ -6,14 +6,14 @@ import { Color } from 'ui';
 
 const StyledBox = styled(Box)({
   position: 'absolute',
-  top: 15,
-  right: 20,
+  top: '15px',
+  right: '20px',
   zIndex: '1',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: 46,
-  height: 46,
+  width: '46px',
+  height: '46px',
   borderRadius: '6px',
 });
 
@@ -48,8 +48,8 @@ const StyledShareIcon = styled(ShareIcon)<{
     }`,
   },
   '&.MuiSvgIcon-root': {
-    width: 36,
-    height: 36,
+    width: '36px',
+    height: '36px',
   },
 }));
 

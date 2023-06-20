@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 
 import { QUERY_KEYS, queryClient } from 'api';
-import { useGetSharedNotes } from 'api/hooks';
+import { useGetSharedNotes } from 'api/notes';
 import { ROUTE } from 'router';
 import { useAppSelector } from 'store/hooks';
 import { getNotes, getUser } from 'store/selectors';

@@ -4,7 +4,7 @@ import { Card, Typography } from '@mui/material';
 import { Color } from 'ui';
 
 const StyledCard = styled(Card)({
-  maxWidth: 600,
+  maxWidth: '600px',
   width: '100%',
   '&.MuiCard-root': {
     borderRadius: '10px',
@@ -16,7 +16,7 @@ const StyledTitle = styled(Typography)({
 });
 
 const StyledDateCreation = styled(Typography)({
-  marginBottom: 10,
+  marginBottom: '10px',
   fontSize: '12px',
   fontWeight: 300,
   color: Color.SECONDARY_LIGHT,

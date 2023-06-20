@@ -8,7 +8,7 @@ export const StyledSharedNotes = styled(Container)({
     gap: '40px',
     width: '100%',
     '@media screen and (max-width: 600px)': {
-      padding: 10,
+      padding: '10px',
     },
   },
 });

@@ -12,7 +12,7 @@ const StyledMyNotes = styled(Container)({
     width: '100%',
     '@media screen and (max-width: 600px)': {
       padding: 0,
-      gap: 10,
+      gap: '10px',
     },
     '@media screen and (min-width: 1200px)': {
       maxWidth: '1920px',

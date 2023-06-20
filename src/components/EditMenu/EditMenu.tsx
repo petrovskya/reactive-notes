@@ -13,19 +13,21 @@ import { IEditMenuProps } from './types';
 const EditMenu: FC<IEditMenuProps> = ({
   initialValues,
   isEditMenuOpen,
-  handleOpenEditMenu,
-  handleCloseEditMenu,
+  onHandleChangeEditMenuVisibility,
   handleSubmitEditMenu,
 }) => (
   <>
     <StyledButton
       variant='contained'
       endIcon={<EditIcon />}
-      onClick={handleOpenEditMenu}
+      onClick={onHandleChangeEditMenuVisibility}
     >
       {BUTTON_TEXT.EDIT}
     </StyledButton>
-    <StyledDialog open={isEditMenuOpen} onClose={handleCloseEditMenu}>
+    <StyledDialog
+      open={isEditMenuOpen}
+      onClose={onHandleChangeEditMenuVisibility}
+    >
       <DialogTitle>{COMPONENT_TITLE.EDIT_MENU}</DialogTitle>
       <Formik
         initialValues={initialValues}

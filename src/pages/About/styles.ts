@@ -9,7 +9,8 @@ export const StyledContainer = styled(Container)({
     display: 'grid',
     justifyContent: 'center',
     placeItems: 'center',
-    gap: '5px',
+    gap: '10px',
+    paddingBottom: '20px',
   },
 });
 
@@ -17,21 +18,24 @@ export const DocumentWrapper = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  gap: 10,
+  width: '60vw',
+  gap: '10px',
 });
 
 export const StyledDocument = styled(Document)({
-  display: 'grid',
+  display: 'flex',
+  alignItems: 'center',
   maxWidth: '60vw',
   width: '100%',
   height: '75vh',
+  gap: '20px',
   overflowY: 'scroll',
   scrollbarWidth: 'thin',
   scrollbarHeight: 'thin',
   scrollbarColor: `${Color.SECONDARY} ${Color.PRIMARY}`,
   '&::-webkit-scrollbar': {
-    width: 6,
-    height: 6,
+    width: '6px',
+    height: '6px',
   },
   '&::-webkit-scrollbar-track': {
     borderRadius: '16px',
@@ -42,21 +46,29 @@ export const StyledDocument = styled(Document)({
   },
   '@media screen and (max-width: 480px)': {
     maxWidth: '50vw',
+    gap: '10px',
   },
+});
+
+export const StyledLoader = styled(Box)({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
 });
 
 export const StyledPage = styled(Page)({
   height: '73vh',
+  margin: 'auto',
 });
 
 export const NavigateButton = styled(Button)({
-  width: 40,
-  height: 40,
+  width: '40px',
+  height: '40px',
   '&.MuiButton-root': {
     '@media screen and (max-width: 480px)': {
-      minWidth: 24,
-      height: 24,
-      padding: 6,
+      minWidth: '24px',
+      height: '24px',
+      padding: '6px',
     },
   },
 });

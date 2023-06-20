@@ -10,6 +10,8 @@ export const SEPARATOR_INDEX = 7;
 
 export const MAX_LENGTH_OF_DESCRIPTION = 450;
 
+export const TABLET_SCREEN_SIZE = 768;
+
 export const EMPTY_STRING = '';
 
 export const APPLICATION_NAME = 'Reactive notes';

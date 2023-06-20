@@ -8,5 +8,3 @@ export const SIGN_UP_INITIAL_VALUES = {
   lastName: EMPTY_STRING,
   dateOfBirth: new Date(),
 };
-
-export const REQUIRED_MESSAGE = 'This field is required!';

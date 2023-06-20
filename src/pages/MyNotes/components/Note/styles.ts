@@ -23,7 +23,7 @@ const StyledCard = styled(Card)({
   justifyContent: 'space-between',
   maxWidth: '900px',
   width: '100%',
-  gap: 10,
+  gap: '10px',
 
   '&.MuiPaper-root': {
     borderRadius: '10px',
@@ -56,9 +56,9 @@ const StyledCardActions = styled(CardActions)({
     display: 'flex',
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
-    padding: 15,
+    padding: '15px',
     gap: '10px',
-    borderRadius: 6,
+    borderRadius: '6px',
   },
   '.MuiButtonBase-root': {
     padding: '6px',

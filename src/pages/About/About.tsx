@@ -24,6 +24,7 @@ import {
   NavigateButton,
   StyledContainer,
   StyledDocument,
+  StyledLoader,
   StyledPage,
 } from './styles';
 import { IAboutProps } from './types';
@@ -56,30 +57,38 @@ const About: FC<IAboutProps> = ({
       </Button>
     </ButtonGroup>
     <DocumentWrapper>
-      <NavigateButton
-        type='button'
-        variant='contained'
-        disabled={isFirstPageVisible}
-        onClick={handleSetPreviousPage}
-      >
-        <NavigateBeforeIcon />
-      </NavigateButton>
+      {numberOfPages && (
+        <NavigateButton
+          type='button'
+          variant='contained'
+          disabled={isFirstPageVisible}
+          onClick={handleSetPreviousPage}
+        >
+          <NavigateBeforeIcon />
+        </NavigateButton>
+      )}
       <StyledDocument
         file={samplePdf}
         options={VIEWER_OPTIONS}
-        loading={<CircularProgress color='secondary' />}
+        loading={
+          <StyledLoader>
+            <CircularProgress color='secondary' />
+          </StyledLoader>
+        }
         onLoadSuccess={handleDocumentLoadSuccess}
       >
         <StyledPage scale={pageScale} pageNumber={currentPageNumber} />
       </StyledDocument>
-      <NavigateButton
-        type='button'
-        variant='contained'
-        disabled={isLastPageVisible}
-        onClick={handleSetNextPage}
-      >
-        <NavigateNextIcon />
-      </NavigateButton>
+      {numberOfPages && (
+        <NavigateButton
+          type='button'
+          variant='contained'
+          disabled={isLastPageVisible}
+          onClick={handleSetNextPage}
+        >
+          <NavigateNextIcon />
+        </NavigateButton>
+      )}
     </DocumentWrapper>
     {numberOfPages && (
       <Typography variant='h4'>

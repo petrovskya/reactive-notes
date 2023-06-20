@@ -20,9 +20,9 @@ const StyledListItemButton = styled(ListItemButton)<{ $isActive: boolean }>(
 );
 
 const StyledCard = styled(Card)({
-  maxWidth: 345,
+  maxWidth: '345px',
   width: '100%',
-  gap: 10,
+  gap: '10px',
   borderRadius: '10px',
 });
 

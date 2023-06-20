@@ -1,7 +1,7 @@
 export interface IHeaderProps {
   isMobileView: boolean;
   isMobileNavOpen: boolean;
-  handleMobileNavOpen: () => void;
+  handleMobileNavVisibility: () => void;
 }
 
 export type TIsMobileNavOpen = {

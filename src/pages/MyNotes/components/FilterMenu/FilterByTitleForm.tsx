@@ -32,8 +32,8 @@ const FilterByTitleForm: FC<FormikProps<IFilterByTitleValues>> = ({
             value={titleForFilter}
             autoFocus
             fullWidth
-            onChange={handleChange('titleForFilter')}
-            onBlur={handleBlur('titleForFilter')}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
         </Wrapper>
         <DialogActions>

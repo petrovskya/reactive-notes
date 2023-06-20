@@ -29,7 +29,7 @@ const SignInForm: FC<FormikProps<typeof SIGN_IN_INITIAL_VALUES>> = ({
       value={values.email}
       error={touched.email && !!errors?.email}
       helperText={touched.email && errors?.email}
-      onChange={handleChange('email')}
+      onChange={handleChange}
     />
     <TextField
       id='password'
@@ -39,7 +39,7 @@ const SignInForm: FC<FormikProps<typeof SIGN_IN_INITIAL_VALUES>> = ({
       placeholder={PLACEHOLDER_TEXT.PASSWORD}
       value={values.password}
       helperText={touched.password && errors?.password}
-      onChange={handleChange('password')}
+      onChange={handleChange}
     />
     <Button color='primary' variant='contained' type='submit'>
       {BUTTON_TEXT.SIGN_IN}

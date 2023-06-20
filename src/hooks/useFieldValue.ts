@@ -5,8 +5,8 @@ import { EMPTY_STRING } from 'config/constants';
 export const useFieldValue = (initialValue = EMPTY_STRING) => {
   const [value, setValue] = useState(initialValue);
 
-  const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+  const onChange = useCallback(({ target }: ChangeEvent<HTMLInputElement>) => {
+    setValue(target.value);
   }, []);
 
   const onReset = () => {

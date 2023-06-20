@@ -5,5 +5,5 @@ export interface ISharedNotes {
   activeNote?: INote;
   isLoading?: boolean;
   isFetching?: boolean;
-  setLastNoteInView?: (node?: Element | null | undefined) => void;
+  setLastNoteInView?: (node?: Element | null) => void;
 }

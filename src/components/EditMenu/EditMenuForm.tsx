@@ -15,6 +15,8 @@ const EditMenuForm: FC<FormikProps<IEditMenuValues>> = ({
   handleReset,
 }) => {
   const { title, description } = values;
+  const isButtonDisabled = !!(errors?.description || errors?.title);
+
   return (
     <Form onSubmit={handleSubmit}>
       <DialogContent>
@@ -29,7 +31,7 @@ const EditMenuForm: FC<FormikProps<IEditMenuValues>> = ({
           helperText={touched.title && errors?.title}
           autoFocus
           fullWidth
-          onChange={handleChange('title')}
+          onChange={handleChange}
         />
         <TextField
           id='description'
@@ -43,18 +45,14 @@ const EditMenuForm: FC<FormikProps<IEditMenuValues>> = ({
           fullWidth
           autoFocus
           multiline
-          onChange={handleChange('description')}
+          onChange={handleChange}
         />
       </DialogContent>
       <DialogActions>
         <Button variant='contained' color='secondary' onClick={handleReset}>
           {BUTTON_TEXT.CANCEL}
         </Button>
-        <Button
-          variant='contained'
-          type='submit'
-          disabled={!!(errors?.description || errors?.title)}
-        >
+        <Button variant='contained' type='submit' disabled={isButtonDisabled}>
           {BUTTON_TEXT.SAVE}
         </Button>
       </DialogActions>

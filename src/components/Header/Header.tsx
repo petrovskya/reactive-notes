@@ -10,16 +10,16 @@ import { IHeaderProps } from './types';
 const Header: FC<IHeaderProps> = ({
   isMobileView,
   isMobileNavOpen,
-  handleMobileNavOpen,
+  handleMobileNavVisibility,
 }) => (
   <StyledHeader $isMobileNavOpen={isMobileNavOpen}>
     <StyledLogo $isMobileView={isMobileView}>
       <LogoIcon />
       {isMobileView &&
         (isMobileNavOpen ? (
-          <CloseIcon onClick={handleMobileNavOpen} />
+          <CloseIcon onClick={handleMobileNavVisibility} />
         ) : (
-          <MenuIcon onClick={handleMobileNavOpen} />
+          <MenuIcon onClick={handleMobileNavVisibility} />
         ))}
     </StyledLogo>
     {isMobileView ? isMobileNavOpen && <MobileNav /> : <Nav />}

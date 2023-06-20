@@ -20,10 +20,10 @@ const SignUpFormContainer = () => {
 
   const { mutate: addUser } = useMutation({
     mutationFn: userActions.addUser,
-    onSuccess: ({ data: newUSer }) => {
+    onSuccess: ({ data: newUser }) => {
       navigate(ROUTE.MY_NOTES);
       queryClient.invalidateQueries([QUERY_KEYS.USERS]);
-      dispatch(setUserAuth(newUSer));
+      dispatch(setUserAuth(newUser));
     },
   });
 

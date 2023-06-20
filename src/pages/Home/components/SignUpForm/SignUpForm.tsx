@@ -4,6 +4,7 @@ import { Button, Typography, TextField } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
+import { VALIDATION_MESSAGES } from 'config';
 import {
   COMPONENT_TITLE,
   PLACEHOLDER_TEXT,
@@ -11,7 +12,7 @@ import {
   LABEL_TEXT,
 } from 'config/types';
 
-import { REQUIRED_MESSAGE, SIGN_UP_INITIAL_VALUES } from './constants';
+import { SIGN_UP_INITIAL_VALUES } from './constants';
 import { StyledForm } from './styles';
 
 const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
@@ -33,7 +34,7 @@ const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
         value={values.firstName}
         error={touched.firstName && !!errors?.firstName}
         helperText={touched.firstName && errors?.firstName}
-        onChange={handleChange('firstName')}
+        onChange={handleChange}
       />
       <TextField
         id='lastName'
@@ -43,7 +44,7 @@ const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
         value={values.lastName}
         error={touched.lastName && !!errors?.lastName}
         helperText={touched.lastName && errors?.lastName}
-        onChange={handleChange('lastName')}
+        onChange={handleChange}
       />
       <TextField
         id='email'
@@ -53,7 +54,7 @@ const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
         value={values.email}
         error={touched.email && !!errors?.email}
         helperText={touched.email && errors?.email}
-        onChange={handleChange('email')}
+        onChange={handleChange}
       />
       <DatePicker
         value={values.dateOfBirth}
@@ -62,7 +63,8 @@ const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
             variant: 'outlined',
             label: LABEL_TEXT.DATE_OF_BIRTH,
             error: Boolean(errors.dateOfBirth),
-            helperText: errors.dateOfBirth && REQUIRED_MESSAGE,
+            helperText:
+              errors.dateOfBirth && VALIDATION_MESSAGES.REQUIRED.DATE_OF_BIRTH,
           },
         }}
         disableFuture
@@ -77,7 +79,7 @@ const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
         value={values.password}
         error={touched.password && !!errors?.password}
         helperText={touched.password && errors?.password}
-        onChange={handleChange('password')}
+        onChange={handleChange}
       />
       <TextField
         id='confirmPassword'
@@ -88,7 +90,7 @@ const SignUpForm: FC<FormikProps<typeof SIGN_UP_INITIAL_VALUES>> = ({
         value={values.confirmPassword}
         error={touched.confirmPassword && !!errors?.confirmPassword}
         helperText={touched.confirmPassword && errors?.confirmPassword}
-        onChange={handleChange('confirmPassword')}
+        onChange={handleChange}
       />
       <Button color='primary' variant='contained' type='submit'>
         {BUTTON_TEXT.SIGN_UP}

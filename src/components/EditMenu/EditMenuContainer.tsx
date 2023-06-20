@@ -31,8 +31,7 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ note, editNote }) => {
     description: description,
   };
 
-  const handleOpenEditMenu = () => toggleEditMenuOpen();
-  const handleCloseEditMenu = () => toggleEditMenuOpen();
+  const onHandleChangeEditMenuVisibility = () => toggleEditMenuOpen();
 
   const handleSubmitEditMenu = (editMenuValues: IEditMenuValues) => {
     updateNote(
@@ -51,8 +50,7 @@ const EditMenuContainer: FC<IEditMenuContainerProps> = ({ note, editNote }) => {
       description={description}
       initialValues={editMenuInitialValues}
       isEditMenuOpen={isEditMenuOpen}
-      handleOpenEditMenu={handleOpenEditMenu}
-      handleCloseEditMenu={handleCloseEditMenu}
+      onHandleChangeEditMenuVisibility={onHandleChangeEditMenuVisibility}
       handleSubmitEditMenu={handleSubmitEditMenu}
     />
   );

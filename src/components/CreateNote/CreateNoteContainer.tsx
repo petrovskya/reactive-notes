@@ -26,14 +26,12 @@ const CreateNoteContainer = () => {
     toggleCreateMenuOpen();
   };
 
-  const handleOpenCreateMenu = () => toggleCreateMenuOpen();
-  const handleCloseCreateMenu = () => toggleCreateMenuOpen();
+  const onHandleChangeCreateMenuVisibility = () => toggleCreateMenuOpen();
 
   return (
     <CreateNote
       isCreateMenuOpen={isCreateMenuOpen}
-      handleOpenCreateMenu={handleOpenCreateMenu}
-      handleCloseCreateMenu={handleCloseCreateMenu}
+      onHandleChangeCreateMenuVisibility={onHandleChangeCreateMenuVisibility}
       handleSaveNewNote={handleSaveNewNote}
     />
   );

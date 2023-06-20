@@ -23,19 +23,21 @@ import { ICreateNoteProps } from './types';
 
 const CreateNote: FC<ICreateNoteProps> = ({
   isCreateMenuOpen,
-  handleOpenCreateMenu,
-  handleCloseCreateMenu,
+  onHandleChangeCreateMenuVisibility,
   handleSaveNewNote,
 }) => (
   <>
     <Button
       variant='contained'
       endIcon={<EditIcon />}
-      onClick={handleOpenCreateMenu}
+      onClick={onHandleChangeCreateMenuVisibility}
     >
       {BUTTON_TEXT.CREATE}
     </Button>
-    <Dialog open={isCreateMenuOpen} onClose={handleCloseCreateMenu}>
+    <Dialog
+      open={isCreateMenuOpen}
+      onClose={onHandleChangeCreateMenuVisibility}
+    >
       <Formik
         initialValues={CREATE_NOTE_INITIAL_VALUES}
         validationSchema={noteMenuValidationSchema}
@@ -43,6 +45,8 @@ const CreateNote: FC<ICreateNoteProps> = ({
       >
         {({ values, touched, errors, handleSubmit, handleChange }) => {
           const { title, description } = values;
+          const isButtonDisabled = !!(errors?.description || errors?.title);
+
           return (
             <Form onSubmit={handleSubmit}>
               <DialogTitle>{COMPONENT_TITLE.CREATE_NOTE}</DialogTitle>
@@ -81,14 +85,14 @@ const CreateNote: FC<ICreateNoteProps> = ({
                 <Button
                   variant='contained'
                   color='secondary'
-                  onClick={handleCloseCreateMenu}
+                  onClick={onHandleChangeCreateMenuVisibility}
                 >
                   {BUTTON_TEXT.CANCEL}
                 </Button>
                 <Button
                   variant='contained'
                   type='submit'
-                  disabled={!!(errors?.description || errors?.title)}
+                  disabled={isButtonDisabled}
                 >
                   {BUTTON_TEXT.SAVE}
                 </Button>

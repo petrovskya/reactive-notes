@@ -16,7 +16,7 @@ const HeaderContainer = () => {
     <Header
       isMobileView={isMobileView}
       isMobileNavOpen={isMobileNavOpen}
-      handleMobileNavOpen={toggleMobileNavOpen}
+      handleMobileNavVisibility={toggleMobileNavOpen}
     />
   );
 };

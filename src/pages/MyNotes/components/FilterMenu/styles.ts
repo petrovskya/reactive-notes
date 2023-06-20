@@ -12,15 +12,15 @@ const StyledFilterMenu = styled(Box)({
 });
 
 const StyledBadge = styled(Badge)({
-  padding: 2,
-  borderRadius: 6,
+  padding: '2px',
+  borderRadius: '6px',
   backgroundColor: Color.SECONDARY,
   color: Color.WHITE,
   cursor: 'pointer',
   '.MuiBadge-badge': {
-    minWidth: 14,
-    height: 14,
-    borderRadius: 8,
+    minWidth: '14px',
+    height: '14px',
+    borderRadius: '8px',
     backgroundColor: Color.PRIMARY,
   },
 });
@@ -28,7 +28,7 @@ const StyledBadge = styled(Badge)({
 const FilterMenuButton = styled(ToggleButton)({
   '&.MuiToggleButton-root': {
     border: 'none',
-    marginBottom: 15,
+    marginBottom: '15px',
   },
 });
 
@@ -36,7 +36,7 @@ const Wrapper = styled(Box)({
   display: 'grid',
   '&.MuiBox-root': {
     display: 'grid',
-    gap: 20,
+    gap: '20px',
   },
 });
 

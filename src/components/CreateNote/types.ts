@@ -7,7 +7,6 @@ export interface ICreateNoteFormValues {
 
 export interface ICreateNoteProps {
   isCreateMenuOpen: boolean;
-  handleOpenCreateMenu: MouseEventHandler<HTMLButtonElement>;
-  handleCloseCreateMenu: MouseEventHandler<HTMLButtonElement>;
+  onHandleChangeCreateMenuVisibility: MouseEventHandler<HTMLButtonElement>;
   handleSaveNewNote: ({ title, description }: ICreateNoteFormValues) => void;
 }
