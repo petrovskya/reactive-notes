@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Avatar, Card, CardContent } from '@mui/material';
+import { Avatar, Box, Card, CardContent } from '@mui/material';
 
 export const StyledCard = styled(Card)({
   padding: '20px',
@@ -23,4 +23,8 @@ export const StyledCardContent = styled(CardContent)({
   '@media (max-width: 768px)': {
     display: 'grid',
   },
+});
+
+export const StyledBoxContent = styled(Box)({
+  marginBottom: '15px',
 });
