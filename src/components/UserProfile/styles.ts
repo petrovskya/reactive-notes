@@ -26,5 +26,5 @@ export const StyledCardContent = styled(CardContent)({
 });
 
 export const StyledBoxContent = styled(Box)({
-  marginBottom: '15px',
+  marginBottom: '20px',
 });
